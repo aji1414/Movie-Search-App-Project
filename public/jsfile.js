@@ -1,16 +1,19 @@
 var movies = [];
 var request = new XMLHttpRequest()
+var divNo = 1
 
 // now adapted for autocompplete search
 async function getMovies() {
 	var movieSearched = $("#myInput").val()
 	let response = await fetch("https://api.themoviedb.org/3/search/movie?api_key=64436a1714ae913f7d6492fd1433610c&query=" + movieSearched)
 	let data     = await response.json()
+	console.log(data.results[0])
 	movies = []
 	for (var i = 0;i < 50; i++){
 		var add = data.results[i].title;
 		movies.push(add);
 	}
+	
 	return movies;
 }
 
@@ -91,8 +94,16 @@ function autocomplete(inp, arr) {
 			  b.addEventListener("click", function(e) {
 			  /*insert the value for the autocomplete text field:*/
 			  inp.value = this.getElementsByTagName("input")[0].value;
-			  /*close the list of autocompleted values,
-			  (or any other open lists of autocompleted values:*/
+				  
+			  // create new div element on screen with chosen film
+			var newDiv = document.createElement("DIV")
+			var inside = document.createTextNode(("Testing if it works"))
+			newDiv.appendChild(inside)
+			var current = document.querySelector("#movieSpace")
+			current.appendChild(newDiv)
+			
+				
+			  /*close the list of autocompleted values,(or any other open lists of autocompleted values:*/
 			  closeAllLists();
 		  });
 		  a.appendChild(b);

@@ -1,3 +1,7 @@
+body, html {
+	height:100%;
+}
+
 * { box-sizing: border-box; }
 body {
   font: 16px Arial;
@@ -6,6 +10,7 @@ body {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
+  width: 80%;
 }
 input {
   border: 1px solid transparent;
@@ -48,10 +53,19 @@ input[type=submit] {
   color: #ffffff;
 }
 
+/* EVERYTHING ABOVE IS WITH THE AUTOCOMPLETE FORM CODE */
+
+/* STYLING FOR THE BOX IN AUTOCOMPLETE FORM */
 .searchFilm{
 	border-radius: 25px;
 }
 
 .searchFilm:focus{
 	outline:none;
+}
+
+
+/* STYLING FOR MOVIE SEARCHED RESULTS DISPLAY  */
+#movieSpace{
+	/* height:100% */
 }

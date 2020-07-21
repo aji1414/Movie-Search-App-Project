@@ -1,11 +1,11 @@
 <%- include ("./partials/header") %>
 
 
-<div class="jumbotron jumbotron-fluid bg-white border border-info roundedrs-top">
+<!-- <div class="jumbotron jumbotron-fluid bg-white border border-info rounded-top">
 	  <div class="container text-center">
 			<h1 class="display-4">Movie Comparison App</h1>
 			<p class="lead"></p>
-		  	<!--Make sure the form has the autocomplete function switched off:-->
+		
 			<form autocomplete="off" action="/action_page.php">
 			  <div class="autocomplete " style="width:300px;">
 				<input class = "searchFilm border border-secondary" id="myInput" type="text" name="myCountry" placeholder="Search for a movie">
@@ -13,22 +13,24 @@
 			  <input type="submit">
 			</form>
 	  </div>
+</div> -->
+
+<div class="jumbotron jumbotron-fluid bg-white border border-info rounded-top">
+	  <div class="container text-center">
+			<h1 class="display-4">Movie Comparison App</h1>
+			<p class="lead"></p>
+		
+			<!-- <form autocomplete="off" action="/action_page.php"> -->
+			  <div class="autocomplete ">
+				<input class = "searchFilm border border-secondary" id="myInput" type="text" name="myCountry" placeholder="Search for a movie">
+			  </div>
+	  </div>
 </div>
 
-	<!-- <h1>
-	WELCOME TO MY MOVIE COMPARISON APP
-	</h1> -->
-<!-- action = "/" method = "GET" -->
-
-<!-- <form id = "firstsearch" class = "mb-5" > -->
-		<!-- <input class = "searchFilm" type = "text" placeholder = "search a term">
-		<div class = "btn btn-success btn-large test mb-5">Click to Search Movie</div> -->
-<!-- </form> -->
+<div id = "movieSpace" class = "border border-success">
 	
+</div>
 
-
-
-	
-	
 
 <%- include ("./partials/footer") %>
+  	<!-- Make sure the form has the autocomplete function switched off: -->
