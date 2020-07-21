@@ -1,5 +1,6 @@
 var movies = [];
 
+
 // now adapted for autocompplete search
 async function getMovies() {
 	var movieSearched = $("#myInput").val()
@@ -8,41 +9,19 @@ async function getMovies() {
 	// console.log(data.results[0])
 	movies = []
 	for (var i = 0;i < 50; i++){
-		var add = data.results[i].title;
+		// pull url of poster for each movie
+		var posterPath = data.results[i].poster_path;
+
+		var add = [data.results[i].original_title,
+				   "https://image.tmdb.org/t/p/w92"+ posterPath,
+				  data.results[i].id];
 		movies.push(add);
 	}
 	
+	// console.log("this is the ting " + movies[1]) 
 	return movies;
 }
 
-
-// function getMovies2(){
-// 	var movieSearched = $("#myInput").val()
-// 	movies = []
-// 	request.open('GET', "https://api.themoviedb.org/3/search/movie?api_key=64436a1714ae913f7d6492fd1433610c&query=" + movieSearched, true)
-// 	request.onload = function () {
-// 	  // Begin accessing JSON data here
-// 	  var data = JSON.parse(this.response)
-
-// 	  if (request.status >= 200 && request.status < 400) {
-// 		// console.log(data.results[0].title)
-// 		for (var i = 0; i < 50; i++){
-// 			movies.push(data.results[i].title)
-// 		} 
-
-// 		return movies
-// 	  } else {
-// 		console.log('error')
-// 		}	
-// }
-
-// request.send()
-
-// }
-
-
-// deleted code that may be needed to be reinserted
-// if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase())
 
 // document.getElementById("fname").addEventListener("change", myFunction);
 function autocomplete(inp, arr) {
@@ -56,8 +35,8 @@ function autocomplete(inp, arr) {
 	  getMovies();
 	// update movie array to latest api call results
 	  arr = movies
-	  console.log(this.value + "this is it")
-      var a, b, i, val = this.value;
+
+	  var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
       // closeAllLists();
       if (!val) { return false;}
@@ -80,20 +59,18 @@ function autocomplete(inp, arr) {
 	  
 	  for (i = 0; i < arr.length; i++) {
 		/*check if the item starts with the same letters as the text field value:*/
-		  var currentMovieParse = arr[i].toUpperCase();
+		  var currentMovieParse = arr[i][0].toUpperCase();
 // 		  if statement to return only results from API which actually include the current input value. As API search isn't based on just exact matches
 		if (currentMovieParse.includes(val.toUpperCase()) === true) {
-			console.log(currentMovieParse + " " + val.toUpperCase())
-		
 			
 		  /*create a DIV element for each matching element:*/
 		  b = document.createElement("DIV");
 		  /*make the matching letters bold:*/
-		  b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+		  b.innerHTML = "<strong>" + arr[i][0].substr(0, val.length) + "</strong>";
 		  // added the image tag of movie to appear alongside name in search bar
-		  b.innerHTML += arr[i].substr(val.length) + "<img class = 'ml-3' src = 'https://image.tmdb.org/t/p/w92/8RW2runSEc34IwKN2D1aPcJd2UL.jpg'>";
+		  b.innerHTML += arr[i][0].substr(val.length) + "<img class = 'ml-3 poster' src = " + arr[i][1] + ">";
 		  /*insert a input field that will hold the current array item's value:*/
-		  b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+		  b.innerHTML += "<input type='hidden' value='" + arr[i][0] + "'>";
 			
 		
 			
@@ -104,7 +81,8 @@ function autocomplete(inp, arr) {
 				  
 			  // create new div element on screen with chosen film
 			var newDiv = document.createElement("DIV")
-			var inside = document.createTextNode(("Testing if it works"))
+			var inside = document.createTextNode((arr[i][0]))
+			console.log("this is inside variable " + inside)
 			newDiv.appendChild(inside)
 			var current = document.querySelector("#movieSpace")
 			current.appendChild(newDiv)
@@ -118,7 +96,7 @@ function autocomplete(inp, arr) {
 		}
 	  }
  
-	  console.log("this is a,b,i,val: " + a + " " + b + " " + i + " " + val)
+	  // console.log("this is a,b,i,val: " + a + " " + b + " " + i + " " + val)
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
