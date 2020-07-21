@@ -1,0 +1,38 @@
+<%- include ("./partials/header") %>
+
+
+	<h1>
+	WELCOME TO MY MOVIE COMPARISON APP
+	</h1>
+<!-- action = "/" method = "GET" -->
+
+<!-- <form id = "firstsearch" class = "mb-5" > -->
+		<input class = "searchFilm" type = "text" placeholder = "search a term">
+		<div class = "btn btn-success btn-large test mb-5">Click to Search Movie</div>
+<!-- </form> -->
+	
+
+	
+<ul class = "mb-5">
+	<%  if (typeof moviedata !== 'undefined') { for (var i = 0; i < moviedata.length; i++){ %> 
+	
+		<li>
+			<%= moviedata[i]["title"] %>
+		 <% };} %>
+
+		</li>
+</ul>	
+	
+	
+<!--Make sure the form has the autocomplete function switched off:-->
+<form autocomplete="off" action="/action_page.php">
+  <div class="autocomplete" style="width:300px;">
+    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+  </div>
+  <input type="submit">
+</form>
+
+	
+	
+
+<%- include ("./partials/footer") %>
