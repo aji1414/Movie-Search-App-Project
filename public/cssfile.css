@@ -47,3 +47,11 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+.searchFilm{
+	border-radius: 25px;
+}
+
+.searchFilm:focus{
+	outline:none;
+}
