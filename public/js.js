@@ -1,5 +1,5 @@
 var movies = [];
-
+var comeThrough = []
 
 // now adapted for autocompplete search
 async function getMovies() {
@@ -13,7 +13,8 @@ async function getMovies() {
 		var posterPath = data.results[i].poster_path;
 
 		var add = [data.results[i].original_title,
-				   "https://image.tmdb.org/t/p/w92"+ posterPath,
+// 				   have to use escape characters for slashes below or wont come through in html
+				   "https:\/\/image.tmdb.org\/t\/p\/w92"+ posterPath,
 				  data.results[i].id];
 		movies.push(add);
 	}
@@ -22,6 +23,7 @@ async function getMovies() {
 	return movies;
 }
 
+// https://image.tmdb.org/t/p/w92
 
 // document.getElementById("fname").addEventListener("change", myFunction);
 function autocomplete(inp, arr) {
@@ -60,6 +62,9 @@ function autocomplete(inp, arr) {
 	  for (i = 0; i < arr.length; i++) {
 		/*check if the item starts with the same letters as the text field value:*/
 		  var currentMovieParse = arr[i][0].toUpperCase();
+		  
+		  var comeThrough = arr[i]
+		  // console.log(comeThrough)
 // 		  if statement to return only results from API which actually include the current input value. As API search isn't based on just exact matches
 		if (currentMovieParse.includes(val.toUpperCase()) === true) {
 			
@@ -70,20 +75,35 @@ function autocomplete(inp, arr) {
 		  // added the image tag of movie to appear alongside name in search bar
 		  b.innerHTML += arr[i][0].substr(val.length) + "<img class = 'ml-3 poster' src = " + arr[i][1] + ">";
 		  /*insert a input field that will hold the current array item's value:*/
-		  b.innerHTML += "<input type='hidden' value='" + arr[i][0] + "'>";
-			
-		
-			
+		  b.innerHTML += "<input type='hidden' filmName='" + arr[i][0] + "' poster='" + arr[i][1] + "' id='" + arr[i][2] + "'>";
+
 		  /*execute a function when someone clicks on the item value (DIV element):*/
 			  b.addEventListener("click", function(e) {
 			  /*insert the value for the autocomplete text field:*/
-			  inp.value = this.getElementsByTagName("input")[0].value;
-				  
-			  // create new div element on screen with chosen film
+			  // inp.value = this.getElementsByTagName("input")[0].value;
+			inp.value = this.getElementsByTagName("input")[0].getAttribute("filmName");
+						  
+			// create new div element on screen with chosen film
+			// outer new div element for entire movie	  
 			var newDiv = document.createElement("DIV")
-			var inside = document.createTextNode((arr[i][0]))
-			console.log("this is inside variable " + inside)
-			newDiv.appendChild(inside)
+			
+			// <img src="..." class="img-fluid" alt="Responsive image">
+			
+			// create movie thumbnail
+			var newThumbnail = document.createElement("img")
+			newThumbnail.setAttribute("src", this.getElementsByTagName("input")[0].getAttribute("poster") )
+			
+			// create movie header
+			var divH1  = document.createElement("H1")
+			divH1.innerHTML = inp.value
+			divH1.classList.add("testing")
+			
+			// put all created elements within movie div
+			newDiv.appendChild(newThumbnail)
+			newDiv.appendChild(divH1)
+			
+				  
+			// put movie div in pre set movie div
 			var current = document.querySelector("#movieSpace")
 			current.appendChild(newDiv)
 			
