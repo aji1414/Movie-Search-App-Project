@@ -72,7 +72,7 @@ const autoCompletejs = new autoComplete({
 
 		for (var num = 1; num < 6; num++){
 			// var currentCheck = document.querySelector(".selection" + num)
-			if (document.querySelector(".selection" + num).contains(isImg)){
+			if (document.querySelector(".poster" + num).contains(isImg)){
 				currentDiv ++
 			}
 			else{
@@ -87,7 +87,8 @@ const autoCompletejs = new autoComplete({
 		
 		
 		// Render selected choice to selection div
-		document.querySelector(".selection"+ currentDiv).innerHTML = "<img src = '" + poster + "'>" + selection;
+		document.querySelector(".selection" + currentDiv).innerHTML =  selection;
+		document.querySelector(".poster" + currentDiv).innerHTML = "<img src = '" + poster + "'>";
 		// Clear Input
 		document.querySelector("#autoComplete").value = "";
 		// Change placeholder with the selected value
