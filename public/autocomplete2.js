@@ -2,6 +2,11 @@
 document.querySelector("#autoComplete").addEventListener("autoComplete", event => {
 	// console.log(event);
 });
+
+// for ading new div logic. Will need to be reset when a movie is unselected in the future
+var currentDiv = 1
+
+
 // The autoComplete.js Engine instance creator
 const autoCompletejs = new autoComplete({
 	data: {
@@ -38,7 +43,7 @@ const autoCompletejs = new autoComplete({
 	debounce: 0,
 	searchEngine: "loose",
 	highlight: true,
-	maxResults: 10,
+	maxResults: 100,
 	resultsList: {
 		render: true,
 		container: source => {
@@ -62,9 +67,27 @@ const autoCompletejs = new autoComplete({
 		document.querySelector("#autoComplete_list").appendChild(result);
 	},
 	onSelection: feedback => {
+		// logic to choose which div content is going in on the page
+		var isImg = document.querySelector("img")
+
+		for (var num = 1; num < 6; num++){
+			// var currentCheck = document.querySelector(".selection" + num)
+			if (document.querySelector(".selection" + num).contains(isImg)){
+				currentDiv ++
+			}
+			else{
+				console.log("this is final div " + currentDiv)
+				break 
+			}
+		}
+		
 		const selection = feedback.selection.value.Title;
+		const poster = feedback.selection.value.Poster;
+		
+		
+		
 		// Render selected choice to selection div
-		document.querySelector(".selection").innerHTML = selection;
+		document.querySelector(".selection"+ currentDiv).innerHTML = "<img src = '" + poster + "'>" + selection;
 		// Clear Input
 		document.querySelector("#autoComplete").value = "";
 		// Change placeholder with the selected value
@@ -72,33 +95,9 @@ const autoCompletejs = new autoComplete({
 			.querySelector("#autoComplete")
 			.setAttribute("placeholder", selection);
 		// Concole log autoComplete data feedback
-		console.log(feedback);
+		// console.log(feedback);
 	}
 });
-
-
-// Toggle results list and other elements
-// const action = function(action) {
-//   const github = document.querySelector(".github-corner");
-//   const title = document.querySelector("h1");
-//   const mode = document.querySelector(".mode");
-//   const selection = document.querySelector(".selection");
-//   const footer = document.querySelector(".footer");
-
-//   if (action === "dim") {
-//     github.style.opacity = 1;
-//     title.style.opacity = 1;
-//     mode.style.opacity = 1;
-//     selection.style.opacity = 1;
-//     footer.style.opacity = 1;
-//   } else {
-//     github.style.opacity = 0.1;
-//     title.style.opacity = 0.3;
-//     mode.style.opacity = 0.2;
-//     selection.style.opacity = 0.1;
-//     footer.style.opacity = 0.1;
-//   }
-// };
 
 // Toggle event for search input
 // showing & hidding results list onfocus / blur
@@ -108,12 +107,22 @@ const autoCompletejs = new autoComplete({
   document.querySelector("#autoComplete").addEventListener(eventType, function() {
     // Hide results list & show other elemennts
     if (eventType === "blur") {
-      action("dim");
+		// console.log("blur triggered")
+
+		
       resultsList.style.display = "none";
     } else if (eventType === "focus") {
       // Show results list & hide other elemennts
-      action("light");
+		// console.log("focus triggered")
       resultsList.style.display = "block";
     }
   });
 });
+
+
+
+$(".autoComplete").on("click", "li", function(){
+	console.log("new trigger triggered")
+											
+											})
+
