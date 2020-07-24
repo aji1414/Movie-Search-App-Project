@@ -72,48 +72,14 @@ const autoCompletejs = new autoComplete({
 	onSelection: feedback => {
 		var movieData 	= [];
 		// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
-		// var movieData = {}
-		var imdbID 		= feedback.selection.value.imdbID;
-	    var response 	= "https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb";
-
 		async function getMovieData() {
 		// movieData 		= [];
 		var imdbID 		= feedback.selection.value.imdbID;
 		let response 	= await fetch("https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb");
 		let data		= await response.json();
-		// movieData.push(data);
 		return data;
 		}
 		
-		
-		// var test = await getMovieData();
-		// console.log(getMovieData())
-		// console.log(movieData)
-		
-		// getMovieData().then(function(result){
-		// 	console.log(result)
-		// 	return result
-		// })
-		
-		// console.log(movieData)
-// 		let userToken = AuthUser(data)
-// 		console.log(userToken) // Promise { <pending> }
-
-// 		userToken.then(function(result) {
-// 		   console.log(result) // "Some User token"
-// 		})
-		
-		// (async () => {
-		//   console.log(await getMovieData())
-		// })()
-		
-		// console.log(movieData)
-		
-		// var movieData  = getMovieData();
-		
-		// console.log(typeof movieData)
-		// console.log(movieData)
-		// console.log("runtime is " + movieData)
 		// logic to choose which div content is going in on the page
 		var isImg = document.querySelector("img")
 
@@ -170,10 +136,6 @@ const autoCompletejs = new autoComplete({
 			document.querySelector(".runtime" + currentDiv).innerHTML = result.Runtime
 		});
 		
-		// document.querySelector(".runtime" + currentDiv).innerHTML =  getMovieData().then(function(result){
-		// 																					return result
-		// 																				})
-			// movieData.Runtime;		
 		
 		// Clear Input
 		document.querySelector("#autoComplete").value = "";
