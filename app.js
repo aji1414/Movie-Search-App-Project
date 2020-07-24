@@ -16,34 +16,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 
-var movieTitles = []
+
 
 app.get("/",function(req,res){
-	var moviesearched = req.query.search;
-	var url = "https://api.themoviedb.org/3/search/movie?api_key=64436a1714ae913f7d6492fd1433610c&query=" + moviesearched
-
-	var movieJsonFile = "https://drive.google.com/file/d/1mD-sBYmUtgiOMdcVW7D3HrPWyF2I2KZz/view?usp=sharing"
-
-	
-	
-
-	
-// 	axios.get(url)
-// 		  .then(function (response) {
-// 			// handle success
-// 			var movieData = response.data
-// 			console.log(movieData)
-// 			console.log(movieData.results.length)
-			
-// 		  })
-// 		  .catch(function (error) {
-// 			// handle error
-// 			console.log(error);
-// 		  })
-// 		  .finally(function () {
-// 			// always executed
-// 		  });
-	
 
 
 	res.render("home")

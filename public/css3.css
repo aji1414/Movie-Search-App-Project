@@ -2,6 +2,11 @@ body, html {
 	height:100%;
 }
 
+html body{
+	background: rgb(92, 92, 92);
+	color: white;
+}
+
 * { box-sizing: border-box; }
 body {
   font: 16px Arial;

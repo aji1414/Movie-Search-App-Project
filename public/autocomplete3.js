@@ -76,7 +76,6 @@ const autoCompletejs = new autoComplete({
 				currentDiv ++
 			}
 			else{
-				console.log("this is final div " + currentDiv)
 				break 
 			}
 		}
@@ -84,11 +83,46 @@ const autoCompletejs = new autoComplete({
 		const selection = feedback.selection.value.Title;
 		const poster = feedback.selection.value.Poster;
 		
+		// unhide current div if currently hidden
+		document.querySelector(".movie" + currentDiv).classList.remove("d-none");
+		
+				
+		
+		
+		
+		for (var i = 1; i <= currentDiv; i++){
+			var currentClasses = []
+			var classList = document.querySelector(".movie" + i).classList
+			
+			for (var j = 0; j < classList.length; j ++) {
+				currentClasses.push(classList[j])
+			}
+		
+			
+			var classToDelete = ""
+			
+			for (var k = 0; k < currentClasses.length; k++){
+				if(currentClasses[k].includes("col-")){
+				   classToDelete = currentClasses[k]
+				}
+			}
+			// console.log(classToDelete)
+			
+			if(classToDelete){
+				document.querySelector(".movie" + i).classList.remove(classToDelete)
+			}
+			
+			document.querySelector(".movie" + i).classList.add("col-" + (12/currentDiv))
+		}
 		
 		
 		// Render selected choice to selection div
 		document.querySelector(".selection" + currentDiv).innerHTML =  selection;
-		document.querySelector(".poster" + currentDiv).innerHTML = "<img src = '" + poster + "'>";
+		document.querySelector(".poster" + currentDiv).innerHTML = "<img class='img-fluid' alt='Responsive image' src = '" + poster + "'>";
+		
+		
+		
+		
 		// Clear Input
 		document.querySelector("#autoComplete").value = "";
 		// Change placeholder with the selected value
@@ -108,22 +142,12 @@ const autoCompletejs = new autoComplete({
   document.querySelector("#autoComplete").addEventListener(eventType, function() {
     // Hide results list & show other elemennts
     if (eventType === "blur") {
-		// console.log("blur triggered")
-
-		
       resultsList.style.display = "none";
     } else if (eventType === "focus") {
       // Show results list & hide other elemennts
-		// console.log("focus triggered")
       resultsList.style.display = "block";
     }
   });
 });
 
-
-
-$(".autoComplete").on("click", "li", function(){
-	console.log("new trigger triggered")
-											
-											})
 
