@@ -31,25 +31,8 @@ input[type=submit] {
   background-color: DodgerBlue;
   color: #fff;
 }
-/* 
 
-/* EVERYTHING ABOVE IS WITH THE AUTOCOMPLETE FORM CODE */
-
-/* STYLING FOR THE BOX IN AUTOCOMPLETE FORM */
-/* .searchFilm{
-	border-radius: 25px;
+.title{
+	font-size:2em;
+	font-weight: 700;
 }
-
-.searchFilm:focus{
-	outline:none;
-} */
-
-
-/* STYLING FOR MOVIE SEARCHED RESULTS DISPLAY  */
-#movieSpace{
-
-}
-
-/* .testing{
-	color: green;
-} */

@@ -3,6 +3,9 @@ document.querySelector("#autoComplete").addEventListener("autoComplete", event =
 	// console.log(event);
 });
 
+var request = new XMLHttpRequest()
+
+
 // for ading new div logic. Will need to be reset when a movie is unselected in the future
 var currentDiv = 1
 
@@ -67,6 +70,50 @@ const autoCompletejs = new autoComplete({
 		document.querySelector("#autoComplete_list").appendChild(result);
 	},
 	onSelection: feedback => {
+		var movieData 	= [];
+		// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
+		// var movieData = {}
+		var imdbID 		= feedback.selection.value.imdbID;
+	    var response 	= "https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb";
+
+		async function getMovieData() {
+		// movieData 		= [];
+		var imdbID 		= feedback.selection.value.imdbID;
+		let response 	= await fetch("https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb");
+		let data		= await response.json();
+		// movieData.push(data);
+		return data;
+		}
+		
+		
+		// var test = await getMovieData();
+		// console.log(getMovieData())
+		// console.log(movieData)
+		
+		// getMovieData().then(function(result){
+		// 	console.log(result)
+		// 	return result
+		// })
+		
+		// console.log(movieData)
+// 		let userToken = AuthUser(data)
+// 		console.log(userToken) // Promise { <pending> }
+
+// 		userToken.then(function(result) {
+// 		   console.log(result) // "Some User token"
+// 		})
+		
+		// (async () => {
+		//   console.log(await getMovieData())
+		// })()
+		
+		// console.log(movieData)
+		
+		// var movieData  = getMovieData();
+		
+		// console.log(typeof movieData)
+		// console.log(movieData)
+		// console.log("runtime is " + movieData)
 		// logic to choose which div content is going in on the page
 		var isImg = document.querySelector("img")
 
@@ -80,14 +127,14 @@ const autoCompletejs = new autoComplete({
 			}
 		}
 		
-		const selection = feedback.selection.value.Title;
+		const title = feedback.selection.value.Title;
 		const poster = feedback.selection.value.Poster;
 		
 		// unhide current div if currently hidden
 		document.querySelector(".movie" + currentDiv).classList.remove("d-none");
 		
 				
-		
+		// ADD COMMENTS EXPLAINING ALL THE FOLLOWING CODE
 		
 		
 		for (var i = 1; i <= currentDiv; i++){
@@ -117,18 +164,23 @@ const autoCompletejs = new autoComplete({
 		
 		
 		// Render selected choice to selection div
-		document.querySelector(".selection" + currentDiv).innerHTML =  selection;
+		document.querySelector(".title" + currentDiv).innerHTML =  title;
 		document.querySelector(".poster" + currentDiv).innerHTML = "<img class='img-fluid' alt='Responsive image' src = '" + poster + "'>";
+		getMovieData().then(function(result) {
+			document.querySelector(".runtime" + currentDiv).innerHTML = result.Runtime
+		});
 		
-		
-		
+		// document.querySelector(".runtime" + currentDiv).innerHTML =  getMovieData().then(function(result){
+		// 																					return result
+		// 																				})
+			// movieData.Runtime;		
 		
 		// Clear Input
 		document.querySelector("#autoComplete").value = "";
 		// Change placeholder with the selected value
 		document
 			.querySelector("#autoComplete")
-			.setAttribute("placeholder", selection);
+			.setAttribute("placeholder", title);
 		// Concole log autoComplete data feedback
 		// console.log(feedback);
 	}
