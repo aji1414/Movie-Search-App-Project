@@ -1,3 +1,46 @@
+// stores current colwidth for div to be used upon creation and deletion of new movies
+var colWidth = ""
+
+// function which counts current active divs. To stop user 
+function divCount(){
+	noMovies = 0
+	for(var i = 1; i <= 4; i++){
+			if(!document.querySelector(".movie" + i).classList.contains("d-none")){
+				noMovies ++
+			}	
+		}
+	return noMovies
+}
+
+// function to resize divs when new movies added or old ones deleted
+function divResize(countOnly){
+	// find current divs showing on screen
+		activeDivs 	= 	[];
+		noMovies	=	0;
+		for(var i = 1; i <= 4; i++){
+			if(!document.querySelector(".movie" + i).classList.contains("d-none")){
+				activeDivs.push(".movie" + i)
+				noMovies ++
+			}	
+		}
+	
+	oldColWidth			= colWidth		
+	colWidth 			= "col-" + (12/noMovies)
+
+	// for every active div on page, deletes old spacing class, then adds new spacing class
+		for(var n = 0; n < activeDivs.length; n++){
+			if(oldColWidth){
+				document.querySelector(activeDivs[n]).classList.remove(oldColWidth)
+				document.querySelector(activeDivs[n]).classList.add(colWidth)
+			}
+			else{
+				document.querySelector(activeDivs[n]).classList.add(colWidth)
+			}
+		}
+	return colWidth
+}
+
+
 // The autoComplete.js Engine instance creator
 const autoCompletejs = new autoComplete({
 	data: {
@@ -60,84 +103,62 @@ const autoCompletejs = new autoComplete({
 		document.querySelector("#autoComplete_list").appendChild(result);
 	},
 	onSelection: feedback => {
-		// resets div to change and no of current movies variables
-		var divToChange	= 1
-		var noMovies	= 0
-		console.log("on click is " + divToChange)
-		
-		// logic to choose in which div new movie will go into on page. Checks if there is an image already in each div
-		// if there is an image, there is already a movie in that slot
-		for (var q = 1; q <= 4; q++){
-				if (document.querySelector(".poster" + q).childNodes.length !== 1){
-				break
-				}
-				else{
-					divToChange ++
-				}
+		// alert for when already chosen 4 movies
+		if(divCount() === 4){
+			alert("No more movies allowed!")
+		}
+		else{
+			// resets div to change variable to 1
+			var divToChange	= 1
+			// console.log("on click is " + divToChange)
+
+			// logic to choose in which div new movie will go into on page. Checks if there is an image already in each div
+			// if there is an image, there is already a movie in that slot
+			for (var q = 1; q <= 4; q++){
+					if (document.querySelector(".poster" + q).childNodes.length !== 1){
+					break
+					}
+					else{
+						divToChange ++
+					}
+			}
+
+
+
+			// unhide div selected
+			document.querySelector(".movie" + divToChange).classList.remove("d-none");
+
+			// run function that adjusts spacing of divs with the new extra div
+			divResize();
+
+			// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
+			async function getMovieData() {
+			// movieData 		= [];
+			var imdbID 		= feedback.selection.value.imdbID;
+			let response 	= await fetch("https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb");
+			let data		= await response.json();
+			return data;
+			}
+
+			// Render all movie info to correct div
+			getMovieData().then(function(result) {
+				// console.log("actual div updated " + divToChange)
+				// var smallerPoster = result.Poster.substr(0,result.Poster.length - 7) + "200.jpg"
+				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + result.Poster + "'>"
+				document.querySelector(".title" + divToChange).innerHTML					= result.Title
+				document.querySelector(".imdb" + divToChange).innerHTML					= "<strong>imdb Rating:</strong>&nbsp;" + result.Ratings[0].Value
+				document.querySelector(".metacritic" + divToChange).innerHTML			= "<strong>Metacritic Rating:</strong>&nbsp;" + result.Ratings[1].Value
+				document.querySelector(".rottenTomatoes" + divToChange).innerHTML		= "<strong>Rotten Tomatoes:</strong>&nbsp;" + result.Ratings[2].Value
+				document.querySelector(".runtime" + divToChange).innerHTML 				= "<strong>Movie Length:</strong>&nbsp;" + result.Runtime
+				document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
+				document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
+			});
+
+			// Clear Input
+			document.querySelector("#autoComplete").value = "";
 		}
 
-		// check to see which div has been selected to be used
-		// console.log("chosen to add to is " + divToChange)
-		
-		// unhide div selected
-		document.querySelector(".movie" + divToChange).classList.remove("d-none");
-		
-		// count number of movies currently showing. Used for col spacing for all active divs
-		activeDivs = []
-		for(var i = 1; i <= 4; i++){
-			if(!document.querySelector(".movie" + i).classList.contains("d-none")){
-				activeDivs.push(".movie" + i)
-				noMovies ++
-			}	
-		}
-		
-		// Locates current "col-" class so it can be deleted and be replaced with new spacing
-		var classToDelete = ""
-		var findSize = document.querySelector(activeDivs[0]).classList
-		
-		for (var k = 0; k < findSize.length; k++){
-			if(findSize[k].includes("col-")){
-				classToDelete = findSize[k]
-				break
-			}
-		}		
-		
-		// for every active div on page, deletes old spacing class, then adds new spacing class
-		for(var n = 0; n < activeDivs.length; n++){
-			if(classToDelete){
-				document.querySelector(activeDivs[n]).classList.remove(classToDelete)
-				document.querySelector(activeDivs[n]).classList.add("col-" + (12/noMovies))
-			}
-			else{
-				document.querySelector(activeDivs[n]).classList.add("col-" + (12/noMovies))
-			}
-		}
-		
-		// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
-		async function getMovieData() {
-		// movieData 		= [];
-		var imdbID 		= feedback.selection.value.imdbID;
-		let response 	= await fetch("https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb");
-		let data		= await response.json();
-		return data;
-		}
-		
-		// Render all movie info to correct div
-		getMovieData().then(function(result) {
-			// console.log("actual div updated " + divToChange)
-			// var smallerPoster = result.Poster.substr(0,result.Poster.length - 7) + "200.jpg"
-			document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + result.Poster + "'>"
-			document.querySelector(".title" + divToChange).innerHTML					= result.Title
-			document.querySelector(".imdb" + divToChange).innerHTML					= "<strong>imdb Rating:</strong>&nbsp;" + result.Ratings[0].Value
-			document.querySelector(".metacritic" + divToChange).innerHTML			= "<strong>Metacritic Rating:</strong>&nbsp;" + result.Ratings[1].Value
-			document.querySelector(".rottenTomatoes" + divToChange).innerHTML		= "<strong>Rotten Tomatoes:</strong>&nbsp;" + result.Ratings[2].Value
-			document.querySelector(".runtime" + divToChange).innerHTML 				= "<strong>Movie Length:</strong>&nbsp;" + result.Runtime
-			document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
-			document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
-		});
-		
-		// Clear Input
-		document.querySelector("#autoComplete").value = "";
+			
 	}
 });
 
@@ -186,6 +207,8 @@ $("div").on("click", "div div .btn-danger", function(){
 	// add back original classes so can be reused again
 	this.parentNode.parentNode.classList.add("d-none", "movie" + numberSearch ,"p-0")
 	
+	// run function that adjusts spacing of divs with the new extra div
+	divResize();
 })
 
 
