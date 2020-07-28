@@ -1,15 +1,7 @@
-var express 			= require("express")
-var app 				= express();
-var bodyParser			= require("body-parser")
-var axios 				= require("axios");
-var request 			= require("request")
-var http 				= require('http');
-var zlib 				= require("zlib")
-var concat 				= require('concat-stream');
-var decompress			= require("decompress");
-var fetch   			= require("node-fetch")
-var fs 					= require("fs")
-
+var 	express 			= require("express"),
+	 	app 				= express(),
+		bodyParser			= require("body-parser")
+		
 app.set("view engine", "ejs")
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -17,14 +9,27 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 
-
+// landing page
 app.get("/",function(req,res){
-
-
 	res.render("home")
-
-
 })
+
+// index route
+app.get("/users",function(req,res){
+	// console.log(req.url)
+	res.render("users")
+})
+
+app.post("/:users/usersmovies", function(req,res){
+	var data = JSON.parse(req.body.movieData1)
+	console.log(data)
+	res.send("you hit the post route")
+})
+
+
+
+
+
 
 
 

@@ -144,14 +144,17 @@ const autoCompletejs = new autoComplete({
 			getMovieData().then(function(result) {
 				// console.log("actual div updated " + divToChange)
 				// var smallerPoster = result.Poster.substr(0,result.Poster.length - 7) + "200.jpg"
+				// Render seen elements
 				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + result.Poster + "'>"
-				document.querySelector(".title" + divToChange).innerHTML					= result.Title
+				document.querySelector(".title" + divToChange).innerHTML				= result.Title
 				document.querySelector(".imdb" + divToChange).innerHTML					= "<strong>imdb Rating:</strong>&nbsp;" + result.Ratings[0].Value
 				document.querySelector(".metacritic" + divToChange).innerHTML			= "<strong>Metacritic Rating:</strong>&nbsp;" + result.Ratings[1].Value
 				document.querySelector(".rottenTomatoes" + divToChange).innerHTML		= "<strong>Rotten Tomatoes:</strong>&nbsp;" + result.Ratings[2].Value
 				document.querySelector(".runtime" + divToChange).innerHTML 				= "<strong>Movie Length:</strong>&nbsp;" + result.Runtime
 				document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
 				document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
+				// store all movie data to put in users sandpit
+				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
 			});
 
 			// Clear Input

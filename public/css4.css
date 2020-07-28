@@ -56,3 +56,9 @@ img{
 	width: 180px;
 	max-width:180px;
 }
+
+/* adjusting text size in buttons */
+btn {
+	font-size: 0.5em;
+}
+

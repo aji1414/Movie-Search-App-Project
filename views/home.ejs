@@ -1,12 +1,25 @@
 <%- include ("./partials/header") %>
+
+
+
+
 <div class = "main d-flex flex-row ml-3 mr-3">
+	
 	<div class = "d-none movie1 p-0">
 		<div class = "movieInfo d-flex justify-content-center poster1 m-0"></div>
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
+		<!-- will need to be changed to access individual user movies later -->
+		<form action = "/users/usersmovies" method = "POST">
+			<input class = "movieData1" type = "hidden" name = "movieData1" value = "">
+			<div class = "form-group d-flex justify-content-center">
+				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
+			</div>	
+		</form>
+		
 		<div class = "movieInfo d-flex justify-content-center title title1 border border-success text-center mt-0"></div>
-		<div class = "movieInfo d-flex flex-column justify-content-center rating rating1">
+		<div class = "movieInfo d-flex flex-column justify-content-center rating1">
 			<div class = "movieInfo d-flex justify-content-center imdb imdb1"></div>
 			<div class = "movieInfo d-flex justify-content-center metacritic metacritic1"></div>
 			<div class = "movieInfo d-flex justify-content-center rottenTomatoes rottenTomatoes1"></div>
@@ -23,8 +36,16 @@
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
+		<!-- will need to be changed to access individual user movies later -->
+		<form action = "/users/usersmovies" method = "POST">
+			<input class = "movieData2" type = "hidden" name = "movieData2" value = "">
+			<div class = "form-group d-flex justify-content-center">
+				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
+			</div>	
+		</form>
+		
 		<div class = "movieInfo d-flex justify-content-center title title2 border border-success text-center mt-0"></div>
-		<div class = "movieInfo d-flex flex-column justify-content-center rating rating2">
+		<div class = "movieInfo d-flex flex-column justify-content-center rating2">
 			<div class = "movieInfo d-flex justify-content-center imdb imdb2"></div>
 			<div class = "movieInfo d-flex justify-content-center metacritic metacritic2"></div>
 			<div class = "movieInfo d-flex justify-content-center rottenTomatoes rottenTomatoes2"></div>
@@ -41,8 +62,16 @@
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
+		<!-- will need to be changed to access individual user movies later -->
+		<form action = "/users/usersmovies" method = "POST">
+			<input class = "movieData3" type = "hidden" name = "movieData3" value = "">
+			<div class = "form-group d-flex justify-content-center">
+				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
+			</div>	
+		</form>
+		
 		<div class = "movieInfo d-flex justify-content-center title title3 border border-success text-center mt-0"></div>
-		<div class = "movieInfo d-flex flex-column justify-content-center rating rating3">
+		<div class = "movieInfo d-flex flex-column justify-content-center rating3">
 			<div class = "movieInfo d-flex justify-content-center imdb imdb3"></div>
 			<div class = "movieInfo d-flex justify-content-center metacritic metacritic3"></div>
 			<div class = "movieInfo d-flex justify-content-center rottenTomatoes rottenTomatoes3"></div>
@@ -59,8 +88,16 @@
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
+		<!-- will need to be changed to access individual user movies later -->
+		<form action = "/users/usersmovies" method = "POST">
+			<input class = "movieData4" type = "hidden" name = "movieData4" value = "">
+			<div class = "form-group d-flex justify-content-center">
+				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
+			</div>	
+		</form>
+		
 		<div class = "movieInfo d-flex justify-content-center title title4 border border-success text-center mt-0"></div>
-		<div class = "movieInfo d-flex flex-column justify-content-center rating rating4">
+		<div class = "movieInfo d-flex flex-column justify-content-center rating4">
 			<div class = "movieInfo d-flex justify-content-center imdb imdb4"></div>
 			<div class = "movieInfo d-flex justify-content-center metacritic metacritic4"></div>
 			<div class = "movieInfo d-flex justify-content-center rottenTomatoes rottenTomatoes4"></div>
