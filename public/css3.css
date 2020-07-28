@@ -11,12 +11,8 @@ html body{
 body {
   font: 16px Arial;
 }
-.autocomplete {
-  /*the container must be positioned relative:*/
-  position: relative;
-  display: inline-block;
-  width: 80%;
-}
+
+
 input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
@@ -32,7 +28,31 @@ input[type=submit] {
   color: #fff;
 }
 
+/* text for movie name styling */
 .title{
 	font-size:2em;
 	font-weight: 700;
+}
+
+/* style jumbotron size */
+.jumbotron{
+	height: 20%;
+}
+
+/* spacing between movie details */
+.movieInfo{
+	margin-bottom:20px
+}
+
+/* editing links in nav bar */
+ul li a{
+	font-size: 2em;
+}
+
+/* adjust poster image size so all are equal */
+img{
+	height: 267px;
+	max-height: 267px;
+	width: 180px;
+	max-width:180px;
 }

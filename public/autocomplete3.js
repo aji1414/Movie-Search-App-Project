@@ -1,14 +1,6 @@
-// autoComplete.js on typing event emitter
-document.querySelector("#autoComplete").addEventListener("autoComplete", event => {
-	// console.log(event);
-});
-
-var request = new XMLHttpRequest()
-
-
 // for ading new div logic. Will need to be reset when a movie is unselected in the future
-var currentDiv = 1
-
+var currentDiv  = 1
+var noMovies	= 0
 
 // The autoComplete.js Engine instance creator
 const autoCompletejs = new autoComplete({
@@ -21,7 +13,9 @@ const autoCompletejs = new autoComplete({
 			// Fetch External Data Source
 			var movieSearched = document.querySelector("#autoComplete").value
 			const source = await fetch(
-				"https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
+				// separrate fetch statement to also pull in series, then concatenate the data for both in one json object
+				// prob better to just look for one online solution where you can write it in a single line
+				"https://www.omdbapi.com/?s=" + movieSearched + "&type=movie&apikey=thewdb"
 			);
 			const data = await source.json();
 			// Post loading placeholder text
@@ -70,7 +64,7 @@ const autoCompletejs = new autoComplete({
 		document.querySelector("#autoComplete_list").appendChild(result);
 	},
 	onSelection: feedback => {
-		var movieData 	= [];
+
 		// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
 		async function getMovieData() {
 		// movieData 		= [];
@@ -81,73 +75,71 @@ const autoCompletejs = new autoComplete({
 		}
 		
 		// logic to choose which div content is going in on the page
-		var isImg = document.querySelector("img")
+		var isImg = document.querySelector("IMG")
 
-		for (var num = 1; num < 6; num++){
-			// var currentCheck = document.querySelector(".selection" + num)
-			if (document.querySelector(".poster" + num).contains(isImg)){
-				currentDiv ++
-			}
-			else{
-				break 
-			}
+		for (var q = 1; q <= 4; q++){
+				if (!document.querySelector(".poster" + q).contains(isImg)){
+				break
+				}
+				else{
+					currentDiv ++
+				}
 		}
-		
-		const title = feedback.selection.value.Title;
-		const poster = feedback.selection.value.Poster;
-		
+
 		// unhide current div if currently hidden
 		document.querySelector(".movie" + currentDiv).classList.remove("d-none");
 		
+		// count number of movies currently showing
+		activeDivs = []
+		for(var i = 1; i <= 4; i++){
+			if(!document.querySelector(".movie" + i).classList.contains("d-none")){
+				activeDivs.push(".movie" + i)
+				noMovies ++
+			}
 				
-		// ADD COMMENTS EXPLAINING ALL THE FOLLOWING CODE
-		
-		
-		for (var i = 1; i <= currentDiv; i++){
-			var currentClasses = []
-			var classList = document.querySelector(".movie" + i).classList
-			
-			for (var j = 0; j < classList.length; j ++) {
-				currentClasses.push(classList[j])
-			}
-		
-			
-			var classToDelete = ""
-			
-			for (var k = 0; k < currentClasses.length; k++){
-				if(currentClasses[k].includes("col-")){
-				   classToDelete = currentClasses[k]
-				}
-			}
-			// console.log(classToDelete)
-			
-			if(classToDelete){
-				document.querySelector(".movie" + i).classList.remove(classToDelete)
-			}
-			
-			document.querySelector(".movie" + i).classList.add("col-" + (12/currentDiv))
 		}
 		
+		var classToDelete = ""
+		var findSize = document.querySelector(activeDivs[0]).classList
 		
-		// Render selected choice to selection div
-		document.querySelector(".title" + currentDiv).innerHTML =  title;
-		document.querySelector(".poster" + currentDiv).innerHTML = "<img class='img-fluid' alt='Responsive image' src = '" + poster + "'>";
+		for (var k = 0; k < findSize.length; k++){
+			if(findSize[k].includes("col-")){
+				classToDelete = findSize[k]
+				break
+			}
+		}		
+		
+		for(var n = 0; n < activeDivs.length; n++){
+			if(classToDelete){
+				document.querySelector(activeDivs[n]).classList.remove(classToDelete)
+				document.querySelector(activeDivs[n]).classList.add("col-" + (12/noMovies))
+			}
+			else{
+				document.querySelector(activeDivs[n]).classList.add("col-" + (12/noMovies))
+			}
+			
+		}
+
+		// Render all movie info to correct div
 		getMovieData().then(function(result) {
-			document.querySelector(".runtime" + currentDiv).innerHTML = result.Runtime
+			// var smallerPoster = result.Poster.substr(0,result.Poster.length - 7) + "200.jpg"
+			document.querySelector(".poster" + currentDiv).innerHTML				= "<img  src = '" + result.Poster + "'>"
+			document.querySelector(".title" + currentDiv).innerHTML					= result.Title
+			document.querySelector(".imdb" + currentDiv).innerHTML					= "<strong>imdb Rating:</strong>&nbsp;" + result.Ratings[0].Value
+			document.querySelector(".metacritic" + currentDiv).innerHTML			= "<strong>Metacritic Rating:</strong>&nbsp;" + result.Ratings[1].Value
+			document.querySelector(".rottenTomatoes" + currentDiv).innerHTML		= "<strong>Rotten Tomatoes:</strong>&nbsp;" + result.Ratings[2].Value
+			document.querySelector(".runtime" + currentDiv).innerHTML 				= "<strong>Movie Length:</strong>&nbsp;" + result.Runtime
+			document.querySelector(".genre" + currentDiv).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
+			document.querySelector(".releaseDate" + currentDiv).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
 		});
-		
 		
 		// Clear Input
 		document.querySelector("#autoComplete").value = "";
-		// Change placeholder with the selected value
-		document
-			.querySelector("#autoComplete")
-			.setAttribute("placeholder", title);
-		// Concole log autoComplete data feedback
-		// console.log(feedback);
+
+		noMovies   = 0
 	}
 });
-
+// class='img-fluid' alt='Responsive image'
 // Toggle event for search input
 // showing & hidding results list onfocus / blur
 ["focus", "blur"].forEach(function(eventType) {
@@ -163,5 +155,39 @@ const autoCompletejs = new autoComplete({
     }
   });
 });
+
+// event listener to remove div when delete button clicked
+$("div").on("click", "div div .btn-danger", function(){
+	var parentDiv = this.parentNode.parentNode.parentNode;
+
+	// find number of current movie div
+	var currentClasses = [];
+	var movieDiv = this.parentNode.parentNode
+	for (var i = 0; i < movieDiv.classList.length; i++){
+		currentClasses.push(movieDiv.classList[i]);
+	}
+	
+	var numberSearch = 0
+	
+	for(var j = 0; j < currentClasses.length; j++){
+		if (currentClasses[j].includes("movie")){
+			// 5 is where the number is stored in the string in the class name
+			numberSearch = currentClasses[j][5]
+			break
+			}
+	}
+	
+	// delete img so earlier logic works
+	movieDiv.childNodes[1].innerText = ""
+	console.log(movieDiv.childNodes[1])
+	// remove classes added to outer movie div and add original classes back in
+	this.parentNode.parentNode.setAttribute("class", "")
+	this.parentNode.parentNode.classList.add("d-none", "movie" + numberSearch ,"p-0")
+	
+
+	
+	currentDiv = 1
+
+})
 
 
