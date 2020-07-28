@@ -153,6 +153,7 @@ const autoCompletejs = new autoComplete({
 				document.querySelector(".runtime" + divToChange).innerHTML 				= "<strong>Movie Length:</strong>&nbsp;" + result.Runtime
 				document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
 				document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
+				
 				// store all movie data to put in users sandpit
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
 			});

@@ -14,16 +14,19 @@ app.get("/",function(req,res){
 	res.render("home")
 })
 
+// registration page
+app.get("/register", function(req,res){
+	res.render("register")
+})
+
 // index route
 app.get("/users",function(req,res){
 	// console.log(req.url)
 	res.render("users")
 })
 
-app.post("/:users/usersmovies", function(req,res){
-	var data = JSON.parse(req.body.movieData1)
-	console.log(data)
-	res.send("you hit the post route")
+app.get("/users/:usersandpit", function(req,res){
+	res.render("usersandpit")
 })
 
 
@@ -31,8 +34,11 @@ app.post("/:users/usersmovies", function(req,res){
 
 
 
-
-
+// save for when user auth is all setup
+// app.post("/users/:userssandpit", function(req,res){
+// 	var data = req.body
+// 	res.render("usersandpit", {data:data})
+// })
 
 
 
