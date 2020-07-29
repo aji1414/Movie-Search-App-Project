@@ -46,7 +46,7 @@ input[type=submit] {
 
 /* editing links in nav bar */
 ul li a{
-	font-size: 2em;
+	font-size: 1em;
 }
 
 /* adjust poster image size so all are equal */
@@ -62,3 +62,8 @@ btn {
 	font-size: 0.5em;
 }
 
+/* adjust space between user divs  */
+.card{
+	margin-left:4%;
+	margin-right:4%;
+}

@@ -57,10 +57,11 @@ app.get("/users",function(req,res){
 
 })
 
-
+// CREATE ROUTE
 app.post("/users", function(req,res){
-	var newUser = new User({username: req.body.username,
-						   	email	: req.body.email
+	var newUser = new User({username: 			req.body.username,
+						   	email	: 			req.body.email,
+							profilepicture:		req.body.profilepicture
 						   })
 	User.register(newUser, req.body.password, function(err,user){
 		if(err){

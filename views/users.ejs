@@ -1,14 +1,19 @@
 <%- include ("./partials/header") %>
 
 
-<div class = "container">
-	<div class="card" style="width: 18rem;">
-	  <img class="card-img-top" src="..." alt="Card image cap">
-	  <div class="card-body">
-		<h5 class="card-title"></h5>
-		<a href="#" class="btn btn-primary">FILL</a>
-	  </div>
+<div class = "container p-0">
+	<div class = "d-flex flex-wrap">
+		<% users.forEach(function(user){ %>
+		<div class="card col-12 col-md-3 p-0 mb-4">
+		  <img class="card-img-top img-fluid" src="<%=user.profilepicture%>" alt="Responsive image">
+		  <div class="card-body">
+			<h5 class="card-title text-primary"><%=user.username%></h5>
+			<a href="#" class="btn btn-primary">Check out <%=user.username%>'s sandpit</a>
+		  </div>
+		</div>
+		<% }) %>
 	</div>
+	
 </div>
 
 
