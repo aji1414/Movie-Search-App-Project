@@ -30,7 +30,17 @@ app.set("view engine", "ejs")
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.use(function(req,res,next){
+	// provides current user logged in on every request
+	res.locals.currentUser = req.user;
+	// res.locals.error = req.flash("error")
+	// res.locals.success = req.flash("success")
+	next();
+})
 
+// //////////////////////////////////////////////////////////////////////////
+						// ROUTES
+// //////////////////////////////////////////////////////////////////////////
 
 
 // landing page
@@ -38,12 +48,7 @@ app.get("/",function(req,res){
 	res.render("home")
 })
 
-// registration page
-app.get("/register", function(req,res){
-	res.render("register")
-})
-
-// index route
+// users page: INDEX ROUTE
 app.get("/users",function(req,res){
 	// console.log(req.url)
 	User.find({}, function(err,allusers){
@@ -57,7 +62,7 @@ app.get("/users",function(req,res){
 
 })
 
-// CREATE ROUTE
+// setup new user: CREATE ROUTE
 app.post("/users", function(req,res){
 	var newUser = new User({username: 			req.body.username,
 						   	email	: 			req.body.email,
@@ -73,6 +78,36 @@ app.post("/users", function(req,res){
 			})
 		}
 	})
+})
+
+
+// //////////////////////////////////////////////////////////////////////////
+						// AUTH ROUTES
+// //////////////////////////////////////////////////////////////////////////
+
+// registration page: NEW ROUTE
+app.get("/signup", function(req,res){
+	res.render("signup")
+})
+
+// login page
+app.get("/login", function(req,res){
+	res.render("login")
+})
+
+// login post request
+app.post("/login",passport.authenticate("local", 
+	{
+		successRedirect: "/users",
+		failureRedirect: "/login"
+	}), function(req, res){
+})
+
+// logout route
+app.get("/logout", function(req,res){
+	req.logout()
+	// req.flash("success","Logged you out")
+	res.redirect("/users")
 })
 
 app.get("/users/:usersandpit", function(req,res){
