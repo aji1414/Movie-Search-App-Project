@@ -80,7 +80,8 @@ body {
     text-overflow: ellipsis;
 }
 
-h1 {
+h5 {
+	/* font-size:0.8em; */
     color: rgba(255, 122, 122, 1);
     transition: var(--transition-1);
 }

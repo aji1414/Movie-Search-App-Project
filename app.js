@@ -4,7 +4,9 @@ var 	express 			= require("express"),
 		User 				= require("./models/user"),
 		passport			= require("passport"),
 		mongoose 			= require("mongoose"),
-		localStrategy 		= require("passport-local")
+		localStrategy 		= require("passport-local"),
+		// had to use this to fix issue with find by id function
+		ObjectId = require('mongodb').ObjectID
 
 
 
@@ -48,6 +50,10 @@ app.get("/",function(req,res){
 	res.render("home")
 })
 
+// //////////////////////////////////////////////////////////////////////////
+						// GENERAL USER ROUTES
+// //////////////////////////////////////////////////////////////////////////
+
 // users page: INDEX ROUTE
 app.get("/users",function(req,res){
 	// console.log(req.url)
@@ -82,6 +88,25 @@ app.post("/users", function(req,res){
 
 
 // //////////////////////////////////////////////////////////////////////////
+						// INDIVIDUAL USER ROUTES
+// //////////////////////////////////////////////////////////////////////////
+
+app.get("/users/:id", function(req,res){
+	var id = ObjectId(req.params.id)
+	
+	User.findById(id, function(err, foundID){
+		if(err){
+			console.log(err)
+		}
+		else{
+			// console.log(foundID)
+			res.render("sandpit", {user:foundID})
+		}
+	})
+})
+
+
+// //////////////////////////////////////////////////////////////////////////
 						// AUTH ROUTES
 // //////////////////////////////////////////////////////////////////////////
 
@@ -110,9 +135,8 @@ app.get("/logout", function(req,res){
 	res.redirect("/users")
 })
 
-app.get("/users/:usersandpit", function(req,res){
-	res.render("usersandpit")
-})
+
+
 
 // router.post("/register", function(req, res){
 // 	var newUser = new User({username: req.body.username})

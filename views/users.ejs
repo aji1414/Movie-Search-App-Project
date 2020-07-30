@@ -8,7 +8,7 @@
 		  <img class="card-img-top img-fluid" src="<%=user.profilepicture%>" alt="Responsive image">
 		  <div class="card-body">
 			<h5 class="card-title text-primary"><%=user.username%></h5>
-			<a href="#" class="btn btn-primary">Check out <%=user.username%>'s sandpit</a>
+			<a href="/users/<%=user._id%>" class="btn btn-primary">Check out <%=user.username%>'s sandpit</a>
 		  </div>
 		</div>
 		<% }) %>
