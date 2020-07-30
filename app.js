@@ -2,6 +2,7 @@ var 	express 			= require("express"),
 	 	app 				= express(),
 		bodyParser			= require("body-parser"),
 		User 				= require("./models/user"),
+		// Movie 				= require("./models/movie"),
 		passport			= require("passport"),
 		mongoose 			= require("mongoose"),
 		localStrategy 		= require("passport-local"),
@@ -105,6 +106,21 @@ app.get("/users/:id", function(req,res){
 	})
 })
 
+// to post new movies to users sandpit
+app.post("/users/:id", function(req,res){
+	console.log(req.body)
+	
+	
+	
+	res.redirect("/users/" + req.user.id)
+})
+
+
+// save for when user auth is all setup
+// app.post("/users/:userssandpit", function(req,res){
+// 	var data = req.body
+// 	res.render("usersandpit", {data:data})
+// })
 
 // //////////////////////////////////////////////////////////////////////////
 						// AUTH ROUTES
@@ -123,7 +139,7 @@ app.get("/login", function(req,res){
 // login post request
 app.post("/login",passport.authenticate("local", 
 	{
-		successRedirect: "/users",
+		successRedirect: "/",
 		failureRedirect: "/login"
 	}), function(req, res){
 })
@@ -152,12 +168,6 @@ app.get("/logout", function(req,res){
 // 	})
 // })
 
-
-// save for when user auth is all setup
-// app.post("/users/:userssandpit", function(req,res){
-// 	var data = req.body
-// 	res.render("usersandpit", {data:data})
-// })
 
 
 
