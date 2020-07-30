@@ -156,7 +156,7 @@ const autoCompletejs = new autoComplete({
 				
 				// store all movie data to put in users sandpit
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
-				console.log(result)
+				// console.log(result)
 				
 				
 			});

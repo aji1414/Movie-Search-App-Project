@@ -1,9 +1,19 @@
 <%- include ("./partials/header") %>
 
+<div class = "container p-0">
+	<div class = "d-flex flex-wrap">
+		<%foundUser.movies.forEach(function(movie){ %>
+		<div class="card col-12 col-md-3 p-0 mb-4">
+		  <img class="card-img-top img-fluid" src="<%=movie.Poster%>" alt="Responsive image">
+		  <div class="card-body">
+			<h5 class="card-title text-primary"><%=movie.Title%></h5>
+		</div>
+		</div>
+		<% }) %>
+	</div>
+	
+</div>
 
-<h1>
-	Welcome to <%=user.username%>'s sandpit!
-</h1>
 
 
 

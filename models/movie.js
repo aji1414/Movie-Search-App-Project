@@ -5,11 +5,9 @@ var MovieSchema = new mongoose.Schema({
 	Awards:				String,
 	BoxOffice:			String,
 	Country:			String,
-	DVD:				String,
 	Director:			String,
 	Genre:				String,
 	Language:			String,
-	Metascore:			String,
 	Plot:				String,
 	Poster:				String,
 	Production:			String,
@@ -18,16 +16,23 @@ var MovieSchema = new mongoose.Schema({
 	RottenTomatoes:		String,
 	Metacritic:			String,
 	Released:			String,
-	Response:			String,
 	Runtime:			String,
 	Title:				String,
 	Type:				String,
-	Website:			String,
 	Writer:				String,
 	Year:				String,
 	imdbID:				String,
-	imdbRating:			String,
 	imdbVotes:			String,
+	UserRating:			mongoose.Decimal128,
+	UserReview:			String,
+	User: {
+		id:{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		},
+		username: String
+	}
+	
 })
 
 

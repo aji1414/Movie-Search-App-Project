@@ -2,7 +2,7 @@ var 	express 			= require("express"),
 	 	app 				= express(),
 		bodyParser			= require("body-parser"),
 		User 				= require("./models/user"),
-		// Movie 				= require("./models/movie"),
+		Movie 				= require("./models/movie"),
 		passport			= require("passport"),
 		mongoose 			= require("mongoose"),
 		localStrategy 		= require("passport-local"),
@@ -63,6 +63,8 @@ app.get("/users",function(req,res){
 			console.log(err)
 		}
 		else{
+			// console.log(allusers)
+			// console.log(typeof allusers)
 			res.render("users", {users:allusers})
 		}
 	})
@@ -93,34 +95,103 @@ app.post("/users", function(req,res){
 // //////////////////////////////////////////////////////////////////////////
 
 app.get("/users/:id", function(req,res){
-	var id = ObjectId(req.params.id)
-	
-	User.findById(id, function(err, foundID){
+// 	objectId maybe?
+	var id = req.params.id
+	// console.log(id)
+	User.findById(id).populate("movies").exec(function(err, foundUser){
 		if(err){
 			console.log(err)
 		}
 		else{
-			// console.log(foundID)
-			res.render("sandpit", {user:foundID})
+			console.log(foundUser)
+			res.render("sandpit", {foundUser:foundUser})
 		}
 	})
 })
 
+
 // to post new movies to users sandpit
 app.post("/users/:id", function(req,res){
-	console.log(req.body)
+	// unstringify as its stored as string in the html
+	var movieObject   	= JSON.parse(req.body.movieData)
+
+	var Title 			= movieObject.Title;
+	var	Year			= movieObject.Year;
+	var	Rated			= movieObject.Rated;
+	var	Released		= movieObject.Released;
+	var	Runtime			= movieObject.Runtime;
+	var	Genre			= movieObject.Genre;
+	var	Director		= movieObject.Director;
+	var	Actors			= movieObject.Actors;
+	var	Plot			= movieObject.Plot;
+	var	Language		= movieObject.Language;
+	var	Country			= movieObject.Country;
+	var	Awards			= movieObject.Awards;
+	var	Poster			= movieObject.Poster;
+	var	IMDB			= movieObject.Ratings[0].Value;
+	var	RottenTomatoes	= movieObject.Ratings[1].Value;
+	var	Metacritic		= movieObject.Ratings[2].Value;
+	var	imdbID			= movieObject.imdbID;
+	var	imdbVotes		= movieObject.imdbVotes;
+	var	BoxOffice		= movieObject.BoxOffice;
+	var	Production		= movieObject.Production;
+	var	Type			= movieObject.Type;
+	var	Writer			= movieObject.Writer;
 	
+	var newMovie = {
+		Title: Title,
+		Year: Year,
+		Released: Released,
+		Runtime: Runtime,
+		Genre: Genre,
+		Director: Director,
+		Actors: Actors,
+		Plot: Plot,
+		Language: Language,
+		Country: Country,
+		Awards: Awards,
+		Poster: Poster,
+		IMDB: IMDB,
+		RottenTomatoes: RottenTomatoes,
+		Metacritic: Metacritic,
+		imdbID: imdbID,
+		imdbVotes: imdbVotes,
+		BoxOffice: BoxOffice,
+		Production: Production,
+		Type: Type,
+		Writer: Writer,}
 	
+	// console.log(req.user)
+	// var id = ObjectId(req.params.id)
+	// console.log(id)
+	User.findById(req.user._id, function(err,foundUser){
+		if(err){
+			console.log(err)
+		}
+		else{
+			// create new movie entry
+			Movie.create(newMovie, function(err, newMovie){
+				if(err){
+					// console.log(err)
+				}
+				else{
+					// console.log(newMovie)
+					newMovie.User.id = req.user._id;
+					newMovie.User.username = req.user.username
+					// save movie
+					newMovie.save()
+					// connect new movie to user and save
+					foundUser.movies.push(newMovie)
+					foundUser.save()
+					console.log(foundUser)
+					// redirect to users sandpit
+					res.redirect("/users/" + req.user._id)
+				}
+			})
+		}
+	})
 	
-	res.redirect("/users/" + req.user.id)
 })
-
-
-// save for when user auth is all setup
-// app.post("/users/:userssandpit", function(req,res){
-// 	var data = req.body
-// 	res.render("usersandpit", {data:data})
-// })
 
 // //////////////////////////////////////////////////////////////////////////
 						// AUTH ROUTES
@@ -148,7 +219,7 @@ app.post("/login",passport.authenticate("local",
 app.get("/logout", function(req,res){
 	req.logout()
 	// req.flash("success","Logged you out")
-	res.redirect("/users")
+	res.redirect("/")
 })
 
 
