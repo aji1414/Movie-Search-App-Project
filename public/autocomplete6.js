@@ -137,14 +137,26 @@ const autoCompletejs = new autoComplete({
 			var imdbID 		= feedback.selection.value.imdbID;
 			let response 	= await fetch("https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb");
 			let data		= await response.json();
+			
 			return data;
 			}
+				
+			
+			
+			
+			
+			// api call for movie trailer. Had to do separate to stuff below due to scoping issues as they use different sources
+			movieTrailer(feedback.selection.value.Title, {id: true, multi: true}).then(function(result){
+				// result.length - 1 is to select the last entry in the array as this is the most up to date trailer
+				document.querySelector(".trailer" + divToChange).value 	= result[result.length - 1]
+				document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[result.length - 1])
+			})
+					
 
+			
 			// Render all movie info to correct div
 			getMovieData().then(function(result) {
-				// console.log("actual div updated " + divToChange)
-				// var smallerPoster = result.Poster.substr(0,result.Poster.length - 7) + "200.jpg"
-				// Render seen elements
+				// Render page elements
 				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + result.Poster + "'>"
 				document.querySelector(".title" + divToChange).innerHTML				= result.Title
 				document.querySelector(".imdb" + divToChange).innerHTML					= "<strong>imdb Rating:</strong>&nbsp;" + result.Ratings[0].Value
@@ -154,20 +166,19 @@ const autoCompletejs = new autoComplete({
 				document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
 				document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
 				
-				// store all movie data to put in users sandpit
+								// store all movie data to put in users sandpit. Pass through to HTML document
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
-				// console.log(result)
-				
-				
 			});
 
 			// Clear Input
 			document.querySelector("#autoComplete").value = "";
 		}
-
 			
 	}
 });
+
+
+
 
 // class='img-fluid' alt='Responsive image'
 // Toggle event for search input

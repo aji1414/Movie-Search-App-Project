@@ -68,3 +68,13 @@ btn {
 	margin-right:4%;
 	border:none;
 }
+
+/* trailer vide styling */
+.video{
+	width:100%;
+	height:90%;
+	position:fixed;
+	top: 20%;
+	right:0;
+	bottom:0;
+}

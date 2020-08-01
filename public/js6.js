@@ -2,3 +2,4 @@
 if (window.location.pathname !== '/') {
     $("#autoComplete").hide()
 }
+
