@@ -49,14 +49,7 @@ app.use(function(req,res,next){
 
 // landing page
 app.get("/",function(req,res){
-
-	// res.setHeader('Set-Cookie', [
-	//   'same-site-cookie=bar; SameSite=None',
-	//   'cross-site-cookie=foo; SameSite=None; Secure',
-	// ])
-	// res.setHeader()
-	// res.cookie('same-site-cookie', 'foo', { sameSite: 'none', secure: true });
-	// res.cookie('cross-site-cookie', 'bar', { sameSite: 'none', secure: true });	
+	
 	res.render("home")
 })
 // header('Set-Cookie: cross-site-cookie=name; SameSite=None; Secure');
@@ -73,8 +66,6 @@ app.get("/users",function(req,res){
 			console.log(err)
 		}
 		else{
-			// console.log(allusers)
-			// console.log(typeof allusers)
 			res.render("users", {users:allusers})
 		}
 	})

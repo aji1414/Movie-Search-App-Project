@@ -122,9 +122,7 @@ const autoCompletejs = new autoComplete({
 						divToChange ++
 					}
 			}
-
-
-
+			
 			// unhide div selected
 			document.querySelector(".movie" + divToChange).classList.remove("d-none");
 
@@ -133,27 +131,21 @@ const autoCompletejs = new autoComplete({
 
 			// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
 			async function getMovieData() {
-			// movieData 		= [];
 			var imdbID 		= feedback.selection.value.imdbID;
 			let response 	= await fetch("https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb");
 			let data		= await response.json();
-			
 			return data;
 			}
-				
-			
-			
-			
-			
+		
 			// api call for movie trailer. Had to do separate to stuff below due to scoping issues as they use different sources
 			movieTrailer(feedback.selection.value.Title, {id: true, multi: true}).then(function(result){
 				// result.length - 1 is to select the last entry in the array as this is the most up to date trailer
-				document.querySelector(".trailer" + divToChange).value 	= result[result.length - 1]
-				document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[result.length - 1])
+				// document.querySelector(".trailer" + divToChange).value 	= result[result.length - 1]
+				document.querySelector(".trailer" + divToChange).value 	= result[0]
+				// document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[result.length - 1])
+				document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[0])
 			})
-					
-
-			
+						
 			// Render all movie info to correct div
 			getMovieData().then(function(result) {
 				// Render page elements
@@ -166,10 +158,18 @@ const autoCompletejs = new autoComplete({
 				document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
 				document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
 				
-								// store all movie data to put in users sandpit. Pass through to HTML document
+				// set background of div to be movie poster
+				// var biggerPoster = result.Poster.substr(0, result.Poster.length - 7) + "800.jpg"
+				// var domElement 						= document.querySelector(".movie" + divToChange).style
+				// domElement.background 				= "url(" + biggerPoster + ")"
+				// domElement.backgroundRepeat 		= "no-repeat"
+				// domElement.backgroundPosition 		= "center center"
+				// domElement.backgroundSize 			= "contain"
+				
+				
+				// store all movie data to put in users sandpit. Pass through to HTML document
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
 			});
-
 			// Clear Input
 			document.querySelector("#autoComplete").value = "";
 		}
@@ -177,12 +177,7 @@ const autoCompletejs = new autoComplete({
 	}
 });
 
-
-
-
-// class='img-fluid' alt='Responsive image'
-// Toggle event for search input
-// showing & hidding results list onfocus / blur
+// event listener for when search bar is clicked on and off
 ["focus", "blur"].forEach(function(eventType) {
   const resultsList = document.querySelector("#autoComplete_list");
 
@@ -197,10 +192,15 @@ const autoCompletejs = new autoComplete({
   });
 });
 
-// event listener to remove div when delete button clicked
+// event listener to remove div when remove delete button clicked
 $("div").on("click", "div div .btn-danger", function(){
 	var parentDiv = this.parentNode.parentNode.parentNode;
 
+	
+	// stop movie trailer by simply resetting source link to blank
+	var trailer = this.parentNode.parentNode.querySelector("iframe")
+	trailer.setAttribute("src","")
+	
 	// find number of current movie div
 	var currentClasses = [];
 	var movieDiv = this.parentNode.parentNode
@@ -228,5 +228,4 @@ $("div").on("click", "div div .btn-danger", function(){
 	// run function that adjusts spacing of divs with the new extra div
 	divResize();
 })
-
 

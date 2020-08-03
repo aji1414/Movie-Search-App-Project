@@ -1,5 +1,6 @@
 body, html {
 	height:100%;
+	/* overflow: auto; */
 }
 
 html body{
@@ -51,10 +52,10 @@ ul li a{
 
 /* adjust poster image size so all are equal */
 img{
-	height: 267px;
-	max-height: 267px;
-	width: 180px;
-	max-width:180px;
+	height: 400px;
+	max-height: 400px;
+	width: 300px;
+	max-width:300px;
 }
 
 /* adjusting text size in buttons */
@@ -78,3 +79,4 @@ btn {
 	right:0;
 	bottom:0;
 }
+
