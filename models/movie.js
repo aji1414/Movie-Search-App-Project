@@ -17,13 +17,14 @@ var MovieSchema = new mongoose.Schema({
 	Metacritic:			String,
 	Released:			String,
 	Runtime:			String,
+	Trailer:			String,
 	Title:				String,
 	Type:				String,
 	Writer:				String,
 	Year:				String,
 	imdbID:				String,
 	imdbVotes:			String,
-	UserRating:			mongoose.Decimal128,
+	UserRating:			String,
 	UserReview:			String,
 	User: {
 		id:{

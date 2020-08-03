@@ -104,7 +104,7 @@ app.get("/users/:id", function(req,res){
 			console.log(err)
 		}
 		else{
-			console.log(foundUser)
+			// console.log(foundUser)
 			res.render("sandpit", {foundUser:foundUser})
 		}
 	})
@@ -138,7 +138,10 @@ app.post("/users/:id", function(req,res){
 	var	Production		= movieObject.Production;
 	var	Type			= movieObject.Type;
 	var	Writer			= movieObject.Writer;
-	
+	var Trailer 		= req.body.trailerData;
+	var UserRating		= req.body.ratingData;
+	var UserReview		= req.body.reviewData;
+		
 	var newMovie = {
 		Title: Title,
 		Year: Year,
@@ -160,7 +163,10 @@ app.post("/users/:id", function(req,res){
 		BoxOffice: BoxOffice,
 		Production: Production,
 		Type: Type,
-		Writer: Writer,}
+		Writer: Writer,
+		Trailer: Trailer,
+		UserRating: UserRating,
+		UserReview: UserReview}
 	
 	// console.log(req.user)
 	// var id = ObjectId(req.params.id)
@@ -176,7 +182,7 @@ app.post("/users/:id", function(req,res){
 					// console.log(err)
 				}
 				else{
-					// console.log(newMovie)
+					console.log(newMovie)
 					newMovie.User.id = req.user._id;
 					newMovie.User.username = req.user.username
 					// save movie
@@ -184,7 +190,7 @@ app.post("/users/:id", function(req,res){
 					// connect new movie to user and save
 					foundUser.movies.push(newMovie)
 					foundUser.save()
-					console.log(foundUser)
+					// console.log(foundUser)
 					// redirect to users sandpit
 					res.redirect("/users/" + req.user._id)
 				}
@@ -258,11 +264,6 @@ app.get("/logout", function(req,res){
 // 		})
 // 	})
 // })
-
-
-
-
-
 
 
 app.listen(process.env.PORT || 3000, function(){

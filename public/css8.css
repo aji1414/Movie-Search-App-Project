@@ -1,10 +1,10 @@
 body, html {
 	height:100%;
-	/* overflow: auto; */
+	overflow: auto;
 }
 
 html body{
-	background: rgb(92, 92, 92);
+	background: rgb(0, 0, 0);
 	color: white;
 }
 
@@ -80,3 +80,23 @@ btn {
 	bottom:0;
 }
 
+
+
+/* styling star ratings */
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
+
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
+.rating > span:hover:before {
+   content: "\2605";
+   position: absolute;
+}

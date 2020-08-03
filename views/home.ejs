@@ -1,8 +1,8 @@
 <%- include ("./partials/header") %>
 
-<div class = "main d-flex flex-row ml-3 mr-3">
+<div class = "d-flex flex-row ml-3 mr-3">
 	
-	<div class = "d-none movie1 p-0">
+	<div class = "d-none movie1 p-0 movie">
 		<div class = "movieInfo d-flex justify-content-center poster1 m-0 mb-2"></div>
 		<div class = "d-flex justify-content-center mb-2">
 			<iframe  class ="trailer1" width="200" height="200" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -10,8 +10,17 @@
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
-		<!-- will need to be changed to access individual user movies later -->
+		
+		<div class = "d-flex justify-content-center ratingParent1">
+			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
+			<div  type = "button" class = "rating rating1 btn btn-info movieInfo text-center"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+		</div>
+		
+		<!-- data that is stored in form then sent to db -->
 		<form action = "/users/:id" method = "POST">
+			<input class = "reviewData1" type = "hidden" name = "reviewData" value = "">
+			<input class = "ratingData1" type = "hidden" name = "ratingData" value = "0">
+			<input class = "trailerData1" type = "hidden" name = "trailerData" value = "">
 			<input class = "movieData1" type = "hidden" name = "movieData" value = "">
 			<div class = "form-group d-flex justify-content-center">
 				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
@@ -31,7 +40,7 @@
 		
 	</div>
 	
-	<div class = "d-none movie2 p-0">
+	<div class = "d-none movie2 p-0 movie">
 		<div class = "movieInfo d-flex justify-content-center poster2 m-0 mb-2"></div>
 		<div class = "d-flex justify-content-center mb-2">
 			<iframe  class ="trailer2" width="200" height="200" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -39,8 +48,17 @@
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
-		<!-- will need to be changed to access individual user movies later -->
+		
+		<div class = "d-flex justify-content-center">
+			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
+			<div  type = "button" class = "rating rating2 btn btn-info movieInfo text-center"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+		</div>
+		
+		<!-- data that is stored in form then sent to db -->
 		<form action = "/users/:id" method = "POST">
+			<input class = "reviewData2" type = "hidden" name = "reviewData" value = "">
+			<input class = "ratingData2" type = "hidden" name = "ratingData" value = "0">
+			<input class = "trailerData2" type = "hidden" name = "trailerData" value = "">
 			<input class = "movieData2" type = "hidden" name = "movieData" value = "">
 			<div class = "form-group d-flex justify-content-center">
 				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
@@ -60,7 +78,7 @@
 		
 	</div>
 	
-	<div class = "d-none movie3 p-0">
+	<div class = "d-none movie3 p-0 movie">
 		<div class = "movieInfo d-flex justify-content-center poster3 m-0 mb-2"></div>
 		<div class = "d-flex justify-content-center mb-2">
 			<iframe  class ="trailer3" width="200" height="200" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -68,8 +86,17 @@
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
-		<!-- will need to be changed to access individual user movies later -->
+		
+		<div class = "d-flex justify-content-center">
+			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
+			<div  type = "button" class = "rating rating3 btn btn-info movieInfo text-center"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+		</div>
+		
+		<!-- data that is stored in form then sent to db -->
 		<form action = "/users/:id" method = "POST">
+			<input class = "reviewData3" type = "hidden" name = "reviewData" value = "">
+			<input class = "ratingData3" type = "hidden" name = "ratingData" value = "0">
+			<input class = "trailerData3" type = "hidden" name = "trailerData" value = "">
 			<input class = "movieData3" type = "hidden" name = "movieData" value = "">
 			<div class = "form-group d-flex justify-content-center">
 				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
@@ -89,7 +116,7 @@
 		
 	</div>
 	
-	<div class = "d-none movie4 p-0">
+	<div class = "d-none movie4 p-0 movie">
 		<div class = "movieInfo d-flex justify-content-center poster4 m-0 mb-2"></div>
 		<div class = "d-flex justify-content-center mb-2">
 			<iframe  class ="trailer4" width="200" height="200" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -97,8 +124,17 @@
 		<div class = "d-flex justify-content-center">
 			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
 		</div>
-		<!-- will need to be changed to access individual user movies later -->
+		
+		<div class = "d-flex justify-content-center">
+			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
+			<div  type = "button" class = "rating rating4 btn btn-info movieInfo text-center"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+		</div>
+		
+		<!-- data that is stored in form then sent to db -->
 		<form action = "/users/:id" method = "POST">
+			<input class = "reviewData4" type = "hidden" name = "reviewData" value = "">
+			<input class = "ratingData4" type = "hidden" name = "ratingData" value = "0">
+			<input class = "trailerData4" type = "hidden" name = "trailerData" value = "">
 			<input class = "movieData4" type = "hidden" name = "movieData" value = "">
 			<div class = "form-group d-flex justify-content-center">
 				<button type = "submit" class = "btn btn-info text-center mb-2">Add to Sandpit</button>
@@ -117,7 +153,6 @@
 		<div class = "movieInfo d-flex justify-content-center trivia trivia4"></div>
 		
 	</div>
-	
 </div>
 	
 <%- include ("./partials/footer") %>

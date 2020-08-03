@@ -141,11 +141,11 @@ const autoCompletejs = new autoComplete({
 			movieTrailer(feedback.selection.value.Title, {id: true, multi: true}).then(function(result){
 				// result.length - 1 is to select the last entry in the array as this is the most up to date trailer
 				// document.querySelector(".trailer" + divToChange).value 	= result[result.length - 1]
-				document.querySelector(".trailer" + divToChange).value 	= result[0]
+				document.querySelector(".trailerData" + divToChange).value 	= "https://www.youtube-nocookie.com/embed/" + result[0]
 				// document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[result.length - 1])
 				document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[0])
 			})
-						
+									
 			// Render all movie info to correct div
 			getMovieData().then(function(result) {
 				// Render page elements
@@ -157,18 +157,11 @@ const autoCompletejs = new autoComplete({
 				document.querySelector(".runtime" + divToChange).innerHTML 				= "<strong>Movie Length:</strong>&nbsp;" + result.Runtime
 				document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
 				document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
-				
-				// set background of div to be movie poster
-				// var biggerPoster = result.Poster.substr(0, result.Poster.length - 7) + "800.jpg"
-				// var domElement 						= document.querySelector(".movie" + divToChange).style
-				// domElement.background 				= "url(" + biggerPoster + ")"
-				// domElement.backgroundRepeat 		= "no-repeat"
-				// domElement.backgroundPosition 		= "center center"
-				// domElement.backgroundSize 			= "contain"
-				
+							
 				
 				// store all movie data to put in users sandpit. Pass through to HTML document
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
+				
 			});
 			// Clear Input
 			document.querySelector("#autoComplete").value = "";
@@ -194,9 +187,9 @@ const autoCompletejs = new autoComplete({
 
 // event listener to remove div when remove delete button clicked
 $("div").on("click", "div div .btn-danger", function(){
+	// identify div removed
 	var parentDiv = this.parentNode.parentNode.parentNode;
 
-	
 	// stop movie trailer by simply resetting source link to blank
 	var trailer = this.parentNode.parentNode.querySelector("iframe")
 	trailer.setAttribute("src","")
@@ -218,12 +211,22 @@ $("div").on("click", "div div .btn-danger", function(){
 			}
 	}
 	
+	// set rating stars all back to white
+	var stars = movieDiv.querySelectorAll(".rating" + numberSearch + " span")
+	// var starCount = 0
+	for (var i = 0; i < stars.length; i++){
+		stars[i].style.color = "white"
+	}
+	
+	// rest data value already passed through to 0
+	movieDiv.querySelector(".ratingData" + numberSearch).value = "0"
+		
 	// delete img so earlier logic on which div to use when adding new movie works
 	movieDiv.childNodes[1].innerText = ""
 	// remove classes that were such as "col-" added to outer movie div and add original classes back in
 	this.parentNode.parentNode.setAttribute("class", "")
 	// add back original classes so can be reused again
-	this.parentNode.parentNode.classList.add("d-none", "movie" + numberSearch ,"p-0")
+	this.parentNode.parentNode.classList.add("d-none", "movie" + numberSearch ,"p-0", "movie")
 	
 	// run function that adjusts spacing of divs with the new extra div
 	divResize();
