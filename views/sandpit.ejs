@@ -6,7 +6,13 @@
 		<div class="card col-12 col-md-3 p-0 mb-4">
 		  <img class="card-img-top img-fluid" src="<%=movie.Poster%>" alt="Responsive image">
 		  <div class="card-body">
-			<h5 class="card-title text-primary"><%=movie.Title%></h5>
+			<h5 class="card-title"><%=movie.Title%></h5>
+			  <% if(!movie.UserRating){ %>
+					<caption><span>You haven't rated this movie yet!</span></caption>
+				<%} else{ %>
+					<caption><span>You gave this movie a</span> <%=movie.UserRating%><span>/5 stars rating!</span></caption>
+			  		<span n = "<%=parseInt(movie.UserRating)%>" class = "movieInfo text-center"></span>
+			  	<% } %>
 		</div>
 		</div>
 		<% }) %>
@@ -14,7 +20,7 @@
 	
 </div>
 
-
+<!-- parseInt(req.params.year, 10); -->
 
 
 

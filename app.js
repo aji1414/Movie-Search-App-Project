@@ -167,10 +167,7 @@ app.post("/users/:id", function(req,res){
 		Trailer: Trailer,
 		UserRating: UserRating,
 		UserReview: UserReview}
-	
-	// console.log(req.user)
-	// var id = ObjectId(req.params.id)
-	// console.log(id)
+
 	User.findById(req.user._id, function(err,foundUser){
 		if(err){
 			console.log(err)
@@ -182,7 +179,8 @@ app.post("/users/:id", function(req,res){
 					// console.log(err)
 				}
 				else{
-					console.log(newMovie)
+					// console.log(newMovie)
+					// add user id and username to new movie entry in database
 					newMovie.User.id = req.user._id;
 					newMovie.User.username = req.user.username
 					// save movie

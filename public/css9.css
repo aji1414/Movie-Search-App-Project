@@ -100,3 +100,45 @@ btn {
    content: "\2605";
    position: absolute;
 }
+
+/*  font on sandpit movie*/
+.card-body{
+	color: black;
+}
+
+.card-body span{
+	font-style: italic;
+}
+
+span[n="1"]:before {
+   content: "☆";
+   display:block;
+}
+
+span[n="2"]:before {
+   content: "☆☆";
+	display:block;
+}
+
+span[n="3"]:before {
+   content: "☆☆☆";
+	display:block;
+}
+
+span[n="4"]:before {
+   content: "☆☆☆☆";
+	display:block;
+}
+
+span[n="5"]:before {
+   content: "☆☆☆☆☆";
+	display:block;
+}
+
+/* font on navbar. super specific to overwrite bootstrap code */
+.navbar-light .container-fluid .navbar-nav .nav-link{
+	color:black;
+	font-weight:700;
+}
+
+
