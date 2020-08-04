@@ -139,11 +139,13 @@ const autoCompletejs = new autoComplete({
 		
 			// api call for movie trailer. Had to do separate to stuff below due to scoping issues as they use different sources
 			movieTrailer(feedback.selection.value.Title, {id: true, multi: true}).then(function(result){
-				// result.length - 1 is to select the last entry in the array as this is the most up to date trailer
-				// document.querySelector(".trailer" + divToChange).value 	= result[result.length - 1]
-				document.querySelector(".trailerData" + divToChange).value 	= "https://www.youtube-nocookie.com/embed/" + result[0]
-				// document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[result.length - 1])
-				document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[0])
+				var trailerValue = document.querySelector(".trailerData" + divToChange).value
+				var trailerLink  = document.querySelector(".trailer" + divToChange)
+				
+				trailerValue 	= "https://www.youtube-nocookie.com/embed/" + result[0]
+				trailerLink.setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[0])
+				
+				
 			})
 									
 			// Render all movie info to correct div

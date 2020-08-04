@@ -3,6 +3,12 @@ body, html {
 	overflow: auto;
 }
 
+/* font on navbar. super specific to overwrite bootstrap code */
+.navbar-light .container-fluid .navbar-nav .nav-link{
+	color:black;
+	font-weight:700;
+}
+
 html body{
 	background: rgb(0, 0, 0);
 	color: white;
@@ -175,7 +181,6 @@ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 .modal-content {
 background-color: black;
 margin: 15% auto; /* 15% from the top and centered */
-padding: 20px;
 border: 1px solid #888;
 width: 80%; /* Could be more or less, depending on screen size */
 height: 50%
@@ -184,7 +189,7 @@ height: 50%
 /* The Close Button */
 .close {
 color: #aaa;
-float: right;
+/* float: right; */
 font-size: 28px;
 font-weight: bold;
 }
@@ -196,11 +201,7 @@ text-decoration: none;
 cursor: pointer;
 }
 
-/* font on navbar. super specific to overwrite bootstrap code */
-.navbar-light .container-fluid .navbar-nav .nav-link{
-	color:black;
-	font-weight:700;
-}
+
 
 /* style hovering on see mo */
 p.font-weight-bold:hover{
@@ -209,4 +210,39 @@ p.font-weight-bold:hover{
 }
 
 
+.movieDetailsOuter{
+	height:100%;
+}
 
+/* styling for moving details inside the pop up */
+.movieDetails{
+	background:white;
+	height:80%;
+	width: 70%;
+	overflow-y: scroll;
+	
+}
+
+.movieDetails div {
+	color:black
+}
+
+
+.sandpitRatings{
+	width:100%
+}
+
+.ratingsImage{
+	height:70%;
+	width:100%;
+}
+
+.trailerOuterDiv{
+	background:black;
+}
+
+.noTrailer{
+	height:400px;
+	width:400px;
+	background:white;
+}
