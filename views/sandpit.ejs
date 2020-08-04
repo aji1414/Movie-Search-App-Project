@@ -5,22 +5,35 @@
 		<%foundUser.movies.forEach(function(movie){ %>
 		<div class="card col-12 col-md-3 p-0 mb-4">
 		  <img class="card-img-top img-fluid" src="<%=movie.Poster%>" alt="Responsive image">
-		  <div class="card-body">
-			<h5 class="card-title"><%=movie.Title%></h5>
-			  <% if(!movie.UserRating){ %>
-					<caption><span>You haven't rated this movie yet!</span></caption>
-				<%} else{ %>
-					<caption><span>You gave this movie a</span> <%=movie.UserRating%><span>/5 stars rating!</span></caption>
-			  		<span n = "<%=parseInt(movie.UserRating)%>" class = "movieInfo text-center"></span>
-			  	<% } %>
-		</div>
+		  	<div class="card-body text-center">
+				<h5 class="card-title"><%=movie.Title%></h5>
+				  <% if(!movie.UserRating){ %>
+						<caption><span>You haven't rated this movie yet!</span></caption>
+					<%} else{ %>
+						<caption><span>You gave this movie a</span> <%=movie.UserRating%><span>/5 stars rating!</span></caption>
+						<span n = "<%=parseInt(movie.UserRating)%>" class = "movieInfo text-center"></span>
+					<% } %>
+				<!-- Trigger/Open The Modal -->
+						<p class="myBtn mt-3 font-weight-bold">See More Movie Info</p>
+
+				 <!-- The Modal -->
+					<div class="modal myModal">
+
+					  <!-- Modal content -->
+					  <div class="modal-content">
+						<span class="close">&times;</span>
+						<p>Some text in the Modal..</p>
+					  </div>
+
+					</div>
+			</div>
 		</div>
 		<% }) %>
 	</div>
 	
 </div>
 
-<!-- parseInt(req.params.year, 10); -->
+
 
 
 

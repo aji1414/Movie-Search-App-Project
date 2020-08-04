@@ -38,3 +38,37 @@ for (var h = 1; h <= 4; h++){
 		});
 }
 
+// logic for show more button on user sandpit
+// Get the modal
+var modal = document.querySelectorAll(".myModal");
+
+// Get the button that opens the modal
+var btn = document.querySelectorAll(".myBtn");
+
+// Get the <span> element that closes the modal
+var close = document.getElementsByClassName("close");
+
+// When the user clicks on the button, open the modal
+var currentModal = {}
+$(btn).on("click", function(){
+	var modal = this.parentNode.querySelector(".modal")
+	modal.style.display = "block"
+	currentModal = modal
+	console.log(modal)
+})
+
+$(close).on("click", function(){
+	this.parentNode.parentNode.style.display = "none"
+	// delete current modal selected
+	for (var member in currentModal) delete currentModal[member];
+})
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == currentModal) {
+	// delete current modal selected
+	for (var member in currentModal) delete currentModal[member];
+    currentModal.style.display = "none";
+  }
+}
+
