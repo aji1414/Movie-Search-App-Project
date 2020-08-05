@@ -8,6 +8,9 @@ body {
     padding: 0;
 }
 
+/* #autoComplete{
+	background:black;
+} */
 
 .header {
     text-align: center;
@@ -46,7 +49,7 @@ body {
 
 .in {
     padding: 0 2rem 0 3.5rem;
-    color: rgba(255, 122, 122, 1);
+    color: rgba(255, 255, 255, 1);
     height: 3rem;
     width: 16.5rem;
     border: 0.05rem solid rgb(255, 122, 122);
@@ -80,24 +83,11 @@ body {
     text-overflow: ellipsis;
 }
 
-h5 {
-	/* font-size:0.8em; */
-    color: rgba(255, 122, 122, 1);
-    transition: var(--transition-1);
+h5{
+	color:black;
 }
 
 
-.selection {
-    margin-top: 25vh;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffc6c6;
-    transition: var(--transition-1);
-}
-
-.selection::selection {
-    color: #64ceaa;
-}
 
 * { box-sizing: border-box; }
 body {

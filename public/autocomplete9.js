@@ -75,11 +75,11 @@ const autoCompletejs = new autoComplete({
 	},
 	placeHolder: "Search Movies",
 	selector: "#autoComplete",
-	threshold: 0,
-	debounce: 0,
-	searchEngine: "loose",
+	threshold: 1,
+	debounce: 300,
+	searchEngine: "strict",
 	highlight: true,
-	maxResults: 100,
+	maxResults: 10,
 	resultsList: {
 		render: true,
 		container: source => {
@@ -141,24 +141,32 @@ const autoCompletejs = new autoComplete({
 			movieTrailer(feedback.selection.value.Title, {id: true, multi: true}).then(function(result){
 				var trailerValue = document.querySelector(".trailerData" + divToChange).value
 				var trailerLink  = document.querySelector(".trailer" + divToChange)
-				
 				trailerValue 	= "https://www.youtube-nocookie.com/embed/" + result[0]
 				trailerLink.setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[0])
-				
 				
 			})
 									
 			// Render all movie info to correct div
 			getMovieData().then(function(result) {
 				// Render page elements
-				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + result.Poster + "'>"
+				console.log(typeof result.Genre)
+				var Genre = result.Genre.split(',')
+				var highQualityPoster = result.Poster.substr(0,result.Poster.length - 7) + "800.jpg"
+				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + highQualityPoster + "'>"
 				document.querySelector(".title" + divToChange).innerHTML				= result.Title
-				document.querySelector(".imdb" + divToChange).innerHTML					= "<strong>imdb Rating:</strong>&nbsp;" + result.Ratings[0].Value
-				document.querySelector(".metacritic" + divToChange).innerHTML			= "<strong>Metacritic Rating:</strong>&nbsp;" + result.Ratings[1].Value
-				document.querySelector(".rottenTomatoes" + divToChange).innerHTML		= "<strong>Rotten Tomatoes:</strong>&nbsp;" + result.Ratings[2].Value
-				document.querySelector(".runtime" + divToChange).innerHTML 				= "<strong>Movie Length:</strong>&nbsp;" + result.Runtime
-				document.querySelector(".genre" + divToChange).innerHTML 				= "<strong>Genre:</strong>&nbsp;" + result.Genre
-				document.querySelector(".releaseDate" + divToChange).innerHTML 			= "<strong>Release Date:</strong>&nbsp;" + result.Released
+				document.querySelector(".imdb" + divToChange).innerHTML					= "<div>" + result.Ratings[0].Value + "</div> <div><img class = 'posterImage' src = 'https://cdn.freebiesupply.com/images/thumbs/2x/imdb-logo.png'></div>"
+				document.querySelector(".metacritic" + divToChange).innerHTML			= "<div>" + result.Ratings[1].Value + "</div> <div><img class = 'posterImage' src = 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'></div>"
+				document.querySelector(".rottenTomatoes" + divToChange).innerHTML		= "<div>" + result.Ratings[2].Value + "</div> <div><img class = 'posterImage' src = 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png'></div>"
+				document.querySelector(".runtime" + divToChange).innerHTML 				= result.Runtime
+				document.querySelector(".genre" + divToChange).innerHTML 				= Genre.slice(0,3)
+				document.querySelector(".releaseDate" + divToChange).innerHTML 			= result.Released
+				document.querySelector(".plot" + divToChange).innerHTML 				= result.Plot
+				document.querySelector(".actors" + divToChange).innerHTML 				= result.Actors
+				document.querySelector(".writers" + divToChange).innerHTML 				= result.Writer
+				document.querySelector(".awards" + divToChange).innerHTML 				= result.Awards
+				document.querySelector(".director" + divToChange).innerHTML 			= result.Director
+				document.querySelector(".boxoffice" + divToChange).innerHTML 			= result.BoxOffice
+				document.querySelector(".imdbvotes" + divToChange).innerHTML 			= result.imdbVotes
 							
 				
 				// store all movie data to put in users sandpit. Pass through to HTML document

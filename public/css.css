@@ -16,18 +16,15 @@ html body{
 
 /* text for movie name styling */
 .title{
-	font-size:2em;
+	font-size:1em;
 	font-weight: 700;
+	/* width:100%;
+ 	height:100%; */
 }
 
 /* style jumbotron size */
 .jumbotron{
 	height: 20%;
-}
-
-/* spacing between movie details */
-.movieInfo{
-	margin-bottom:20px
 }
 
 /* editing links in nav bar */
@@ -39,8 +36,8 @@ ul li a{
 img{
 	height: 400px;
 	max-height: 400px;
-	width: 300px;
-	max-width:300px;
+	width: 350px;
+	max-width:350px;
 }
 
 /* adjusting text size in buttons */
@@ -65,7 +62,53 @@ btn {
 	bottom:0;
 }
 
+/* styling for new flip card on homepage */
+.flip-card {
+background-color: transparent;
+height: 400px;
+max-height: 400px;
+width: 350px;
+max-width:350px;
+perspective: 1000px;
+margin: 0 auto;
+}
 
+.flip-card-inner {
+  position: absolute;
+  height: 400px;
+  max-height: 400px;
+  width: 350px;
+  max-width:350px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: black;
+  overflow-y: scroll;
+  transform: rotateY(180deg);
+}
+
+/* adjust size of ratings companies image on back of movie div on homepag */
+.posterImage{
+	width:70%;
+	height:100%;
+}
 
 /* styling star ratings */
 
@@ -131,7 +174,7 @@ span[n="5"]:before {
 opacity: 1;
 display: block;
 width: 100%;
-height: auto;
+height: 350px;
 transition: .5s ease;
 backface-visibility: hidden;
 }
@@ -190,7 +233,7 @@ height: 50%
 .close {
 color: #aaa;
 /* float: right; */
-font-size: 28px;
+font-size: 4em;
 font-weight: bold;
 }
 
@@ -200,8 +243,6 @@ color: white;
 text-decoration: none;
 cursor: pointer;
 }
-
-
 
 /* style hovering on see mo */
 p.font-weight-bold:hover{
@@ -246,3 +287,4 @@ p.font-weight-bold:hover{
 	width:400px;
 	background:white;
 }
+
