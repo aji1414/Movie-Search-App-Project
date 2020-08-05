@@ -70,3 +70,8 @@ window.onclick = function(event) {
   }
 }
 
+// functioality to flip movie poster on homepage
+$('.turn-card-over').click(function() {
+	movieDiv = this.parentNode
+	movieDiv.querySelector(".flip-card-inner").classList.toggle("active")
+});

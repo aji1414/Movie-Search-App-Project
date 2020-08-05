@@ -122,6 +122,7 @@ const autoCompletejs = new autoComplete({
 						divToChange ++
 					}
 			}
+	
 			
 			// unhide div selected
 			document.querySelector(".movie" + divToChange).classList.remove("d-none");
