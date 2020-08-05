@@ -115,7 +115,7 @@ const autoCompletejs = new autoComplete({
 			// logic to choose in which div new movie will go into on page. Checks if there is an image already in each div
 			// if there is an image, there is already a movie in that slot
 			for (var q = 1; q <= 4; q++){
-					if (document.querySelector(".poster" + q).childNodes.length !== 1){
+					if (document.querySelector(".poster" + q).innerHTML.length === 0){
 					break
 					}
 					else{
@@ -197,46 +197,29 @@ const autoCompletejs = new autoComplete({
 
 // event listener to remove div when remove delete button clicked
 $("div").on("click", "div div .btn-danger", function(){
-	// identify div removed
-	var parentDiv = this.parentNode.parentNode.parentNode;
-
 	// stop movie trailer by simply resetting source link to blank
 	var trailer = this.parentNode.parentNode.querySelector("iframe")
 	trailer.setAttribute("src","")
-	
-	// find number of current movie div
-	var currentClasses = [];
+
+	// find current movie div and its rank number of current movie div
 	var movieDiv = this.parentNode.parentNode
-	for (var i = 0; i < movieDiv.classList.length; i++){
-		currentClasses.push(movieDiv.classList[i]);
-	}
-	
-	var numberSearch = 0
-	
-	for(var j = 0; j < currentClasses.length; j++){
-		if (currentClasses[j].includes("movie")){
-			// 5 is where the number is stored in the string in the class name
-			numberSearch = currentClasses[j][5]
-			break
-			}
-	}
-	
+	var movieDivNo = $(movieDiv).index() + 1
+
 	// set rating stars all back to white
-	var stars = movieDiv.querySelectorAll(".rating" + numberSearch + " span")
-	// var starCount = 0
+	var stars = movieDiv.querySelectorAll(".rating" + movieDivNo + " span")
 	for (var i = 0; i < stars.length; i++){
 		stars[i].style.color = "white"
 	}
 	
-	// rest data value already passed through to 0
-	movieDiv.querySelector(".ratingData" + numberSearch).value = "0"
-		
+	// // rest data value already passed through to 0. Can add other data values which need to be reset here
+	// movieDiv.querySelector(".ratingData" + movieDivNo).value = "0"
+
 	// delete img so earlier logic on which div to use when adding new movie works
-	movieDiv.childNodes[1].innerText = ""
+	movieDiv.querySelector(".poster" + movieDivNo).innerHTML = ""
 	// remove classes that were such as "col-" added to outer movie div and add original classes back in
-	this.parentNode.parentNode.setAttribute("class", "")
+	movieDiv.setAttribute("class", "")
 	// add back original classes so can be reused again
-	this.parentNode.parentNode.classList.add("d-none", "movie" + numberSearch ,"p-0", "movie")
+	movieDiv.classList.add("d-none", "movie" + movieDivNo ,"p-0", "movie")
 	
 	// run function that adjusts spacing of divs with the new extra div
 	divResize();

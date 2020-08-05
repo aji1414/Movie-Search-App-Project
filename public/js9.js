@@ -70,6 +70,3 @@ window.onclick = function(event) {
   }
 }
 
-// $(".middleText").on("click", function(){
-// 	alert("triggered")
-// })

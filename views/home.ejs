@@ -1,231 +1,78 @@
 <%- include ("./partials/header") %>
-
 <div class = "d-flex flex-row ml-3 mr-3">
-	
-	<div class = "d-none movie1 p-0 movie">
+	<% for (var i = 1; i <= 4; i++){ %>
+	<div class = "d-none movie<%=i%> p-0 movie">
 		<div class = "flip-card col-3 p-0">
 			<div class = "flip-card-inner">
-				<div class = "movieInfo d-flex justify-content-center poster1 m-0 flip-card-front"></div>
+				<div class = "movieInfo d-flex justify-content-center poster<%=i%> m-0 flip-card-front"></div>
 				<div class="flip-card-back d-flex flex-column ">
-						<div class = "movieInfo d-flex justify-content-center title title1 text-center mt-0"></div>
+						<div class = "movieInfo d-flex justify-content-center title title<%=i%> text-center mt-0"></div>
 						<div class = "d-flex mt-5">
-							<div class = "col-4 movieInfo d-flex-column justify-content-center imdb imdb1"></div>
-							<div class = "col-4 movieInfo d-flex-column justify-content-center metacritic metacritic1"></div>
-							<div class = "col-4 movieInfo d-flex-column justify-content-center rottenTomatoes rottenTomatoes1"></div>
+							<div class = "col-4 movieInfo d-flex-column justify-content-center imdb imdb<%=i%>"></div>
+							<div class = "col-4 movieInfo d-flex-column justify-content-center metacritic metacritic<%=i%>"></div>
+							<div class = "col-4 movieInfo d-flex-column justify-content-center rottenTomatoes rottenTomatoes<%=i%>"></div>
 						</div>
 						<div class = "d-flex p-4">
 							<div class = "col-4 d-flex flex-column">
 									<div>GENRE</div>
-									<div class = "genre genre1 mt-3"></div> 
+									<div class = "genre genre<%=i%> mt-3"></div> 
 							</div>
 							<div class = "col-4 d-flex flex-column">
 									<div>RELEASE DATE</div>
-									<div class = "releaseDate releaseDate1 mt-3"></div> 
+									<div class = "releaseDate releaseDate<%=i%> mt-3"></div> 
 							</div>
 							<div class = "col-4 d-flex flex-column">
 									<div>TIME</div>
-									<div class = "runtime runtime1 mt-3"></div> 
+									<div class = "runtime runtime<%=i%> mt-3"></div> 
 							</div>
 						</div>
-						<div class = "d-flex flex-column plot plot1 px-5"></div>
-						<div class = "d-flex flex-column awards awards1 px-5 mt-5"></div>
+						<div class = "d-flex flex-column plot plot<%=i%> px-5"></div>
+						<div class = "d-flex flex-column awards awards<%=i%> px-5 mt-5"></div>
 						<div class = "d-flex p-4 mt-5">
 								<div class = "d-flex flex-column">
 										<div>ACTORS</div>
-										<div class = "actors actors1"></div> 
+										<div class = "actors actors<%=i%>"></div> 
 								</div>
 								<div class = "d-flex flex-column">
 										<div>WRITERS</div>
-										<div class = "writers writers1"></div> 
+										<div class = "writers writers<%=i%>"></div> 
 								</div>
 						</div>
-						
 						<div class = "d-flex p-4">
 							<div class = "col-4 d-flex flex-column">
-									<div>DIRECTED BY</div>
-									<div class = "director director1 mt-3"></div> 
+									<div>BOX OFFICE</div>
+									<div class = "boxoffice boxoffice<%=i%> mt-3"></div> 
 							</div>
 							<div class = "col-4 d-flex flex-column">
-									<div>BOX OFFICE</div>
-									<div class = "boxoffice boxoffice1 mt-3"></div> 
+									<div>DIRECTED BY</div>
+									<div class = "director director<%=i%> mt-3"></div> 
 							</div>
 							<div class = "col-4 d-flex flex-column">
 									<div>IMDB VOTES</div>
-									<div class = "imdbvotes imdbvotes1 mt-3"></div> 
+									<div class = "imdbvotes imdbvotes<%=i%> mt-3"></div> 
 							</div>
 						</div>
-
 				</div>
 			</div>	
 		</div>
-
 		<div class = "d-flex justify-content-center ">
-			<iframe  class ="trailer1" width="350" height="350" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe  class ="trailer<%=i%>" width="350" height="350" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
-		
 		<form action = "/users/:id" method = "POST">
-			<input class = "reviewData1" type = "hidden" name = "reviewData" value = "">
-			<input class = "ratingData1" type = "hidden" name = "ratingData" value = "0">
-			<input class = "trailerData1" type = "hidden" name = "trailerData" value = "">
-			<input class = "movieData1" type = "hidden" name = "movieData" value = "">
+			<input class = "reviewData<%=i%>" type = "hidden" name = "reviewData" value = "">
+			<input class = "ratingData<%=i%>" type = "hidden" name = "ratingData" value = "0">
+			<input class = "trailerData<%=i%>" type = "hidden" name = "trailerData" value = "">
+			<input class = "movieData<%=i%>" type = "hidden" name = "movieData" value = "">
 			<div class = "form-group d-flex justify-content-center m-0">
-				<button type = "submit" class = "btn btn-info text-center ">Add to Sandpit</button>
+				<button type = "submit" class = "btn btn-info text-center ">ADD TO SANDPIT</button>
 			</div>	
 		</form>
-		
 		<div class = "d-flex justify-content-center mt-1">
-			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
-			<div  type = "button" class = "rating rating1 btn btn-info movieInfo text-center mr-2"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
-			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
+			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">RATE MOVIE!</div>
+			<div  type = "button" class = "rating rating<%=i%> btn btn-info movieInfo text-center mr-2"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+			<div  type = "button" class = "btn btn-danger movieInfo text-center">REMOVE</div>
 		</div>
-		
-		
-		
 	</div>
-	
-	<div class = "d-none movie2 p-0 movie">
-		<div class = "flip-card col-3 p-0">
-			<div class = "flip-card-inner">
-				<div class = "movieInfo d-flex justify-content-center poster2 m-0 flip-card-front"></div>
-				<div class="flip-card-back d-flex justify-content-center">
-				
-				</div>
-			</div>
-				
-		</div>
-
-		<!-- <div class = "movieInfo d-flex justify-content-center poster2 m-0 "></div> -->
-		<div class = "d-flex justify-content-center ">
-			<iframe  class ="trailer2" width="200" height="400" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div>		
-		<div class = "d-flex justify-content-center">
-			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
-		</div>
-		
-		<div class = "d-flex justify-content-center ratingParent2">
-			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
-			<div  type = "button" class = "rating rating2 btn btn-info movieInfo text-center"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
-		</div>
-		
-		<!-- data that is stored in form then sent to db -->
-		<form action = "/users/:id" method = "POST">
-			<input class = "reviewData2" type = "hidden" name = "reviewData" value = "">
-			<input class = "ratingData2" type = "hidden" name = "ratingData" value = "0">
-			<input class = "trailerData2" type = "hidden" name = "trailerData" value = "">
-			<input class = "movieData2" type = "hidden" name = "movieData" value = "">
-			<div class = "form-group d-flex justify-content-center">
-				<button type = "submit" class = "btn btn-info text-center ">Add to Sandpit</button>
-			</div>	
-		</form>
-
-		<div class = "movieInfo d-flex justify-content-center title title2 border border-success text-center mt-0"></div>
-		<div class = "movieInfo d-flex flex-column justify-content-center rating2">
-			<div class = "movieInfo d-flex justify-content-center imdb imdb2"></div>
-			<div class = "movieInfo d-flex justify-content-center metacritic metacritic2"></div>
-			<div class = "movieInfo d-flex justify-content-center rottenTomatoes rottenTomatoes2"></div>
-		</div>
-		<div class = "movieInfo d-flex justify-content-center runtime runtime2"></div>
-		<div class = "movieInfo d-flex justify-content-center genre genre2"></div>
-		<div class = "movieInfo d-flex justify-content-center releaseDate releaseDate2"></div>
-		<div class = "movieInfo d-flex justify-content-center trivia trivia2"></div>
-		
-	</div>
-	
-	<div class = "d-none movie3 p-0 movie">
-		<div class = "flip-card col-3 p-0">
-			<div class = "flip-card-inner">
-				<div class = "movieInfo d-flex justify-content-center poster3 m-0 flip-card-front"></div>
-				<div class="flip-card-back d-flex justify-content-center">
-				
-				</div>
-			</div>
-				
-		</div>
-
-		<!-- <div class = "movieInfo d-flex justify-content-center poster3 m-0 "></div> -->
-		<div class = "d-flex justify-content-center ">
-			<iframe  class ="trailer3" width="200" height="400" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div>		
-		<div class = "d-flex justify-content-center">
-			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
-		</div>
-		
-		<div class = "d-flex justify-content-center ratingParent3">
-			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
-			<div  type = "button" class = "rating rating3 btn btn-info movieInfo text-center"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
-		</div>
-		
-		<!-- data that is stored in form then sent to db -->
-		<form action = "/users/:id" method = "POST">
-			<input class = "reviewData3" type = "hidden" name = "reviewData" value = "">
-			<input class = "ratingData3" type = "hidden" name = "ratingData" value = "0">
-			<input class = "trailerData3" type = "hidden" name = "trailerData" value = "">
-			<input class = "movieData3" type = "hidden" name = "movieData" value = "">
-			<div class = "form-group d-flex justify-content-center">
-				<button type = "submit" class = "btn btn-info text-center ">Add to Sandpit</button>
-			</div>	
-		</form>
-
-		<div class = "movieInfo d-flex justify-content-center title title3 border border-success text-center mt-0"></div>
-		<div class = "movieInfo d-flex flex-column justify-content-center rating3">
-			<div class = "movieInfo d-flex justify-content-center imdb imdb3"></div>
-			<div class = "movieInfo d-flex justify-content-center metacritic metacritic3"></div>
-			<div class = "movieInfo d-flex justify-content-center rottenTomatoes rottenTomatoes3"></div>
-		</div>
-		<div class = "movieInfo d-flex justify-content-center runtime runtime3"></div>
-		<div class = "movieInfo d-flex justify-content-center genre genre3"></div>
-		<div class = "movieInfo d-flex justify-content-center releaseDate releaseDate3"></div>
-		<div class = "movieInfo d-flex justify-content-center trivia trivia3"></div>
-		
-	</div>
-	
-	<div class = "d-none movie4 p-0 movie">
-		<div class = "flip-card col-3 p-0">
-			<div class = "flip-card-inner">
-				<div class = "movieInfo d-flex justify-content-center poster4 m-0 flip-card-front"></div>
-				<div class="flip-card-back d-flex justify-content-center">
-				
-				</div>
-			</div>
-				
-		</div>
-
-		<!-- <div class = "movieInfo d-flex justify-content-center poster4 m-0 "></div> -->
-		<div class = "d-flex justify-content-center ">
-			<iframe  class ="trailer4" width="200" height="400" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div>		
-		<div class = "d-flex justify-content-center">
-			<div  type = "button" class = "btn btn-danger movieInfo text-center">Remove</div>
-		</div>
-		
-		<div class = "d-flex justify-content-center ratingParent4">
-			<div  type = "button" class = "btn btn-info movieInfo text-center mr-2">Rate Movie!</div>
-			<div  type = "button" class = "rating rating4 btn btn-info movieInfo text-center"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
-		</div>
-		
-		<!-- data that is stored in form then sent to db -->
-		<form action = "/users/:id" method = "POST">
-			<input class = "reviewData4" type = "hidden" name = "reviewData" value = "">
-			<input class = "ratingData4" type = "hidden" name = "ratingData" value = "0">
-			<input class = "trailerData4" type = "hidden" name = "trailerData" value = "">
-			<input class = "movieData4" type = "hidden" name = "movieData" value = "">
-			<div class = "form-group d-flex justify-content-center">
-				<button type = "submit" class = "btn btn-info text-center ">Add to Sandpit</button>
-			</div>	
-		</form>
-
-		<div class = "movieInfo d-flex justify-content-center title title4 border border-success text-center mt-0"></div>
-		<div class = "movieInfo d-flex flex-column justify-content-center rating4">
-			<div class = "movieInfo d-flex justify-content-center imdb imdb4"></div>
-			<div class = "movieInfo d-flex justify-content-center metacritic metacritic4"></div>
-			<div class = "movieInfo d-flex justify-content-center rottenTomatoes rottenTomatoes4"></div>
-		</div>
-		<div class = "movieInfo d-flex justify-content-center runtime runtime4"></div>
-		<div class = "movieInfo d-flex justify-content-center genre genre4"></div>
-		<div class = "movieInfo d-flex justify-content-center releaseDate releaseDate4"></div>
-		<div class = "movieInfo d-flex justify-content-center trivia trivia4"></div>
-		
-	</div>
+	<% } %>
 </div>
-	
 <%- include ("./partials/footer") %>
