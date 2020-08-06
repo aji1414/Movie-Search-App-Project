@@ -10,7 +10,8 @@ var 	express 			= require("express"),
 		ObjectId 			= require('mongodb').ObjectID,
 		movieTrailer 		= require( 'movie-trailer' ),
 		cookie 				= require('cookie'),
-		methodOverride 		= require("method-override")
+		methodOverride 		= require("method-override"),
+		prompt				= require("prompt")
 
 
 // create db here
@@ -35,6 +36,8 @@ app.set("view engine", "ejs")
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended:true}));
+// to prompt user to confirm if they want to delete movie in sandpit
+prompt.start()
 
 app.use(function(req,res,next){
 	// provides current user logged in on every request
@@ -117,7 +120,6 @@ app.get("/users/:id", function(req,res){
 app.post("/users/:id", function(req,res){
 	// unstringify as its stored as string in the html
 	var movieObject   	= JSON.parse(req.body.movieData)
-	console.log(req.body.trailerData)
 	var Title 			= movieObject.Title;
 	var	Year			= movieObject.Year;
 	var	Rated			= movieObject.Rated;
@@ -193,7 +195,7 @@ app.post("/users/:id", function(req,res){
 					foundUser.save()
 					// console.log(foundUser)
 					// redirect to users sandpit
-					res.redirect("/users/" + req.user._id)
+					res.redirect("/")
 				}
 			})
 		}
@@ -223,6 +225,7 @@ app.delete("/users/:id/:movie_id", function(req,res){
 			res.redirect("/")
 		}
 		else{
+
 			res.redirect("/users/" + req.params.id)
 		}
 	})

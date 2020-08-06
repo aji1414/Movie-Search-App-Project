@@ -146,28 +146,35 @@ const autoCompletejs = new autoComplete({
 									
 			// Render all movie info to correct div
 			getMovieData().then(function(result) {
-				// Render page elements
-				console.log(typeof result.Genre)
-				var Genre = result.Genre.split(',')
-				var highQualityPoster = result.Poster.substr(0,result.Poster.length - 7) + "800.jpg"
-				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>"
-				document.querySelector(".title" + divToChange).innerHTML				= result.Title
-				document.querySelector(".imdb" + divToChange).innerHTML					= "<div>" + result.Ratings[0].Value + "</div> <div><img class = 'posterImage' src = 'https://cdn.freebiesupply.com/images/thumbs/2x/imdb-logo.png'></div>"
-				document.querySelector(".metacritic" + divToChange).innerHTML			= "<div>" + result.Ratings[1].Value + "</div> <div><img class = 'posterImage' src = 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'></div>"
-				document.querySelector(".rottenTomatoes" + divToChange).innerHTML		= "<div>" + result.Ratings[2].Value + "</div> <div><img class = 'posterImage' src = 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png'></div>"
-				document.querySelector(".runtime" + divToChange).innerHTML 				= result.Runtime
-				document.querySelector(".genre" + divToChange).innerHTML 				= Genre.slice(0,3)
-				document.querySelector(".releaseDate" + divToChange).innerHTML 			= result.Released
-				document.querySelector(".plot" + divToChange).innerHTML 				= result.Plot
-				document.querySelector(".actors" + divToChange).innerHTML 				= result.Actors
-				document.querySelector(".writers" + divToChange).innerHTML 				= result.Writer
-				document.querySelector(".awards" + divToChange).innerHTML 				= result.Awards
-				document.querySelector(".director" + divToChange).innerHTML 			= result.Director
-				document.querySelector(".boxoffice" + divToChange).innerHTML 			= result.BoxOffice
-				document.querySelector(".imdbvotes" + divToChange).innerHTML 			= result.imdbVotes
+				// Render page elements						
+				// trailer data
+				var movieRatings 		= 	[[".imdb",'https://cdn.freebiesupply.com/images/thumbs/2x/imdb-logo.png'],
+											[".metacritic", 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'],
+											[".rottenTomatoes", 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png']]
+				
+				for(var i = 0; i < movieRatings.length; i++){
+					$(movieRatings[i][0] + divToChange).html("<div>" + result.Ratings[i].Value + "</div> <div><img class = 'posterImage' src = '" + movieRatings[i][1] + "'></div>")
+				}
+				
+				// other data
+				// some data manipulation
+				var Genre 				= result.Genre.split(',') 	
+				var highQualityPoster 	= result.Poster.substr(0,result.Poster.length - 7) + "800.jpg"
+				$(".genre" + divToChange).html(Genre.slice(0,3)) 
+				$(".poster" + divToChange).html("<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>")	
+				$(".title" + divToChange).html(result.Title)
+				$(".runtime" + divToChange).html(result.Runtime) 				 
+				$(".releaseDate" + divToChange).html(result.Released) 			 
+				$(".plot" + divToChange).html(result.Plot) 				 
+				$(".actors" + divToChange).html(result.Actors) 				 
+				$(".writers" + divToChange).html(result.Writer) 				 
+				$(".awards" + divToChange).html(result.Awards) 				 
+				$(".director" + divToChange).html(result.Director) 			 
+				$(".boxoffice" + divToChange).html(result.BoxOffice) 			 
+				$(".imdbvotes" + divToChange).html(result.imdbVotes) 			 
 							
 				
-				// store all movie data to put in users sandpit. Pass through to HTML document
+				// store all movie data in html doc which will be stored in database if user adds film to sandpit
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
 				
 			});
@@ -224,8 +231,12 @@ $("div").on("click", "div div .btn-danger", function(){
 	for (var i = 0; i < dataToErase; i++){
 		movieDiv.querySelector(dataToErase[i] + movieDivNo).value = ""
 	}
-	movieDiv.querySelector(".poster" + movieDivNo).innerHTML = ""
-	
+
+	// turn card back over to front if user had flipped it to back before removing it
+	if(!movieDiv.querySelector("iframe").classList.contains("d-none")){
+	   movieDiv.querySelector(".turn-card-over").click()
+	   }
+
 	// remove classes that were such as "col-" added to outer movie div and add original classes back in
 	movieDiv.setAttribute("class", "")
 	// add back original classes so can be reused again

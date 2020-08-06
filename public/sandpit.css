@@ -52,7 +52,7 @@ backface-visibility: hidden;
 }
 
 /* Pop up box styling in user sandpit page */
-.modal {
+.modal2 {
 display: none; /* Hidden by default */
 position: fixed; /* Stay in place */
 z-index: 1; /* Sit on top */
@@ -66,7 +66,7 @@ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
-.modal-content {
+.modal-content2 {
 background-color: black;
 margin: 15% auto; /* 15% from the top and centered */
 border: 1px solid #888;

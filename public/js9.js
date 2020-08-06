@@ -42,7 +42,7 @@ for (var h = 1; h <= 4; h++){
 // When the user clicks on the see more button underneath or in the image, open the modal
 var currentModal = {}
 $(".card").on("click",".myBtn", function(){
-	var modal = this.parentNode.querySelector(".modal")
+	var modal = this.parentNode.querySelector(".modal2")
 	modal.style.display = "block"
 	currentModal = modal
 	console.log(modal)
@@ -50,7 +50,7 @@ $(".card").on("click",".myBtn", function(){
 
 $(".middleText").on("click", function(){
 	var movieCard = this.parentNode.parentNode.parentNode;
-	var modal = movieCard.querySelector(".modal")
+	var modal = movieCard.querySelector(".modal2")
 	modal.style.display = "block"
 	currentModal = modal
 })
@@ -81,5 +81,11 @@ $('.turn-card-over').click(function() {
 $(".changeRating").click(function(){
 	var main = this.parentNode
 	main.querySelector("button[type=submit]").classList.toggle("d-none")
-	main.querySelector("#inlineFormCustomSelectPref").classList.toggle("d-none")
+	main.querySelector(".inlineFormCustomSelectPref").classList.toggle("d-none")
 })
+
+// confirm with user if they want to delete movie
+$('.movieRemoveForm').submit(function(event){
+  event.stopPropagation();
+  event.preventDefault();
+});
