@@ -143,7 +143,7 @@ app.post("/users/:id", function(req,res){
 	var Trailer 		= req.body.trailerData;
 	var UserRating		= req.body.ratingData;
 	var UserReview		= req.body.reviewData;
-	console.log(req.body)
+
 	
 	var newMovie = {
 		Title: Title,
@@ -201,9 +201,23 @@ app.post("/users/:id", function(req,res){
 	
 })
 
+// edit movie ratingData
+app.put("/users/:id/:movie_id", function(req,res){
+	Movie.findById(req.params.movie_id, function(err,foundMovie){
+		if (err){
+			console.log(err)
+		}
+		else{
+			foundMovie.UserRating = req.body.userReview
+			foundMovie.save()
+			res.redirect("/users/" + req.params.id)
+		}
+	})
+})
+
 // delete movie route setup
 app.delete("/users/:id/:movie_id", function(req,res){
-	console.log(req.params)
+	console.log(req.params.movie_id)
 	Movie.findByIdAndRemove(req.params.movie_id, function(err, deletedMovie){
 		if(err){
 			res.redirect("/")

@@ -76,3 +76,10 @@ $('.turn-card-over').click(function() {
 	movieDiv.querySelector(".flip-card-inner").classList.toggle("active")
 	movieDiv.querySelector("iframe").classList.toggle("d-none")
 });
+
+// button to unhide change rating sandpitpit
+$(".changeRating").click(function(){
+	var main = this.parentNode
+	main.querySelector("button[type=submit]").classList.toggle("d-none")
+	main.querySelector("#inlineFormCustomSelectPref").classList.toggle("d-none")
+})

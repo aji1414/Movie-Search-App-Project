@@ -57,19 +57,19 @@ margin: 0 auto;
 }
 
 /* styling star ratings */
-.rating {
+.ratingHome {
   unicode-bidi: bidi-override;
   direction: rtl;
 }
 
 
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
+.ratingHome > span:hover:before,
+.ratingHome > span:hover ~ span:before {
    content: "\2605";
    position: absolute;
 }
 
-.rating > span:hover:before {
+.ratingHome > span:hover:before {
    content: "\2605";
    position: absolute;
 }

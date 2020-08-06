@@ -165,3 +165,6 @@ input[type = submit].sandpitRemove{
 	/* bottom:-100%; */
 	background-color: red;
 }
+
+#inlineFormCustomSelectPref{
+width:30%}
