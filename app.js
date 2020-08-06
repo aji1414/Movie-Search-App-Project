@@ -117,7 +117,7 @@ app.get("/users/:id", function(req,res){
 app.post("/users/:id", function(req,res){
 	// unstringify as its stored as string in the html
 	var movieObject   	= JSON.parse(req.body.movieData)
-
+	console.log(req.body.trailerData)
 	var Title 			= movieObject.Title;
 	var	Year			= movieObject.Year;
 	var	Rated			= movieObject.Rated;
@@ -143,7 +143,7 @@ app.post("/users/:id", function(req,res){
 	var Trailer 		= req.body.trailerData;
 	var UserRating		= req.body.ratingData;
 	var UserReview		= req.body.reviewData;
-		
+	console.log(req.body)
 	
 	var newMovie = {
 		Title: Title,
