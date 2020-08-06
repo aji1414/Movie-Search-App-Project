@@ -209,11 +209,23 @@ $("div").on("click", "div div .btn-danger", function(){
 		stars[i].style.color = "white"
 	}
 	
-	// // rest data value already passed through to 0. Can add other data values which need to be reset here
-	// movieDiv.querySelector(".ratingData" + movieDivNo).value = "0"
-
-	// delete img so earlier logic on which div to use when adding new movie works
+	// // reset all data added in from previous film to blank in case new film doesnt contain some results and retains data from the old film
+	var innerTextErase 	= [".ratingData",".trailerData", ".movieData", ".poster", ".title",
+					   ".imdb", ".metacritic", ".rottenTomatoes", ".runtime", ".genre",
+					   ".releaseDate", ".plot", ".actors", ".writers", ".awards",
+					   ".director", ".boxoffice", ".imdbvotes"]
+	
+	var dataToErase		= [".ratingData", ".trailerData", ".movieData"]
+	
+	for(var i = 0 ; i < innerTextErase.length; i++){
+		movieDiv.querySelector(innerTextErase[i] + movieDivNo).innerHTML = ""
+	}
+	
+	for (var i = 0; i < dataToErase; i++){
+		movieDiv.querySelector(dataToErase[i] + movieDivNo).value = ""
+	}
 	movieDiv.querySelector(".poster" + movieDivNo).innerHTML = ""
+	
 	// remove classes that were such as "col-" added to outer movie div and add original classes back in
 	movieDiv.setAttribute("class", "")
 	// add back original classes so can be reused again
