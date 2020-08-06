@@ -9,7 +9,8 @@ var 	express 			= require("express"),
 		// had to use this to fix issue with find by id function
 		ObjectId 			= require('mongodb').ObjectID,
 		movieTrailer 		= require( 'movie-trailer' ),
-		cookie 				= require('cookie')
+		cookie 				= require('cookie'),
+		methodOverride 		= require("method-override")
 
 
 // create db here
@@ -32,6 +33,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.set("view engine", "ejs")
 app.use(express.static("public"));
+app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(function(req,res,next){
@@ -197,6 +199,19 @@ app.post("/users/:id", function(req,res){
 		}
 	})
 	
+})
+
+// delete movie route setup
+app.delete("/users/:id/:movie_id", function(req,res){
+	console.log(req.params)
+	Movie.findByIdAndRemove(req.params.movie_id, function(err, deletedMovie){
+		if(err){
+			res.redirect("/")
+		}
+		else{
+			res.redirect("/users/" + req.params.id)
+		}
+	})
 })
 
 // //////////////////////////////////////////////////////////////////////////

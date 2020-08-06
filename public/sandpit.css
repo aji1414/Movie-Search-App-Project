@@ -158,3 +158,10 @@ span[n="5"]:before {
    content: "☆☆☆☆☆";
 	display:block;
 }
+
+/* remove button style */
+input[type = submit].sandpitRemove{
+	position: relative;
+	/* bottom:-100%; */
+	background-color: red;
+}

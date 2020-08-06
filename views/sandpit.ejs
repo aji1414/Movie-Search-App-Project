@@ -18,7 +18,15 @@
 						<% } %>
 					<!-- Trigger/Open The Modal -->
 							<p class="myBtn mt-3 font-weight-bold">See More Movie Info</p>
+							<form action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=DELETE" method = "POST">
+								<input  type = "submit" class = "sandpitRemove text-center" value ="REMOVE">
+							</form>
+							
 
+					
+					<!-- <form id = "deleteComment"action = "/campgrounds/<campground._id%>/comments/<comment._id%>?_method=DELETE" method = "POST">
+					 -->
+					
 					 <!-- The Modal -->
 						<div class="modal">
 						  <!-- Modal content -->
