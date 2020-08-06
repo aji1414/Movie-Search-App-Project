@@ -1,16 +1,38 @@
+body, html {
+	height:100%;
+	overflow: auto;
+	background: rgb(0, 0, 0);
+	color:white;
+	margin: 0;
+    padding: 0;
+}
+
+/* font on navbar. super specific to overwrite bootstrap code */
+.navbar-light .container-fluid .navbar-nav .nav-link{
+	color:black;
+	font-weight:700;
+}
+
+/* color for main page title in navbar */
+header h5{
+	color:black;
+	font-size:2em;
+	
+}
+
+header{
+	width:100%
+}
+
+/* editing links in nav bar */
+ul li a{
+	font-size: 0.8em;
+}
+
 :root {
     --transition-1: all 0.3s ease-in-out;
     --transition-2: all 0.1s ease-in-out;
 }
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-/* #autoComplete{
-	background:black;
-} */
 
 .header {
     text-align: center;
@@ -83,17 +105,10 @@ body {
     text-overflow: ellipsis;
 }
 
-h5{
-	color:black;
-}
-
-
-
 * { box-sizing: border-box; }
 body {
   font: 16px Arial;
 }
-
 
 input {
   border: 1px solid transparent;
@@ -109,5 +124,3 @@ input[type=submit] {
   background-color: DodgerBlue;
   color: #fff;
 }
-
-

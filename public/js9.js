@@ -74,4 +74,5 @@ window.onclick = function(event) {
 $('.turn-card-over').click(function() {
 	movieDiv = this.parentNode
 	movieDiv.querySelector(".flip-card-inner").classList.toggle("active")
+	movieDiv.querySelector("iframe").classList.toggle("d-none")
 });

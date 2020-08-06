@@ -153,7 +153,7 @@ const autoCompletejs = new autoComplete({
 				console.log(typeof result.Genre)
 				var Genre = result.Genre.split(',')
 				var highQualityPoster = result.Poster.substr(0,result.Poster.length - 7) + "800.jpg"
-				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + highQualityPoster + "'>"
+				document.querySelector(".poster" + divToChange).innerHTML				= "<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>"
 				document.querySelector(".title" + divToChange).innerHTML				= result.Title
 				document.querySelector(".imdb" + divToChange).innerHTML					= "<div>" + result.Ratings[0].Value + "</div> <div><img class = 'posterImage' src = 'https://cdn.freebiesupply.com/images/thumbs/2x/imdb-logo.png'></div>"
 				document.querySelector(".metacritic" + divToChange).innerHTML			= "<div>" + result.Ratings[1].Value + "</div> <div><img class = 'posterImage' src = 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'></div>"
