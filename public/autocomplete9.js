@@ -122,7 +122,14 @@ const autoCompletejs = new autoComplete({
 						divToChange ++
 					}
 			}
-	
+			
+			// reduce size of all 4 posters if this is final poster
+			// if(divToChange === 4){
+			// 	$(".flip-card-front img").css("width", "400px")
+			// }
+			// else{
+			// 	$(".flip-card-front img").css("width", "600px")
+			// }
 			
 			// unhide div selected
 			document.querySelector(".movie" + divToChange).classList.remove("d-none");
@@ -153,13 +160,13 @@ const autoCompletejs = new autoComplete({
 											[".rottenTomatoes", 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png']]
 				
 				for(var i = 0; i < movieRatings.length; i++){
-					$(movieRatings[i][0] + divToChange).html("<div>" + result.Ratings[i].Value + "</div> <div><img class = 'posterImage' src = '" + movieRatings[i][1] + "'></div>")
+					$(movieRatings[i][0] + divToChange).html("<div>" + result.Ratings[i].Value + "</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
 				}
 				
 				// other data
 				// some data manipulation
 				var Genre 				= result.Genre.split(',') 	
-				var highQualityPoster 	= result.Poster.substr(0,result.Poster.length - 7) + "800.jpg"
+				var highQualityPoster 	= result.Poster.substr(0,result.Poster.length - 7) + "600.jpg"
 				$(".genre" + divToChange).html(Genre.slice(0,3)) 
 				$(".poster" + divToChange).html("<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>")	
 				$(".title" + divToChange).html(result.Title)
@@ -204,7 +211,7 @@ const autoCompletejs = new autoComplete({
 $("div").on("click", "div div .removeHome", function(){
 	// stop movie trailer by simply resetting source link to blank
 	var trailer = this.parentNode.parentNode.querySelector("iframe")
-	console.log(trailer)
+	
 	trailer.setAttribute("src","")
 
 	// find current movie div and its rank number of current movie div
