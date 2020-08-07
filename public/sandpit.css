@@ -168,3 +168,7 @@ input[type = submit].sandpitRemove{
 
 #inlineFormCustomSelectPref{
 width:30%}
+
+.removeMovieModal h5 {
+	color:black;
+}

@@ -201,9 +201,10 @@ const autoCompletejs = new autoComplete({
 });
 
 // event listener to remove div when remove delete button clicked
-$("div").on("click", "div div .btn-danger", function(){
+$("div").on("click", "div div .removeHome", function(){
 	// stop movie trailer by simply resetting source link to blank
 	var trailer = this.parentNode.parentNode.querySelector("iframe")
+	console.log(trailer)
 	trailer.setAttribute("src","")
 
 	// find current movie div and its rank number of current movie div

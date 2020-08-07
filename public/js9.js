@@ -55,6 +55,13 @@ $(".middleText").on("click", function(){
 	currentModal = modal
 })
 
+$(".testModal").on("click", function(){
+	var movieCard = this.parentNode;
+	var modal = movieCard.querySelector(".modal2")
+	modal.style.display = "block"
+	currentModal = modal
+})
+
 $(".card").on("click",".close", function(){
 	this.parentNode.parentNode.parentNode.style.display = "none";
 	// delete current modal selected
@@ -82,10 +89,24 @@ $(".changeRating").click(function(){
 	var main = this.parentNode
 	main.querySelector("button[type=submit]").classList.toggle("d-none")
 	main.querySelector(".inlineFormCustomSelectPref").classList.toggle("d-none")
-})
+});
 
 // confirm with user if they want to delete movie
 $('.movieRemoveForm').submit(function(event){
-  event.stopPropagation();
   event.preventDefault();
-});
+  var main = this.parentNode;
+  $(main).find(".removeMovieModal").modal('toggle')
+ })
+
+$(".removeMovieNo").on("click", function(){
+	var movie = this.parentNode.parentNode.parentNode.parentNode.parentNode
+	$(movie).find('.removeMovieModal').modal('toggle')
+})
+
+$(".removeMovieYes").on("click", function(){
+	var movie = this.parentNode.parentNode.parentNode.parentNode.parentNode
+	// $(movie).find('.removeMovieModal').modal('toggle')
+	movie.querySelector(".movieRemoveForm").submit()
+})
+
+

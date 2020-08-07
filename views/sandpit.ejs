@@ -1,34 +1,8 @@
 <%- include ("./partials/header") %>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <div class = "container p-0">
 	<div class = "d-flex flex-wrap">
-		<%foundUser.movies.forEach(function(movie){ %>
+		<%foundUser.movies.forEach(function(movie,i){ %>
 		<div class="card col-12 col-md-3 p-0 mb-4">
 			<div class = "imgContainer">
 			  <img class="card-img-top img-fluid" src="<%=movie.Poster%>" alt="Responsive image">
@@ -41,7 +15,8 @@
 						<%} else{ %>
 							<caption><p>You gave this movie a <%=movie.UserRating%>/5 stars rating!</p></caption>
 							<span n = "<%=parseInt(movie.UserRating)%>" class = "movieInfo text-center display-4"></span>
-
+						<% } %>
+					
 							<form class="form-inline" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=PUT" method = "POST">
 							  <label type = "button" class="changeRating col-12 btn btn-light my-1 mr-2" for="inlineFormCustomSelectPref">Change Rating</label>
 								  
@@ -65,22 +40,41 @@
 										
 					
 					
-						<% } %>
+						
 					<!-- Trigger/Open The Modal -->
 							<p class="myBtn mt-3 font-weight-bold">See More Movie Info</p>
-							<form class = "movieRemoveForm" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=DELETE" method = "POST">
+							<form class = "movieRemoveForm movieRemoveForm<%=i + 1%>" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=DELETE" method = "POST">
 								<input  type = "submit" class = "sandpitRemove text-center" value ="REMOVE">
 							</form>
-							
-					<!-- Button trigger modal -->
 
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary modalTest"  data-target=".removeMovieModal">
+  Launch demo modal
+</button> -->
 
+<!-- Confirm Delete Modal -->
+<div class="modal removeMovieModal removeMovieModal<%=i + 1%> fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to remove movie from sandpit?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="removeMovieNo btn btn-info" data-dismiss="modal">No</button>
+        <button type="button" class="removeMovieYes btn btn-danger" >Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 					
 				
 					
-					 <!-- The Modal -->
+					 <!-- Movie Info Modal -->
 						<div class="modal2">
-						  <!-- Modal content -->
+						  Modal content
 						  <div class="modal-content2">
 								<div class = "d-flex flex-column align-items-center movieDetailsOuter">
 									<div class="close">&times;</div>
