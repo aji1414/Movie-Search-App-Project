@@ -16,10 +16,21 @@
 		
 	</head>
 	<body class = "wrapper">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light primary-color">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light primary-color mb-5">
 			<header class="header">
 				<h5 class = "navbar-brand">Movie Review and Comparison App</h5>	
-					<input id="autoComplete" type="text" tabindex="1">
+				<input id="autoComplete" type="text" tabindex="1">
+				<%if(error && error.length > 0){ %>
+					<div class = "alert alert-danger" role = "alert">
+						<h1><%=error%></h1>
+					</div>
+				<% } %>
+				<%if(success && success.length > 0){ %>
+			<div class = "alert alert-success" role = "alert">
+				<h1><%=success%></h1>
+			</div>
+			<% } %>
+
 			</header>
 		  <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
 			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,12 +73,12 @@
 
 			</ul>
 		  </div>
-			
+		 	
 		</nav>
 		
 		<div class = "d-flex flex-row ml-3 mr-3">
 			<% for (var i = 1; i <= 4; i++){ %>
-			<div class = "d-none movie<%=i%> p-0 movie">
+			<div class = "d-none movie<%=i%> p-0 movie col-12">
 				<div type = "button" class = "turn-card-over btn btn-dark d-flex mx-auto text-center">TURN OVER</div>
 				<div class = "flip-card col-3 p-0">
 					<div class = "flip-card-inner">
@@ -144,6 +155,7 @@
 			<% } %>
 		</div>
 			
+	
 		
 		
 		

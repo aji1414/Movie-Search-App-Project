@@ -91,7 +91,7 @@ $(".changeRating").click(function(){
 	main.querySelector(".inlineFormCustomSelectPref").classList.toggle("d-none")
 });
 
-// confirm with user if they want to delete movie
+// confirm with user if they want to delete movie. If no clicked, simply toggle modal off. If yes clicked, then submit the form.
 $('.movieRemoveForm').submit(function(event){
   event.preventDefault();
   var main = this.parentNode;
@@ -109,4 +109,19 @@ $(".removeMovieYes").on("click", function(){
 	movie.querySelector(".movieRemoveForm").submit()
 })
 
-// logic to hide all sandpit movies if user stars searching for more movies whilst in their sandpit
+// show password function on sign homepageage
+function showPassword(){
+	var password = document.querySelectorAll(".password")
+	if (password[0].type === "password"){
+		for (i = 0; i < password.length; i++){
+		password[i].type = "text"
+		}
+	}
+	else{
+		for (i = 0; i < password.length; i++){
+		password[i].type = "password"
+		}
+		
+	}
+}
+	

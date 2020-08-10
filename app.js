@@ -44,8 +44,8 @@ prompt.start()
 app.use(function(req,res,next){
 	// provides current user logged in on every request
 	res.locals.currentUser = req.user;
-	// res.locals.error = req.flash("error")
-	// res.locals.success = req.flash("success")
+	res.locals.error = req.flash("error")
+	res.locals.success = req.flash("success")
 	next();
 })
 
@@ -87,10 +87,12 @@ app.post("/users", function(req,res){
 						   })
 	User.register(newUser, req.body.password, function(err,user){
 		if(err){
-			console.log(err)
+			req.flash("error", err.message)
+			res.redirect("/signup")
 		}
 		else{
 			passport.authenticate("local")(req,res,function(){
+				req.flash("success", "Welcome to Movie Sandpit " + req.user.username + "!")
 				res.redirect("/users")
 			})
 		}
@@ -103,7 +105,7 @@ app.post("/users", function(req,res){
 // //////////////////////////////////////////////////////////////////////////
 
 app.get("/users/:id", function(req,res){
-// 	objectId maybe?
+
 	var id = req.params.id
 	// console.log(id)
 	User.findById(id).populate("movies").exec(function(err, foundUser){
@@ -256,7 +258,8 @@ app.post('/login', function(req, res, next) {
     // Generate a JSON response reflecting authentication status
     if (! user) {
 		// put a flash message in here saying wrong password etc
-      return res.send({ success : false, message : 'authentication failed' });
+		req.flash("error", "You entered an incorrect combination of username and password")
+      return res.redirect("/login");
     }
     // ***********************************************************************
     // "Note that when using a custom callback, it becomes the application's
@@ -277,7 +280,7 @@ app.post('/login', function(req, res, next) {
 // logout route
 app.get("/logout", function(req,res){
 	req.logout()
-	// req.flash("success","Logged you out")
+	req.flash("success","Logged you out")
 	res.redirect("/")
 })
 
@@ -291,8 +294,7 @@ function isLoggedIn (req, res, next){
 	if(req.isAuthenticated()){
 		return next();
 	}
-	console.log("you need to be logged in to do that")
-	// req.flash("error", "You need to be logged in to do that")
+	req.flash("error", "You need to be logged in to do that")
 	res.redirect("/login")
 }
 
@@ -315,7 +317,7 @@ function checkSandpitOwnership (req, res, next){
 	}
 	else{
 		console.log("You need to be logged in to do that")
-		// req.flash("error", "You need to be logged in to do that")
+		req.flash("error", "You need to be logged in to do that")
 		res.redirect("/login")
 	}
 }

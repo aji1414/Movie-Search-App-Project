@@ -24,9 +24,11 @@ function divResize(countOnly){
 			}	
 		}
 	
+	// restore content on the page if it had been hidden to display search results
 	if(noMovies === 0){
 		document.querySelector(".container").style.display = "block"
 	}
+	
 	oldColWidth			= colWidth		
 	colWidth 			= "col-" + (12/noMovies)
 
