@@ -11,7 +11,8 @@ var 	express 			= require("express"),
 		movieTrailer 		= require( 'movie-trailer' ),
 		cookie 				= require('cookie'),
 		methodOverride 		= require("method-override"),
-		prompt				= require("prompt")
+		prompt				= require("prompt"),
+		flash 				= require("connect-flash")
 
 
 // create db here
@@ -35,6 +36,7 @@ passport.deserializeUser(User.deserializeUser());
 app.set("view engine", "ejs")
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
+app.use(flash());
 app.use(bodyParser.urlencoded({extended:true}));
 // to prompt user to confirm if they want to delete movie in sandpit
 prompt.start()
@@ -117,7 +119,7 @@ app.get("/users/:id", function(req,res){
 
 
 // to post new movies to users sandpit
-app.post("/users/:id", function(req,res){
+app.post("/users/:id", isLoggedIn, function(req,res){
 	// unstringify as its stored as string in the html
 	var movieObject   	= JSON.parse(req.body.movieData)
 	var Title 			= movieObject.Title;
@@ -204,7 +206,7 @@ app.post("/users/:id", function(req,res){
 })
 
 // edit movie ratingData
-app.put("/users/:id/:movie_id", function(req,res){
+app.put("/users/:id/:movie_id", checkSandpitOwnership, function(req,res){
 	Movie.findById(req.params.movie_id, function(err,foundMovie){
 		if (err){
 			console.log(err)
@@ -218,7 +220,7 @@ app.put("/users/:id/:movie_id", function(req,res){
 })
 
 // delete movie route setup
-app.delete("/users/:id/:movie_id", function(req,res){
+app.delete("/users/:id/:movie_id", checkSandpitOwnership, function(req,res){
 	console.log(req.params.movie_id)
 	Movie.findByIdAndRemove(req.params.movie_id, function(err, deletedMovie){
 		if(err){
@@ -282,19 +284,44 @@ app.get("/logout", function(req,res){
 
 
 
-// router.post("/register", function(req, res){
-// 	var newUser = new User({username: req.body.username})
-// 	User.register(newUser, req.body.password, function(err,user){
-// 		if(err){
-// 			// req.flash("error", err.message)
-// 			return res.render("register", {"error": err.message})
-// 		}
-// 		passport.authenticate("local")(req,res,function(){
-// 			req.flash("success","Welcome to YelpCamp" + user.username)
-// 			res.redirect("/campgrounds")
-// 		})
-// 	})
-// })
+// //////////////////////////////////////////////////////////////////////////
+						//MIDDLEWARE
+// //////////////////////////////////////////////////////////////////////////
+function isLoggedIn (req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	console.log("you need to be logged in to do that")
+	// req.flash("error", "You need to be logged in to do that")
+	res.redirect("/login")
+}
+
+function checkSandpitOwnership (req, res, next){
+	if(req.isAuthenticated()){
+		Movie.findById(req.params.movie_id, function(err, foundMovie){
+			if(err){
+				console.log("Movie not found")
+			}
+			else{
+				if(foundMovie.User.id.equals(req.user._id)){
+					next();
+				}
+				else{
+					console.log("You don't have permission to do that")
+					res.redirect("/users/" + req.params.id)
+				}
+			}
+		})
+	}
+	else{
+		console.log("You need to be logged in to do that")
+		// req.flash("error", "You need to be logged in to do that")
+		res.redirect("/login")
+	}
+}
+
+
+
 
 
 app.listen(process.env.PORT || 3000, function(){

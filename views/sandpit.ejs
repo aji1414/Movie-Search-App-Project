@@ -9,14 +9,25 @@
 			  <div class="middle"><div class="middleText">See More Movie Info</div></div>
 			</div>
 				<div class="card-body text-center">
-					<h5 class="card-title"><%=movie.Title%></h5>
-					  <% if(!movie.UserRating){ %>
-							<caption><p>You haven't rated this movie yet!</p></caption>
-						<%} else{ %>
-							<caption><p>You gave this movie a <%=movie.UserRating%>/5 stars rating!</p></caption>
-							<span n = "<%=parseInt(movie.UserRating)%>" class = "movieInfo text-center display-4"></span>
-						<% } %>
+					<%if(currentUser && movie.User.id.equals(currentUser._id)){%>
+						<h5 class="card-title"><%=movie.Title%></h5>
+						  <% if(!movie.UserRating){ %>
+								<caption><p>You haven't rated this movie yet!</p></caption>
+							<%} else{ %>
+								<caption><p>You gave this movie a <%=movie.UserRating%>/5 stars rating!</p></caption>
+								<span n = "<%=parseInt(movie.UserRating)%>" class = "movieInfo text-center display-4"></span>
+							<% } %>
+					<%}else{%>
+						<h5 class="card-title"><%=movie.Title%></h5>
+						  <% if(!movie.UserRating){ %>
+								<caption><p><%=movie.User.username%> hasn't rated this movie yet!</p></caption>
+							<%} else{ %>
+								<caption><p><%=movie.User.username%> gave this movie a <%=movie.UserRating%>/5 stars rating!</p></caption>
+								<span n = "<%=parseInt(movie.UserRating)%>" class = "movieInfo text-center display-4"></span>
+							<% } %>
+					<%}%>
 					
+					<%if(currentUser && movie.User.id.equals(currentUser._id)){ %>
 							<form class="form-inline" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=PUT" method = "POST">
 							  <label type = "button" class="changeRating col-12 btn btn-light my-1 mr-2" for="inlineFormCustomSelectPref">Change Rating</label>
 								  
@@ -31,26 +42,18 @@
 									  </select>
 								</div>
 									
-							  <!-- <form onsubmit = "event.preventDefault(); myValidation();"> -->
 
 								
 							  <button type="submit" class="d-none btn btn-primary my-1">Confirm</button>
+								
 							</form>
-
-										
-					
-					
-						
 					<!-- Trigger/Open The Modal -->
 							<p class="myBtn mt-3 font-weight-bold">See More Movie Info</p>
 							<form class = "movieRemoveForm movieRemoveForm<%=i + 1%>" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=DELETE" method = "POST">
 								<input  type = "submit" class = "sandpitRemove text-center" value ="REMOVE">
 							</form>
+						<%}%>
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary modalTest"  data-target=".removeMovieModal">
-  Launch demo modal
-</button> -->
 
 <!-- Confirm Delete Modal -->
 <div class="modal removeMovieModal removeMovieModal<%=i + 1%> fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
