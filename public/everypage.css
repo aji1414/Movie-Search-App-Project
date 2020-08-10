@@ -24,7 +24,10 @@ body, html {
 /* color for main page title in navbar */
 header h5{
 	color:black;
+	font-weight: 800;
 	font-size:2em;
+	/* position:sticky; */
+	/* left: 40%; */
 	
 }
 
@@ -35,13 +38,23 @@ header{
 /* editing links in nav bar */
 ul li a{
 	font-size: 0.8em;
+	color:red
 }
 
-#homeButtons{
-	position: fixed;
-	top: 10px;
-	right:40px;
+/* to change font of home buttons in nav bar */
+.navbar-light .navbar-nav .nav-link{
+	color:black;
+	font-weight:600;
+	/* font-size:1.5em; */
+} 
+
+.navbar-light .navbar-nav .active>.nav-link{
+	color:black;
+	font-weight:600;
+	/* font-size:1.5em; */
 }
+
+
 
 :root {
     --transition-1: all 0.3s ease-in-out;

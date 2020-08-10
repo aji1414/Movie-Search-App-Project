@@ -1,7 +1,7 @@
 // logic to hide/display input box depending on url of page
-if (window.location.pathname !== '/') {
-    $("#autoComplete").hide()
-}
+// if (window.location.pathname !== '/') {
+//     $("#autoComplete").hide()
+// }
 
 // click listeners to change review value and update in HTML form
 for (var h = 1; h <= 4; h++){
@@ -109,4 +109,4 @@ $(".removeMovieYes").on("click", function(){
 	movie.querySelector(".movieRemoveForm").submit()
 })
 
-
+// logic to hide all sandpit movies if user stars searching for more movies whilst in their sandpit

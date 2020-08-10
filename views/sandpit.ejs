@@ -1,7 +1,7 @@
 <%- include ("./partials/header") %>
 
 <div class = "container p-0">
-	<div class = "d-flex flex-wrap">
+	<div class = "d-flex flex-wrap mt-5">
 		<%foundUser.movies.forEach(function(movie,i){ %>
 		<div class="card col-12 col-md-3 p-0 mb-4">
 			<div class = "imgContainer">
@@ -219,7 +219,84 @@
 </div>
 
 
-
+<div class = "d-flex flex-row ml-3 mr-3">
+	<% for (var i = 1; i <= 4; i++){ %>
+	<div class = "d-none movie<%=i%> p-0 movie">
+		<div type = "button" class = "turn-card-over btn btn-dark d-flex mx-auto text-center">TURN OVER</div>
+		<div class = "flip-card col-3 p-0">
+			<div class = "flip-card-inner">
+				<div class = " d-flex justify-content-center poster<%=i%> m-0 flip-card-front"></div>
+				<div class="flip-card-back d-flex flex-column ">
+						<div class = " d-flex justify-content-center title title<%=i%> text-center mt-0"></div>
+						<div class = "d-flex justify-content-center">
+							<iframe  class ="d-none trailer<%=i%>" width="350" height="350" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+						<div class = "d-flex mt-5">
+							<div class = "col-4  d-flex-column justify-content-center imdb imdb<%=i%>"></div>
+							<div class = "col-4  d-flex-column justify-content-center metacritic metacritic<%=i%>"></div>
+							<div class = "col-4  d-flex-column justify-content-center rottenTomatoes rottenTomatoes<%=i%>"></div>
+						</div>
+						<div class = "d-flex p-4">
+							<div class = "col-4 d-flex flex-column">
+									<div>GENRE</div>
+									<div class = "genre genre<%=i%> mt-3"></div> 
+							</div>
+							<div class = "col-4 d-flex flex-column">
+									<div>RELEASE DATE</div>
+									<div class = "releaseDate releaseDate<%=i%> mt-3"></div> 
+							</div>
+							<div class = "col-4 d-flex flex-column">
+									<div>TIME</div>
+									<div class = "runtime runtime<%=i%> mt-3"></div> 
+							</div>
+						</div>
+						<div class = "d-flex flex-column plot plot<%=i%> px-5"></div>
+						<div class = "d-flex flex-column awards awards<%=i%> px-5 mt-5"></div>
+						<div class = "d-flex p-4 mt-5">
+								<div class = "d-flex flex-column">
+										<div>ACTORS</div>
+										<div class = "actors actors<%=i%>"></div> 
+								</div>
+								<div class = "d-flex flex-column">
+										<div>WRITERS</div>
+										<div class = "writers writers<%=i%>"></div> 
+								</div>
+						</div>
+						<div class = "d-flex p-4">
+							<div class = "col-4 d-flex flex-column">
+									<div>BOX OFFICE</div>
+									<div class = "boxoffice boxoffice<%=i%> mt-3"></div> 
+							</div>
+							<div class = "col-4 d-flex flex-column">
+									<div>DIRECTED BY</div>
+									<div class = "director director<%=i%> mt-3"></div> 
+							</div>
+							<div class = "col-4 d-flex flex-column">
+									<div>IMDB VOTES</div>
+									<div class = "imdbvotes imdbvotes<%=i%> mt-3"></div> 
+							</div>
+						</div>
+				</div>
+			</div>	
+		</div>
+		
+		<form action = "/users/:id" method = "POST">
+			<input class = "reviewData<%=i%>" type = "hidden" name = "reviewData" value = "">
+			<input class = "ratingData<%=i%>" type = "hidden" name = "ratingData" value = "0">
+			<input class = "trailerData<%=i%>" type = "hidden" name = "trailerData" value = "">
+			<input class = "movieData<%=i%>" type = "hidden" name = "movieData" value = "">
+			<div class = "form-group d-flex justify-content-center m-0">
+				<button type = "submit" class = "btn btn-info text-center ">ADD TO MY SANDPIT</button>
+			</div>	
+		</form>
+		<div class = "d-flex justify-content-center mt-1">
+			<div  type = "button" class = "btn btn-info  text-center mr-2">RATE MOVIE!</div>
+			<div  type = "button" class = "ratingHome rating<%=i%> btn btn-info  text-center mr-2"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+			<div  type = "button" class = "removeHome btn btn-danger  text-center">REMOVE</div>
+		</div>
+	</div>
+	<% } %>
+</div>
 
 
 <%- include ("./partials/footer") %>

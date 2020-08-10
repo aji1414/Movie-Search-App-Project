@@ -24,6 +24,9 @@ function divResize(countOnly){
 			}	
 		}
 	
+	if(noMovies === 0){
+		document.querySelector(".container").style.display = "block"
+	}
 	oldColWidth			= colWidth		
 	colWidth 			= "col-" + (12/noMovies)
 
@@ -103,6 +106,16 @@ const autoCompletejs = new autoComplete({
 		document.querySelector("#autoComplete_list").appendChild(result);
 	},
 	onSelection: feedback => {
+		// removes existing content on any page if user initiates search and adds movie to look at
+		var checkIfContent =  document.querySelector(".container")
+		if(checkIfContent){
+			if(checkIfContent.style.display !== "none"){
+			// checkIfContent.classList.toggle("d-flex")
+			checkIfContent.style.display = "none"
+			}
+		}
+		
+		
 		// alert for when already chosen 4 movies
 		if(divCount() === 4){
 			alert("No more movies allowed!")
