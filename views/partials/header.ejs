@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<title>Movie Review and Comparison App</title>
+		<!-- font awesome library -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 		<!-- jquery library. Before bootstrap as bootstrap depends on it -->
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 		<!-- autocomplete library -->
@@ -9,14 +11,16 @@
 		<!-- bootstrap library -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		
-		<!-- stylesheets created -->
-		<link rel = "stylesheet" href = "/everypage.css">
-		<link rel = "stylesheet" href = "/sandpit.css">
-		<link rel = "stylesheet" href = "/home.css">
 		
+		<!-- stylesheets created -->
+		<link rel = "stylesheet" href = "/everypage1.css">
+		<link rel = "stylesheet" href = "/sandpit1.css">
+		<link rel = "stylesheet" href = "/home1.css">
+		<meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
+
 	</head>
 	<body class = "wrapper">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light primary-color mb-5">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light primary-color">
 			<header class="header">
 				<h5 class = "navbar-brand">Movie Review and Comparison App</h5>	
 				<input id="autoComplete" type="text" tabindex="1">
@@ -76,10 +80,10 @@
 		 	
 		</nav>
 		
-		<div class = "d-flex flex-row ml-3 mr-3">
+		<div class = "d-flex flex-row flex-wrap ml-3 mr-3 justify-content-center">
 			<% for (var i = 1; i <= 4; i++){ %>
-			<div class = "d-none movie<%=i%> p-0 movie col-12">
-				<div type = "button" class = "turn-card-over btn btn-dark d-flex mx-auto text-center">TURN OVER</div>
+			<div class = "d-none movie<%=i%> p-0 movie">
+				<div class = "turn-card-over d-flex mx-auto text-center"><i class="flip-icon fas fa-exchange-alt"></i></div>
 				<div class = "flip-card col-3 p-0">
 					<div class = "flip-card-inner">
 						<div class = " d-flex justify-content-center poster<%=i%> m-0 flip-card-front"></div>
@@ -149,7 +153,7 @@
 				<div class = "d-flex justify-content-center mt-1">
 					<div  type = "button" class = "btn btn-info  text-center mr-2">RATE MOVIE!</div>
 					<div  type = "button" class = "ratingHome rating<%=i%> btn btn-info  text-center mr-2"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
-					<div  type = "button" class = "removeHome btn btn-danger  text-center">REMOVE</div>
+					<div  type = "button" class = "removeHome removeHome<%=i%> btn btn-danger  text-center">REMOVE</div>
 				</div>
 			</div>
 			<% } %>

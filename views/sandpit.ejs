@@ -1,9 +1,13 @@
 <%- include ("./partials/header") %>
-
-<div class = "container p-0">
-	<div class = "d-flex flex-wrap">
+<div class="div sandpit-jumbo">
+	<p class="display-5" id = "currentSandpit"><%=foundUser.username%>'s Sandpit</p>
+</div>
+<div class = "container sandpitContainer p-0">
+	
+	
+	<div class = "d-flex flex-wrap mt-5 mx-3 mx-sm-0 justify-content-center">
 		<%foundUser.movies.forEach(function(movie,i){ %>
-		<div class="card col-12 col-md-3 p-0 mb-4">
+		<div class="card col-12 col-md-3 mx-2 p-0 mb-4">
 			<div class = "imgContainer">
 			  <img class="card-img-top img-fluid" src="<%=movie.Poster%>" alt="Responsive image">
 			  <div class="middle"><div class="middleText">See More Movie Info</div></div>

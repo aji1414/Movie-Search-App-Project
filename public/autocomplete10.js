@@ -24,13 +24,9 @@ function divResize(countOnly){
 			}	
 		}
 	
-	// restore content on the page if it had been hidden to display search results
-	if(noMovies === 0){
-		document.querySelector(".container").style.display = "block"
-	}
 	
 	oldColWidth			= colWidth		
-	colWidth 			= "col-" + (12/noMovies)
+	colWidth 			= "col-" + (12/(noMovies))
 
 	// for every active div on page, deletes old spacing class, then adds new spacing class
 		for(var n = 0; n < activeDivs.length; n++){
@@ -42,6 +38,18 @@ function divResize(countOnly){
 				document.querySelector(activeDivs[n]).classList.add(colWidth)
 			}
 		}
+	
+	// restore content on the page if it had been hidden to display search results. Otherwise, adjust size of poster images
+	if(noMovies === 0){
+		document.querySelector(".container").style.display = "block"
+	}
+	// else if(noMovies <= 3){
+	// 		$(".flip-card-front img").css("width", "600px")		
+	// }
+	// else{
+	// 		$(".flip-card-front img").css("width", "300px")
+	// }
+	
 	return colWidth
 }
 
@@ -139,12 +147,12 @@ const autoCompletejs = new autoComplete({
 			}
 			
 			// reduce size of all 4 posters if this is final poster
-			// if(divToChange === 4){
-			// 	$(".flip-card-front img").css("width", "400px")
-			// }
-			// else{
-			// 	$(".flip-card-front img").css("width", "600px")
-			// }
+			if(divToChange === 4){
+				$(".flip-card-front img").css("width", "400px")
+			}
+			else{
+				$(".flip-card-front img").css("width", "600px")
+			}
 			
 			// unhide div selected
 			document.querySelector(".movie" + divToChange).classList.remove("d-none");
@@ -175,6 +183,7 @@ const autoCompletejs = new autoComplete({
 											[".rottenTomatoes", 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png']]
 				
 				for(var i = 0; i < movieRatings.length; i++){
+					console.log(result.Ratings[i].Value)
 					$(movieRatings[i][0] + divToChange).html("<div>" + result.Ratings[i].Value + "</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
 				}
 				
@@ -199,6 +208,12 @@ const autoCompletejs = new autoComplete({
 				// store all movie data in html doc which will be stored in database if user adds film to sandpit
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
 				
+				// if no data is pulled through, delete title added
+				if(document.querySelector(".title" + divToChange).innerHTML === ""){
+					document.querySelector(".removeHome" + divToChange).click()
+					console.log("deleted")
+				}
+
 			});
 			// Clear Input
 			document.querySelector("#autoComplete").value = "";

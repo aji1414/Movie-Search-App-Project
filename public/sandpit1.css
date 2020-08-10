@@ -1,7 +1,11 @@
+#currentSandpit{
+	position: fixed;
+	top:10px;
+	left:10px;
+	color:black;
+}
 /* adjust space between user divs  */
 .card{
-	margin-left:4%;
-	margin-right:4%;
 	border:none;
 }
 

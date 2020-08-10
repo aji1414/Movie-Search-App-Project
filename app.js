@@ -43,9 +43,9 @@ prompt.start()
 
 app.use(function(req,res,next){
 	// provides current user logged in on every request
-	res.locals.currentUser = req.user;
-	res.locals.error = req.flash("error")
-	res.locals.success = req.flash("success")
+	res.locals.currentUser 	= req.user;
+	res.locals.error 		= req.flash("error")
+	res.locals.success 		= req.flash("success")
 	next();
 })
 
@@ -113,7 +113,7 @@ app.get("/users/:id", function(req,res){
 			console.log(err)
 		}
 		else{
-			// console.log(foundUser)
+			// console.log(req)
 			res.render("sandpit", {foundUser:foundUser})
 		}
 	})
@@ -199,7 +199,8 @@ app.post("/users/:id", isLoggedIn, function(req,res){
 					foundUser.save()
 					// console.log(foundUser)
 					// redirect to users sandpit
-					res.redirect("/")
+					req.flash("success", "movie added to sandpit!")
+					res.redirect("/users/" + req.user._id)
 				}
 			})
 		}

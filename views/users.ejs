@@ -1,10 +1,10 @@
 <%- include ("./partials/header") %>
 
 
-<div class = "container p-0">
-	<div class = "d-flex flex-wrap">
+<div class = "container p-0 mt-5">
+	<div class = "d-flex flex-wrap mx-3 mx-sm-0 justify-content-center">
 		<%users.forEach(function(user){ %>
-		<div class="card col-12 col-md-3 p-0 mb-4">
+		<div class="card col-12 col-md-5  col-lg-3 mx-2 p-0 mb-4">
 		  <img class="card-img-top img-fluid" src="<%=user.profilepicture%>" alt="Responsive image">
 		  <div class="card-body">
 			<h5 class="card-title text-primary"><%=user.username%></h5>

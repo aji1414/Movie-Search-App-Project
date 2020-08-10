@@ -15,6 +15,12 @@ max-width:100%;
 margin: 0 auto;
 }
 
+
+.flip-icon{
+	font-size: 4em;
+	/* background-color: red; /* For browsers that do not support gradients */
+  	background-image: linear-gradient(to right, rgba(143, 0, 12,0), rgba(143, 0, 12,1));
+}
 /* class to toggle to flip card */
 .flip-card-inner.active{
 	transform: rotateY(180deg)
@@ -44,7 +50,7 @@ margin: 0 auto;
 }
 
 .flip-card-front img{
-	width: 600px;
+	max-width: 400px;
 }
 
 .flip-card-back {
