@@ -13,9 +13,9 @@
 		
 		
 		<!-- stylesheets created -->
-		<link rel = "stylesheet" href = "/everypage1.css">
-		<link rel = "stylesheet" href = "/sandpit1.css">
-		<link rel = "stylesheet" href = "/home1.css">
+		<link rel = "stylesheet" href = "/everypage2.css">
+		<link rel = "stylesheet" href = "/sandpit2.css">
+		<link rel = "stylesheet" href = "/home2.css">
 		<meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
 
 	</head>
@@ -89,7 +89,7 @@
 						<div class = " d-flex justify-content-center poster<%=i%> m-0 flip-card-front"></div>
 						<div class="flip-card-back d-flex flex-column ">
 								<div class = " d-flex justify-content-center title title<%=i%> text-center mt-0"></div>
-								<div class = "d-flex justify-content-center">
+								<div class = "d-flex justify-content-center trailerOuter<%=i%>">
 									<iframe  class ="d-none trailer<%=i%>" width="350" height="350" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 								</div>
 								<div class = "d-flex mt-5">
@@ -113,16 +113,20 @@
 								</div>
 								<div class = "d-flex flex-column plot plot<%=i%> px-5"></div>
 								<div class = "d-flex flex-column awards awards<%=i%> px-5 mt-5"></div>
+								
+							
 								<div class = "d-flex p-4 mt-5">
-										<div class = "d-flex flex-column">
-												<div>ACTORS</div>
-												<div class = "actors actors<%=i%>"></div> 
-										</div>
-										<div class = "d-flex flex-column">
-												<div>WRITERS</div>
-												<div class = "writers writers<%=i%>"></div> 
-										</div>
+									<div class = "col-6 d-flex flex-column">
+											<div>ACTORS</div>
+											<div class = "actors actors<%=i%> mt-3"></div> 
+									</div>
+									<div class = "col-6 d-flex flex-column">
+											<div>WRITERS</div>
+											<div class = "writers writers<%=i%> mt-3"></div> 
+									</div>
 								</div>
+							
+							
 								<div class = "d-flex p-4">
 									<div class = "col-4 d-flex flex-column">
 											<div>BOX OFFICE</div>

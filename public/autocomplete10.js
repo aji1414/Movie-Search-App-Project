@@ -182,17 +182,30 @@ const autoCompletejs = new autoComplete({
 											[".metacritic", 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'],
 											[".rottenTomatoes", 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png']]
 				
+				// pass through no ratings label if can't be found
 				for(var i = 0; i < movieRatings.length; i++){
-					console.log(result.Ratings[i].Value)
-					$(movieRatings[i][0] + divToChange).html("<div>" + result.Ratings[i].Value + "</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
+					try{
+						$(movieRatings[i][0] + divToChange).html("<div>" + result.Ratings[i].Value + "</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
+					}
+					catch(err){
+						$(movieRatings[i][0] + divToChange).html("<div>No Rating Available</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
+					}
 				}
 				
 				// other data
 				// some data manipulation
-				var Genre 				= result.Genre.split(',') 	
-				var highQualityPoster 	= result.Poster.substr(0,result.Poster.length - 7) + "600.jpg"
+				
+				if (result.Poster.length >= 10){
+					var highQualityPoster 	= result.Poster.substr(0,result.Poster.length - 7) + "600.jpg"
+					$(".poster" + divToChange).html("<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>")		
+				}
+				else{
+					$(".poster" + divToChange).html("<img  src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png' class='img-fluid' alt='Responsive image'>")
+				}
+				
+				
+				var Genre 				= result.Genre.split(',')
 				$(".genre" + divToChange).html(Genre.slice(0,3)) 
-				$(".poster" + divToChange).html("<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>")	
 				$(".title" + divToChange).html(result.Title)
 				$(".runtime" + divToChange).html(result.Runtime) 				 
 				$(".releaseDate" + divToChange).html(result.Released) 			 
@@ -212,6 +225,11 @@ const autoCompletejs = new autoComplete({
 				if(document.querySelector(".title" + divToChange).innerHTML === ""){
 					document.querySelector(".removeHome" + divToChange).click()
 					console.log("deleted")
+				}
+				
+				// if no trailer, change trailer div to nothing found image
+				if($(".trailer" + divToChange).attr("src").length <= 10){
+					$(".trailerOuter" + divToChange).html("<img  src = 'https://image.flaticon.com/icons/png/512/678/678523.png' class='img-fluid' alt='Responsive image'>")
 				}
 
 			});
