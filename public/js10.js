@@ -63,7 +63,11 @@ $(".testModal").on("click", function(){
 })
 
 $(".card").on("click",".close", function(){
-	this.parentNode.parentNode.parentNode.style.display = "none";
+	// stop trailer from playing if it is
+	currentModal.querySelector("iframe").src = ""
+	// exit modal
+	currentModal.style.display = "none";
+
 	// delete current modal selected
 	for (var member in currentModal) delete currentModal[member];
 })
