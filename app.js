@@ -56,6 +56,25 @@ app.use(function(req,res,next){
 
 // landing page
 app.get("/",function(req,res){
+	https://api.themoviedb.org/3/trending/movie/week?api_key=thewdb
+	var
+	var
+	var
+	axios.get("http://www.omdbapi.com/?s=" + + "&apikey=thewdb")
+	  .then(function (response) {
+		// handle success
+
+		var moviedata = response.data;
+		console.log(moviedata)
+		res.render("results", {moviedata:moviedata});
+	  })
+	  .catch(function (error) {
+		// handle error
+		console.log(error);
+	  })
+	  .finally(function () {
+		// always executed
+	  });
 	
 	res.render("home")
 })

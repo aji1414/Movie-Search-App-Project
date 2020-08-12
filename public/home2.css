@@ -84,3 +84,8 @@ margin: 0 auto;
    content: "\2605";
    position: absolute;
 }
+
+.homepageContainer{
+	/* height:100%; */
+	/* margin-top:40% */
+}

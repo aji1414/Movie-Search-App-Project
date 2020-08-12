@@ -67,7 +67,17 @@ ul li a{
 	/* font-size:1.5em; */
 }
 
+.footer{
+	position:relative;
+	bottom:0;
+	width:100%; 	
+	background:orange;
+	height:15%;
+}
 
+.footer p{
+	color:black;
+}
 
 :root {
     --transition-1: all 0.3s ease-in-out;

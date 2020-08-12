@@ -10,7 +10,7 @@
 		<div class="card col-12 col-md-3 mx-2 p-0 mb-4">
 			<div class = "imgContainer">
 			  <img class="card-img-top img-fluid" src="<%=movie.Poster%>" alt="Responsive image">
-			  <div class="middle"><div class="middleText">See More Movie Info</div></div>
+			  <div class="middle hoverHand"><div class="middleText">See More Movie Info</div></div>
 			</div>
 				<div class="card-body text-center">
 					<%if(currentUser && movie.User.id.equals(currentUser._id)){%>
@@ -52,7 +52,7 @@
 								
 							</form>
 					<!-- Trigger/Open The Modal -->
-							<p class="myBtn mt-3 font-weight-bold">See More Movie Info</p>
+							<p class="hoverHand mt-3 font-weight-bold">See More Movie Info</p>
 							<form class = "movieRemoveForm movieRemoveForm<%=i + 1%>" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=DELETE" method = "POST">
 								<input  type = "submit" class = "sandpitRemove text-center" value ="REMOVE">
 							</form>

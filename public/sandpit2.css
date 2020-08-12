@@ -176,3 +176,7 @@ width:30%}
 .removeMovieModal h5 {
 	color:black;
 }
+
+.hoverHand{
+	cursor:pointer
+}
