@@ -108,7 +108,7 @@ p.font-weight-bold:hover{
 .movieDetails{
 	background:white;
 	height:80%;
-	width: 70%;
+	width: 100%;
 	overflow-y: scroll;
 	
 }

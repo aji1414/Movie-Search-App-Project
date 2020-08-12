@@ -9,17 +9,30 @@ body, html {
 	animation: animation 100s linear infinite;
 }
 
-/* @keyframes animation {
-   100%{
-    background-position:0px -3000px;
-  }
-} */
 
 /* font on navbar. super specific to overwrite bootstrap code */
-.navbar-light .container-fluid .navbar-nav .nav-link{
+.nav-link{
 	color:black;
-	font-weight:700;
+	/* font-size:1.5em; */
+	font-weight:800;
 }
+
+.bg-light{
+	background:white;
+}
+
+/* scrollbar color change after scroll */
+.bg-light.scrolled {
+  background-color: rgba(247, 65, 25, 1) !important;
+color:white;
+  transition: background-color 600ms linear;
+}
+
+.bg-light.scrolled .nav-link,h5{
+  color:white;
+  font-weight:800;
+}
+
 
 /* color for main page title in navbar */
 header h5{

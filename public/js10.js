@@ -105,7 +105,6 @@ $(".removeMovieNo").on("click", function(){
 
 $(".removeMovieYes").on("click", function(){
 	var movie = this.parentNode.parentNode.parentNode.parentNode.parentNode
-	// $(movie).find('.removeMovieModal').modal('toggle')
 	movie.querySelector(".movieRemoveForm").submit()
 })
 
@@ -124,4 +123,11 @@ function showPassword(){
 		
 	}
 }
-	
+
+
+// change navbar color when scrolled
+$("body").scroll(function () {
+	  var $nav = $(".sticky-top");
+	  $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+	});
+

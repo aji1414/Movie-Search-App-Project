@@ -1,3 +1,49 @@
+
+// change size of movie divs depending on screen size
+function windowSize(){
+        // Get width of the window
+        var w = document.documentElement.clientWidth;
+        
+		// get number of movies
+		var noMovies = divCount()
+		if (noMovies === 1 || w <= 870){
+				divResize("col-12")
+		}
+		else if (noMovies == 4){
+			if(w <= 860){
+				divResize("col-12")
+			}
+			else if(w <= 1690){
+				divResize("col-6")
+			}
+			else{
+				divResize()
+			}		
+		}
+		else if (noMovies == 3){
+			if(w <=860){
+				divResize("col-12")
+			}
+			else if(w <= 1265){
+				divResize("col-6")
+			}
+			else{
+				divResize()
+			}
+		}
+		else if (noMovies == 2){
+			if(w <= 870){
+				divResize("col-12")
+			}
+			else{
+				divResize()
+			}
+		}
+}
+// event listener for when screen is changed, to run the function above
+window.addEventListener("resize", windowSize);
+
+
 // stores current colwidth for div to be used upon creation and deletion of new movies
 var colWidth = ""
 
@@ -13,7 +59,7 @@ function divCount(){
 }
 
 // function to resize divs when new movies added or old ones deleted
-function divResize(countOnly){
+function divResize(width){
 	// find current divs showing on screen
 		activeDivs 	= 	[];
 		noMovies	=	0;
@@ -25,9 +71,16 @@ function divResize(countOnly){
 		}
 	
 	
-	oldColWidth			= colWidth		
-	colWidth 			= "col-" + (12/(noMovies))
+	oldColWidth			= colWidth
+	if(width){
+		colWidth		= width
+	}
+	else{
+		colWidth 			= "col-" + (12/(noMovies))
+	}
+	
 
+	
 	// for every active div on page, deletes old spacing class, then adds new spacing class
 		for(var n = 0; n < activeDivs.length; n++){
 			if(oldColWidth){
@@ -43,12 +96,6 @@ function divResize(countOnly){
 	if(noMovies === 0){
 		document.querySelector(".container").style.display = "block"
 	}
-	// else if(noMovies <= 3){
-	// 		$(".flip-card-front img").css("width", "600px")		
-	// }
-	// else{
-	// 		$(".flip-card-front img").css("width", "300px")
-	// }
 	
 	return colWidth
 }
@@ -158,7 +205,7 @@ const autoCompletejs = new autoComplete({
 			document.querySelector(".movie" + divToChange).classList.remove("d-none");
 
 			// run function that adjusts spacing of divs with the new extra div
-			divResize();
+			windowSize();
 
 			// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
 			async function getMovieData() {
@@ -226,11 +273,13 @@ const autoCompletejs = new autoComplete({
 					document.querySelector(".removeHome" + divToChange).click()
 					console.log("deleted")
 				}
-				
+			
+
 				// if no trailer, change trailer div to nothing found image
-				if($(".trailer" + divToChange).attr("src").length <= 10){
+				setTimeout(function(){
+					if($(".trailer" + divToChange).attr("src").length <= 10){
 					$(".trailerOuter" + divToChange).html("<img  src = 'https://image.flaticon.com/icons/png/512/678/678523.png' class='img-fluid' alt='Responsive image'>")
-				}
+				}}, 8000)
 
 			});
 			// Clear Input
@@ -257,14 +306,23 @@ const autoCompletejs = new autoComplete({
 
 // event listener to remove div when remove delete button clicked
 $("div").on("click", "div div .removeHome", function(){
-	// stop movie trailer by simply resetting source link to blank
-	var trailer = this.parentNode.parentNode.querySelector("iframe")
 	
-	trailer.setAttribute("src","")
-
 	// find current movie div and its rank number of current movie div
 	var movieDiv = this.parentNode.parentNode
 	var movieDivNo = $(movieDiv).index() + 1
+	
+	// stop movie trailer by simply resetting source link to blank
+	var trailer = this.parentNode.parentNode.querySelector("iframe")
+	console.log(trailer)
+	if(trailer){
+		trailer.setAttribute("src","")
+		
+		// turn card back over to front if user had flipped it to back before removing it
+		if(!movieDiv.querySelector("iframe").classList.contains("d-none")){
+		   movieDiv.querySelector(".turn-card-over").click()
+		   }
+	}
+
 
 	// set rating stars all back to white
 	var stars = movieDiv.querySelectorAll(".rating" + movieDivNo + " span")
@@ -288,15 +346,11 @@ $("div").on("click", "div div .removeHome", function(){
 		movieDiv.querySelector(dataToErase[i] + movieDivNo).value = ""
 	}
 
-	// turn card back over to front if user had flipped it to back before removing it
-	if(!movieDiv.querySelector("iframe").classList.contains("d-none")){
-	   movieDiv.querySelector(".turn-card-over").click()
-	   }
 
 	// remove classes that were such as "col-" added to outer movie div and add original classes back in
 	movieDiv.setAttribute("class", "")
 	// add back original classes so can be reused again
-	movieDiv.classList.add("d-none", "movie" + movieDivNo ,"p-0", "movie")
+	movieDiv.classList.add("d-none", "movie" + movieDivNo ,"p-0", "movie", "mobile" + movieDivNo)
 	
 	// run function that adjusts spacing of divs with the new extra div
 	divResize();

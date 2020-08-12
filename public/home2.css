@@ -51,6 +51,7 @@ margin: 0 auto;
 
 .flip-card-front img{
 	max-width: 400px;
+	min-width:400px
 }
 
 .flip-card-back {

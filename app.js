@@ -59,7 +59,6 @@ app.get("/",function(req,res){
 	
 	res.render("home")
 })
-// header('Set-Cookie: cross-site-cookie=name; SameSite=None; Secure');
 
 // //////////////////////////////////////////////////////////////////////////
 						// GENERAL USER ROUTES
