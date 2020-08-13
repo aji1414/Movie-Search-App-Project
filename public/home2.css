@@ -86,6 +86,11 @@ margin: 0 auto;
 }
 
 .homepageContainer{
-	/* height:100%; */
-	/* margin-top:40% */
+	/* height:60%; */
+	/* overflow-y:scroll */
+}
+
+.homePoster{
+	width: 40px;
+	height: 52px;
 }

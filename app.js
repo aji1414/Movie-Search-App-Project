@@ -12,7 +12,8 @@ var 	express 			= require("express"),
 		cookie 				= require('cookie'),
 		methodOverride 		= require("method-override"),
 		prompt				= require("prompt"),
-		flash 				= require("connect-flash")
+		flash 				= require("connect-flash"),
+		axios				= require("axios")
 
 
 // create db here
@@ -56,27 +57,49 @@ app.use(function(req,res,next){
 
 // landing page
 app.get("/",function(req,res){
-	https://api.themoviedb.org/3/trending/movie/week?api_key=thewdb
-	var
-	var
-	var
-	axios.get("http://www.omdbapi.com/?s=" + + "&apikey=thewdb")
-	  .then(function (response) {
-		// handle success
-
-		var moviedata = response.data;
-		console.log(moviedata)
-		res.render("results", {moviedata:moviedata});
-	  })
-	  .catch(function (error) {
-		// handle error
-		console.log(error);
-	  })
-	  .finally(function () {
-		// always executed
-	  });
 	
-	res.render("home")
+	
+	function getTrending(){
+		return axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=64436a1714ae913f7d6492fd1433610c")
+	}
+
+	function getTopRated(){
+		return axios.get("https://api.themoviedb.org/3/movie/top_rated?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
+	}
+
+	function getUpcoming(){
+		return axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
+	}
+	
+	function getTopRatedTV(){
+		return axios.get("https://api.themoviedb.org/3/tv/top_rated?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
+	}
+	
+	function getOnAirTV(){
+		return axios.get("https://api.themoviedb.org/3/tv/on_the_air?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
+	}
+	
+	function getPopularTV(){
+		return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
+	}
+	
+	
+	axios.all([getTrending(), getTopRated(), getUpcoming(), getTopRatedTV(), getOnAirTV(), getPopularTV()])
+		.then(axios.spread(function(trend, top, up, topTV, onAirTV, popTV){
+			var trend 	= trend.data.results.slice(0,5)
+			var top		= top.data.results.slice(0,5)
+			var up		= up.data.results.slice(0,5)
+			var topTV	= topTV.data.results.slice(0,5)
+			var onAirTV	= onAirTV.data.results.slice(0,5)
+			var popTV	= popTV.data.results.slice(0,5)
+
+			res.render("home", {trend:trend, top:top, up:up, topTV:topTV, onAirTV:onAirTV, popTV:popTV})
+		}))
+		.catch(function (error) {
+			console.log(error);
+			res.render("home")
+		});
+	
 })
 
 // //////////////////////////////////////////////////////////////////////////

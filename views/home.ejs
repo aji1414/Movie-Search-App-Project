@@ -1,7 +1,156 @@
 <%- include ("./partials/header") %>
 
-<div class = "container homepageContainer mt-5">
-	HBKSDF
+<div class = "container homepageContainer mt-5 d-flex flex-wrap">
+	<div class = "d-flex flex-column col-4">
+		<h3>Trending Movies</h3>
+		<div class = "d-flex flex-column">
+			<%trend.forEach(function(movie){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0">
+					<img src = "https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div>
+							<%=movie.title%>
+						</div>
+						<div>
+							<%=movie.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	<div class = "d-flex flex-column col-4">
+		<h3>Top Rated Movies</h3>
+		<div class = "d-flex flex-column">
+			<% top.forEach(function(movie){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0">
+					<img src = "https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div>
+							<%=movie.title%>
+						</div>
+						<div>
+							<%=movie.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	<div class = "d-flex flex-column col-4">
+		<h3>Upcoming Movies</h3>
+		<div class = "d-flex flex-column">
+			<% up.forEach(function(movie){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0">
+					<img src = "https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div>
+							<%=movie.title%>
+						</div>
+						<div>
+							<%=movie.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	<div class = "d-flex flex-column col-4">
+		<h3>Top Rated TV Shows</h3>
+		<div class = "d-flex flex-column">
+			<% topTV.forEach(function(show){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0">
+					<img src = "https://image.tmdb.org/t/p/w500<%=show.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div>
+							<%=show.name%>
+						</div>
+						<div>
+							<%=show.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	<div class = "d-flex flex-column col-4">
+		<h3>TV Shows Currently Airing</h3>
+		<div class = "d-flex flex-column">
+			<% onAirTV.forEach(function(show){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0">
+					<img src = "https://image.tmdb.org/t/p/w500<%=show.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div>
+							<%=show.name%>
+						</div>
+						<div>
+							<%=show.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	<div class = "d-flex flex-column col-4">
+		<h3>Most Popular TV Shows</h3>
+		<div class = "d-flex flex-column">
+			<% popTV.forEach(function(show){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0">
+					<img src = "https://image.tmdb.org/t/p/w500<%=show.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div>
+							<%=show.name%>
+						</div>
+						<div>
+							<%=show.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
 </div>
 
 

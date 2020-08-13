@@ -114,7 +114,8 @@ const autoCompletejs = new autoComplete({
 			const source = await fetch(
 				// separrate fetch statement to also pull in series, then concatenate the data for both in one json object
 				// prob better to just look for one online solution where you can write it in a single line
-				"https://www.omdbapi.com/?s=" + movieSearched + "&type=movie&apikey=thewdb"
+				"https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
+				// &type=movie
 			);
 			const data = await source.json();
 			// Post loading placeholder text
