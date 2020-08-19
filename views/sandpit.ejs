@@ -32,10 +32,10 @@
 					<%}%>
 					
 					<%if(currentUser && movie.User.id.equals(currentUser._id)){ %>
-							<form class="form-inline" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=PUT" method = "POST">
+							<form class="form-group mx-auto" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=PUT" method = "POST">
 							  <label type = "button" class="changeRating col-12 btn btn-light my-1 mr-2" for="inlineFormCustomSelectPref">Change Rating</label>
 								  
-								<div class = "form-group">
+								<div class = "mx-auto form-group">
 									<select type = "number" name = "userReview" class="inlineFormCustomSelectPref d-none mx-auto custom-select my-1 mr-sm-2" id="">
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -48,11 +48,11 @@
 									
 
 								
-							  <button type="submit" class="d-none btn btn-primary my-1">Confirm</button>
+							  <button type="submit" class="mx-auto d-none btn btn-primary my-1">Confirm</button>
 								
 							</form>
 					<!-- Trigger/Open The Modal -->
-							<p class="hoverHand mt-3 font-weight-bold">See More Movie Info</p>
+							<p class="hoverHand myBtn mt-3 font-weight-bold">See More Movie Info</p>
 							<form class = "movieRemoveForm movieRemoveForm<%=i + 1%>" action = "/users/<%=movie.User.id%>/<%=movie._id%>?_method=DELETE" method = "POST">
 								<input  type = "submit" class = "sandpitRemove text-center" value ="REMOVE">
 							</form>

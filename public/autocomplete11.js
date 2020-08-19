@@ -117,6 +117,7 @@ const autoCompletejs = new autoComplete({
 				"https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
 				// &type=movie
 			);
+			// console.log(movieSearched)
 			const data = await source.json();
 			// Post loading placeholder text
 			document
@@ -314,7 +315,7 @@ $("div").on("click", "div div .removeHome", function(){
 	
 	// stop movie trailer by simply resetting source link to blank
 	var trailer = this.parentNode.parentNode.querySelector("iframe")
-	console.log(trailer)
+
 	if(trailer){
 		trailer.setAttribute("src","")
 		

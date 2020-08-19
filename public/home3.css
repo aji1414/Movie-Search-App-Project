@@ -85,6 +85,7 @@ margin: 0 auto;
    position: absolute;
 }
 
+/* styling for the preview shows etc on homepage */
 .homepageContainer{
 	/* height:60%; */
 	/* overflow-y:scroll */
@@ -93,4 +94,8 @@ margin: 0 auto;
 .homePoster{
 	width: 40px;
 	height: 52px;
+}
+
+.showPreview{
+	cursor:pointer;
 }

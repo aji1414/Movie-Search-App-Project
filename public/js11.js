@@ -123,15 +123,15 @@ function showPassword(){
 	else{
 		for (i = 0; i < password.length; i++){
 		password[i].type = "password"
-		}
-		
+		}	
 	}
 }
 
+// when user clicks a film/show on front page
+// $(".hoverHand2").click(function(){
+// 	console.log("triggered")
+// 	// console.log(this.textContent)
+// 	document.querySelector("#autoComplete").value = this.textContent.trim()
+// })
 
-// change navbar color when scrolled
-$("body").scroll(function () {
-	  var $nav = $(".sticky-top");
-	  $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-	});
 

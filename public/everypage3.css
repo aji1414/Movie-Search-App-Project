@@ -21,16 +21,9 @@ body, html {
 	background:white;
 }
 
-/* scrollbar color change after scroll */
-.bg-light.scrolled {
-  background-color: rgba(247, 65, 25, 1) !important;
-color:white;
-  transition: background-color 600ms linear;
-}
-
-.bg-light.scrolled .nav-link,h5{
-  color:white;
-  font-weight:800;
+/* get rid of outline on toggler icon when clicked */
+.navbar-toggler:focus{
+	outline:none
 }
 
 
