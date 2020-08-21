@@ -4,7 +4,7 @@ function windowSize(){
         var w = document.documentElement.clientWidth;
         
 		// get number of movies
-		var noMovies = divCount()
+		var noMovies = divCount().noMovies
 		if (noMovies === 1 || w <= 870){
 				divResize(width = "col-12")
 		}
@@ -42,33 +42,28 @@ function windowSize(){
 // event listener for when screen is changed, to run the function above
 window.addEventListener("resize", windowSize);
 
-
 // stores current colwidth for div to be used upon creation and deletion of new movies
 var colWidth = ""
 
 // function which counts current active divs. To stop user 
 function divCount(){
-	noMovies = 0
+	noMovies = 0;
+	activeDivs = [];
 	for(var i = 1; i <= 4; i++){
 			if(!document.querySelector(".movie" + i).classList.contains("d-none")){
 				noMovies ++
+				activeDivs.push(".movie" + i)
 			}	
-		}
-	return noMovies
+		};
+	return {noMovies,
+			activeDivs}
 }
 
 // function to resize divs when new movies added or old ones deleted
 function divResize(width, height = "normal"){
 	// find current divs showing on screen
-		activeDivs 	= 	[];
-		noMovies	=	0;
-		for(var i = 1; i <= 4; i++){
-			if(!document.querySelector(".movie" + i).classList.contains("d-none")){
-				activeDivs.push(".movie" + i)
-				noMovies ++
-			}	
-		}
-	
+	var noMovies = divCount().noMovies
+	var activeDivs = divCount().activeDivs
 	
 	oldColWidth			= colWidth
 	if(width){
