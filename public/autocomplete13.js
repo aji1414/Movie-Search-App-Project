@@ -1,4 +1,3 @@
-
 // change size of movie divs depending on screen size
 function windowSize(){
         // Get width of the window
@@ -7,25 +6,25 @@ function windowSize(){
 		// get number of movies
 		var noMovies = divCount()
 		if (noMovies === 1 || w <= 870){
-				divResize("col-12")
+				divResize(width = "col-12")
 		}
 		else if (noMovies == 4){
 			if(w <= 860){
-				divResize("col-12")
+				divResize(width = "col-12")
 			}
 			else if(w <= 1690){
-				divResize("col-6")
+				divResize(width = "col-6", height = "shrink")
 			}
 			else{
-				divResize()
+				divResize()	
 			}		
 		}
 		else if (noMovies == 3){
 			if(w <=860){
-				divResize("col-12")
+				divResize(width = "col-12")
 			}
 			else if(w <= 1265){
-				divResize("col-6")
+				divResize(width = "col-6", height = "shrink")
 			}
 			else{
 				divResize()
@@ -33,7 +32,7 @@ function windowSize(){
 		}
 		else if (noMovies == 2){
 			if(w <= 870){
-				divResize("col-12")
+				divResize(width = "col-12")
 			}
 			else{
 				divResize()
@@ -59,7 +58,7 @@ function divCount(){
 }
 
 // function to resize divs when new movies added or old ones deleted
-function divResize(width){
+function divResize(width, height = "normal"){
 	// find current divs showing on screen
 		activeDivs 	= 	[];
 		noMovies	=	0;
@@ -79,7 +78,12 @@ function divResize(width){
 		colWidth 			= "col-" + (12/(noMovies))
 	}
 	
-
+	if (height == "shrink"){
+		$(".flip-card").css("height", "290px")
+	}
+	else{
+		$(".flip-card").css("height", "650px")
+	}
 	
 	// for every active div on page, deletes old spacing class, then adds new spacing class
 		for(var n = 0; n < activeDivs.length; n++){
