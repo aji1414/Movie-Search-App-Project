@@ -50,8 +50,9 @@ margin: 0 auto;
 }
 
 .flip-card-front img{
-	max-width: 400px;
-	min-width:400px
+	width:600px;
+	/* min-width:600px; */
+	/* max-width:100%; */
 }
 
 .flip-card-back {
@@ -71,6 +72,11 @@ margin: 0 auto;
 .ratingHome {
   unicode-bidi: bidi-override;
   direction: rtl;
+}
+
+.homePoster{
+	width:52px;
+	height:40px;
 }
 
 

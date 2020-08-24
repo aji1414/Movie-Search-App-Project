@@ -6,32 +6,32 @@ function windowSize(){
 		// get number of movies
 		var noMovies = divCount().noMovies
 		if (noMovies === 1 || w <= 870){
-				divResize(width = "col-12")
+				divResize(width = "col-12", height = "normal", imgW = "800px")
 		}
 		else if (noMovies == 4){
 			if(w <= 860){
 				divResize(width = "col-12")
 			}
-			else if(w <= 1690){
-				divResize(width = "col-6", height = "shrink")
+			else if(w <= 1860){
+				divResize(width = "col-6", height = "shrink", imgW = "300px")
 			}
 			else{
-				divResize()	
+				divResize(width = "col-3", height = "normal",  imgW ='450px')	
 			}		
 		}
 		else if (noMovies == 3){
 			if(w <=860){
 				divResize(width = "col-12")
 			}
-			else if(w <= 1265){
-				divResize(width = "col-6", height = "shrink")
+			else if(w <= 1860){
+				divResize(width = "col-6", height = "shrink", imgW = "300px")
 			}
 			else{
 				divResize()
 			}
 		}
 		else if (noMovies == 2){
-			if(w <= 870){
+			if(w <= 1260){
 				divResize(width = "col-12")
 			}
 			else{
@@ -60,7 +60,21 @@ function divCount(){
 }
 
 // function to resize divs when new movies added or old ones deleted
-function divResize(width, height = "normal"){
+function divResize(width, height, imgW){
+	console.log(imgW)
+	console.log(width)
+	if (imgW){
+			$(".flip-card-front img").css("width", imgW)
+			// $(".flip-card-front img").css("min-width", imgW)
+	}
+	else{
+			$(".flip-card-front img").css("width", "600px")
+			// $(".flip-card-front img").css("min-width", "600px")
+	}
+	
+
+	
+	
 	// find current divs showing on screen
 	var noMovies = divCount().noMovies
 	var activeDivs = divCount().activeDivs
@@ -80,6 +94,10 @@ function divResize(width, height = "normal"){
 		$(".flip-card").css("height", "650px")
 	}
 	
+	// $(".flip-card-front img").css("width", imgWidth)
+	
+	
+	
 	// for every active div on page, deletes old spacing class, then adds new spacing class
 		for(var n = 0; n < activeDivs.length; n++){
 			if(oldColWidth){
@@ -95,6 +113,8 @@ function divResize(width, height = "normal"){
 	if(noMovies === 0){
 		document.querySelector(".container").style.display = "block"
 	}
+	
+	
 	
 	return colWidth
 }
@@ -193,13 +213,15 @@ const autoCompletejs = new autoComplete({
 					}
 			}
 			
+			
+			
 			// reduce size of all 4 posters if this is final poster
-			if(divToChange === 4){
-				$(".flip-card-front img").css("width", "400px")
-			}
-			else{
-				$(".flip-card-front img").css("width", "600px")
-			}
+			// if(divToChange === 4){
+			// 	$(".flip-card-front img").css("min-width", "400px")
+			// }
+			// else{
+			// 	$(".flip-card-front img").css("min-width", "600px")
+			// }
 			
 			// unhide div selected
 			document.querySelector(".movie" + divToChange).classList.remove("d-none");

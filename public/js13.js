@@ -1,7 +1,6 @@
 // click listeners to change review value and update in HTML form
 for (var h = 1; h <= 4; h++){
 	$(".rating" + h).on("click", "span", function() {
-		
 		// $(this).css("background-color", "blue");
 		var allSpans = this.parentNode.querySelectorAll("span")
 
@@ -121,5 +120,3 @@ function showPassword(){
 		}	
 	}
 }
-
-

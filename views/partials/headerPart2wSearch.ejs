@@ -1,4 +1,4 @@
-<div class = "d-flex flex-row flex-wrap ml-3 mr-3 justify-content-center">
+<div class = "d-flex flex-row flex-wrap ml-3 mr-3 justify-content-around movieBox">
 			<% for (var i = 1; i <= 4; i++){ %>
 			<div class = "d-none movie<%=i%> p-0 movie">
 				<div class = "turn-card-over d-flex mx-auto text-center"><i class="flip-icon fas fa-exchange-alt"></i></div>
@@ -63,20 +63,20 @@
 					</div>	
 				</div>
 
-				<form action = "/users/:id" method = "POST">
-					<input class = "reviewData<%=i%>" type = "hidden" name = "reviewData" value = "">
-					<input class = "ratingData<%=i%>" type = "hidden" name = "ratingData" value = "0">
-					<input class = "trailerData<%=i%>" type = "hidden" name = "trailerData" value = "">
-					<input class = "movieData<%=i%>" type = "hidden" name = "movieData" value = "">
-					<div class = "form-group d-flex justify-content-center m-0">
-						<button type = "submit" class = "btn btn-info text-center ">ADD TO MY SANDPIT</button>
-					</div>	
-				</form>
-				<div class = "d-flex justify-content-center mt-1">
-					<div  type = "button" class = "btn btn-info  text-center mr-2">RATE MOVIE!</div>
-					<div  type = "button" class = "ratingHome rating<%=i%> btn btn-info  text-center mr-2"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
-					<div  type = "button" class = "removeHome removeHome<%=i%> btn btn-danger  text-center">REMOVE</div>
-				</div>
+					<form action = "/users/:id" method = "POST">
+						<input class = "reviewData<%=i%>" type = "hidden" name = "reviewData" value = "">
+						<input class = "ratingData<%=i%>" type = "hidden" name = "ratingData" value = "0">
+						<input class = "trailerData<%=i%>" type = "hidden" name = "trailerData" value = "">
+						<input class = "movieData<%=i%>" type = "hidden" name = "movieData" value = "">
+						<div class = "form-group d-flex justify-content-center m-0">
+							<button type = "submit" class = "btn btn-info text-center ">ADD TO MY SANDPIT</button>
+						</div>	
+					</form>
+					<div class = "d-flex justify-content-center mt-1">
+						<div  type = "button" class = "btn btn-info  text-center mr-2">RATE MOVIE!</div>
+						<div  type = "button" class = "ratingHome rating<%=i%> btn btn-info  text-center mr-2"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+						<div  type = "button" class = "removeHome removeHome<%=i%> btn btn-danger  text-center">REMOVE</div>
+					</div>
 			</div>
 			<% } %>
 		</div>
