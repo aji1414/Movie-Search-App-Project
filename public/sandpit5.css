@@ -1,9 +1,11 @@
 #currentSandpit{
 	position: fixed;
-	top:10px;
+	top:2px;
 	left:10px;
-	color:black;
+	color:white;
+	background:black
 }
+
 /* adjust space between user divs  */
 .card{
 	border:none;
@@ -12,10 +14,6 @@
 /*  font on sandpit movie*/
 .card-body{
 	color: black;
-}
-
-.card-body span{
-	font-style: italic;
 }
 
 .card-img-top{
@@ -81,7 +79,6 @@ height: 50%
 /* The Close Button */
 .close {
 color: #aaa;
-/* float: right; */
 font-size: 4em;
 font-weight: bold;
 }

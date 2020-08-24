@@ -10,6 +10,10 @@ body, html {
 }
 
 
+////////////////////////////////////////////////
+			/* Nav Bar Settings */
+////////////////////////////////////////////////
+
 /* font on navbar. super specific to overwrite bootstrap code */
 .nav-link{
 	color:black;
@@ -26,7 +30,6 @@ body, html {
 	outline:none
 }
 
-
 /* color for main page title in navbar */
 header h5{
 	color:black;
@@ -34,7 +37,6 @@ header h5{
 	font-size:2em;
 	/* position:sticky; */
 	/* left: 40%; */
-	
 }
 
 header{
@@ -57,24 +59,13 @@ ul li a{
 .navbar-light .navbar-nav .active>.nav-link{
 	color:black;
 	font-weight:600;
-	/* font-size:1.5em; */
 }
 
-.footer{
-	position:relative;
-	bottom:0;
-	width:100%; 	
-	background:orange;
-	height:15%;
-}
 
-.footer p{
-	color:black;
-}
 
 :root {
-    --transition-1: all 0.3s ease-in-out;
-    --transition-2: all 0.1s ease-in-out;
+    --transition-1: all 0.9s ease-in-out;
+    --transition-2: all 0.9s ease-in-out;
 }
 
 .header {
@@ -166,4 +157,18 @@ input[type=text] {
 input[type=submit] {
   background-color: DodgerBlue;
   color: #fff;
+}
+
+
+/* Settings for footer at page bottom */
+.footer{
+	position:relative;
+	bottom:0;
+	width:100%; 	
+	background:orange;
+	height:15%;
+}
+
+.footer p{
+	color:black;
 }

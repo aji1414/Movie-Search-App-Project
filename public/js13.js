@@ -1,8 +1,3 @@
-// logic to hide/display input box depending on url of page
-// if (window.location.pathname !== '/') {
-//     $("#autoComplete").hide()
-// }
-
 // click listeners to change review value and update in HTML form
 for (var h = 1; h <= 4; h++){
 	$(".rating" + h).on("click", "span", function() {
@@ -126,12 +121,5 @@ function showPassword(){
 		}	
 	}
 }
-
-// when user clicks a film/show on front page
-// $(".hoverHand2").click(function(){
-// 	console.log("triggered")
-// 	// console.log(this.textContent)
-// 	document.querySelector("#autoComplete").value = this.textContent.trim()
-// })
 
 
