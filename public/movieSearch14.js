@@ -19,10 +19,6 @@
 // };
 // ajax.send();
 
-
-
-
-// "https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
 // change size of movie divs depending on screen size
 function windowSize(){
         // Get width of the window
@@ -146,7 +142,8 @@ const autoCompletejs = new autoComplete({
 			const source = await fetch(
 				// separrate fetch statement to also pull in series, then concatenate the data for both in one json object
 				// prob better to just look for one online solution where you can write it in a single line
-				"https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
+				// "https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
+				"https://api.themoviedb.org/3/search/movie?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&query=" + movieSearched + "&page=1&include_adult=true"
 				// &type=movie
 			);
 			// console.log(movieSearched)
@@ -156,10 +153,11 @@ const autoCompletejs = new autoComplete({
 				.querySelector("#autoComplete")
 				.setAttribute("placeholder", "Search Movies");
 			// Returns Fetched data
-			return data.Search;
+			// console.log(data.results)
+			return data.results;
 		},
 		
-		key: ["Title", "Year", "imdbID", "Type", "Poster"],
+		key: ["original_title"],
 		cache: false
 	},
 	sort: (a, b) => {
@@ -232,16 +230,31 @@ const autoCompletejs = new autoComplete({
 			// run function that adjusts spacing of divs with the new extra div
 			windowSize();
 
+			// write function to run api call to find imdbID so OMDB api can be used to get more information
+			// async function getIMDBID(){
+			// 	var id = feedback.selection.value.id
+			// 	var query = await fetch("https://api.themoviedb.org/3/movie/" + id +"/external_ids?api_key=64436a1714ae913f7d6492fd1433610c")
+			// 	var data = await query.json();
+			// 	console.log(data.imdb_id)
+			// 	return data
+			// }
+			
+			// getIMDBID()
+			// console.log(feedback.selection.value.id)
 			// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
 			async function getMovieData() {
-			var imdbID 		= feedback.selection.value.imdbID;
-			let response 	= await fetch("https://www.omdbapi.com/?i=" + imdbID + "&apikey=thewdb");
-			let data		= await response.json();
+			// var imdbID 		= feedback.selection.value.imdbID;
+			var id 						= feedback.selection.value.id
+			var query 					= await fetch("https://api.themoviedb.org/3/movie/" + id +"/external_ids?api_key=64436a1714ae913f7d6492fd1433610c")
+			var imdb 					= await query.json();
+			var imdb_id 				= await imdb.imdb_id
+			let response 				= await fetch("https://www.omdbapi.com/?i=" + imdb_id + "&apikey=thewdb");
+			let data					= await response.json();
 			return data;
 			}
 		
 			// api call for movie trailer. Had to do separate to stuff below due to scoping issues as they use different sources
-			movieTrailer(feedback.selection.value.Title, {id: true, multi: true}).then(function(result){
+			movieTrailer(feedback.selection.value.original_title, {id: true, multi: true}).then(function(result){
 				document.querySelector(".trailerData" + divToChange).value = "https://www.youtube-nocookie.com/embed/" + result[0]
 				document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[0])	
 			})
