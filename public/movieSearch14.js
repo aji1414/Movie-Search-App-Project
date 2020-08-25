@@ -140,11 +140,7 @@ const autoCompletejs = new autoComplete({
 			// Fetch External Data Source
 			var movieSearched = document.querySelector("#autoComplete").value
 			const source = await fetch(
-				// separrate fetch statement to also pull in series, then concatenate the data for both in one json object
-				// prob better to just look for one online solution where you can write it in a single line
-				// "https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
-				"https://api.themoviedb.org/3/search/movie?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&query=" + movieSearched + "&page=1&include_adult=true"
-				// &type=movie
+				"https://api.themoviedb.org/3/search/movie?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&query=" + movieSearched + "&page=1&include_adult=false"
 			);
 			// console.log(movieSearched)
 			const data = await source.json();
@@ -153,7 +149,7 @@ const autoCompletejs = new autoComplete({
 				.querySelector("#autoComplete")
 				.setAttribute("placeholder", "Search Movies");
 			// Returns Fetched data
-			// console.log(data.results)
+			
 			return data.results;
 		},
 		
@@ -229,30 +225,34 @@ const autoCompletejs = new autoComplete({
 
 			// run function that adjusts spacing of divs with the new extra div
 			windowSize();
-
-			// write function to run api call to find imdbID so OMDB api can be used to get more information
-			// async function getIMDBID(){
-			// 	var id = feedback.selection.value.id
-			// 	var query = await fetch("https://api.themoviedb.org/3/movie/" + id +"/external_ids?api_key=64436a1714ae913f7d6492fd1433610c")
-			// 	var data = await query.json();
-			// 	console.log(data.imdb_id)
-			// 	return data
-			// }
 			
-			// getIMDBID()
-			// console.log(feedback.selection.value.id)
-			// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED
+			var imdbDataExists = true
+			
+			// API CALL TO BRING IN MORE MOVIE DATA ON MOVIE SELECTED. Has to do api call on TMDB site first to find the imdb id of selected film
 			async function getMovieData() {
 			// var imdbID 		= feedback.selection.value.imdbID;
-			var id 						= feedback.selection.value.id
-			var query 					= await fetch("https://api.themoviedb.org/3/movie/" + id +"/external_ids?api_key=64436a1714ae913f7d6492fd1433610c")
+			var movie 					= feedback.selection.value
+			var id 						= movie.id
+			var query 					= await fetch("https://api.themoviedb.org/3/movie/" + id + "/external_ids?api_key=64436a1714ae913f7d6492fd1433610c")
 			var imdb 					= await query.json();
+
+			if(imdb.imdb_id == null){
+				// console.log("trigger")
+				imdbDataExists = false
+			}
+			else{
+				imdbDataExists = true
+			}
+
 			var imdb_id 				= await imdb.imdb_id
 			let response 				= await fetch("https://www.omdbapi.com/?i=" + imdb_id + "&apikey=thewdb");
 			let data					= await response.json();
-			return data;
+			// console.log(data)
+			return {data};
+			
+				
 			}
-		
+	
 			// api call for movie trailer. Had to do separate to stuff below due to scoping issues as they use different sources
 			movieTrailer(feedback.selection.value.original_title, {id: true, multi: true}).then(function(result){
 				document.querySelector(".trailerData" + divToChange).value = "https://www.youtube-nocookie.com/embed/" + result[0]
@@ -263,6 +263,31 @@ const autoCompletejs = new autoComplete({
 			getMovieData().then(function(result) {
 				// Render page elements						
 				// trailer data
+				console.log(result)
+				console.log(result.data)
+				if(imdbDataExists == false){
+					Object.keys(result).forEach(k => delete result[k])
+					result =  	{
+								Title: feedback.selection.value.original_title,
+								Released: feedback.selection.value.releaseDate,
+								Plot: feedback.selection.value.overview,
+								Poster: "https://image.tmdb.org/t/p/w500/" + feedback.selection.value.poster_path,
+								Runtime: "N/A",
+								Actors: "N/A",
+								Wrter: "Unknown",
+								Awards: "Unknown",
+								Director: "Unknown",
+								BoxOffice: "Unknown",
+								imdbVotes: "Unknown",
+								Genre: "Unknown",
+								Ratings: ["N/A", "N/A", "N/A"]
+								}
+				}
+				else{
+					result = result.data
+				}
+				
+				// result = result.data
 				var movieRatings 		= 	[[".imdb",'https://cdn.freebiesupply.com/images/thumbs/2x/imdb-logo.png'],
 											[".metacritic", 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'],
 											[".rottenTomatoes", 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png']]
@@ -279,18 +304,28 @@ const autoCompletejs = new autoComplete({
 				
 				// other data
 				// some data manipulation
-				
-				if (result.Poster.length >= 10){
-					var highQualityPoster 	= result.Poster.substr(0,result.Poster.length - 7) + "600.jpg"
-					$(".poster" + divToChange).html("<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>")		
+				// depends if poster is from imdb or from original api pull
+				if (result.Poster){
+					if (imdbDataExists == false){
+						$(".poster" + divToChange).html("<img  src = '" + result.Poster + "' class='img-fluid' alt='Responsive image'>")
+						
+					}
+					else{
+						var highQualityPoster 	= result.Poster.substr(0,result.Poster.length - 7) + "600.jpg"
+						$(".poster" + divToChange).html("<img  src = '" + highQualityPoster + "' class='img-fluid' alt='Responsive image'>")
+					}
+							
 				}
 				else{
 					$(".poster" + divToChange).html("<img  src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png' class='img-fluid' alt='Responsive image'>")
 				}
 				
+				// if(result.Genre){
+					var Genre 				= result.Genre.split(',')
+					$(".genre" + divToChange).html(Genre.slice(0,3)) 
+				// }
 				
-				var Genre 				= result.Genre.split(',')
-				$(".genre" + divToChange).html(Genre.slice(0,3)) 
+				
 				$(".title" + divToChange).html(result.Title)
 				$(".runtime" + divToChange).html(result.Runtime) 				 
 				$(".releaseDate" + divToChange).html(result.Released) 			 
@@ -304,13 +339,17 @@ const autoCompletejs = new autoComplete({
 							
 				
 				// store all movie data in html doc which will be stored in database if user adds film to sandpit
+				// if(imdbDataExists == false){
+				// 	result.Poster = 
+				// }
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
+				// console.log(JSON.stringify(result))
 				
 				// if no data is pulled through, delete title added
-				if(document.querySelector(".title" + divToChange).innerHTML === ""){
-					document.querySelector(".removeHome" + divToChange).click()
-					console.log("deleted")
-				}
+				// if(document.querySelector(".title" + divToChange).innerHTML === ""){
+				// 	document.querySelector(".removeHome" + divToChange).click()
+				// 	console.log("deleted")
+				// }
 			
 
 				// if no trailer, change trailer div to nothing found image
