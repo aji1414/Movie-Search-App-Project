@@ -32,6 +32,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.set("view engine", "ejs")
 app.use(express.static("public"));
+app.use(express.static("public/pako"));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(bodyParser.urlencoded({extended:true}));

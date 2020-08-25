@@ -1,18 +1,28 @@
-// var input = "test string";
-// var output = pako.ungzip(input,{ to: 'string' });
-// console.log(output)
 // axios.get("https://files.tmdb.org/p/exports/movie_ids_08_23_2020.json.gz")
 // 	.then(response =>{
-// 		// var data = ungzip(test, { to: 'string' })
-// 		// var newData = pako.deflate(response, { to: 'string' });
-
-// 		// console.log(newData.length)
-// 		console.log(response.data)
+// 		console.log(typeof response.data)
+// 		console.log(response.data.slice(0,100))
+// 		var data = pako.inflate(new Uint8Array(response.data),  { to: 'string' });
+// 		var decoded = decodeURIComponent(escape(data));
+// 		var decoded2 = JSON.parse(decoded)
+// // new Uint8Array
+// 		console.log(decoded2.slice(0,100))
+// 		console.log(typeof decoded2)
 // })
 // 	.catch(error => console.log(error));
 
+// var ajax = new XMLHttpRequest();
+// ajax.open("GET", "https://restcountries.eu/rest/v1/lang/fr", true);
+// ajax.onload = function() {
+// 	var list = JSON.parse(ajax.responseText).map(function(i) { return i.name; });
+// 	new Awesomplete(document.querySelector("#ajax"),{ list: list });
+// };
+// ajax.send();
 
 
+
+
+// "https://www.omdbapi.com/?s=" + movieSearched + "&apikey=thewdb"
 // change size of movie divs depending on screen size
 function windowSize(){
         // Get width of the window

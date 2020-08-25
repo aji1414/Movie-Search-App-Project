@@ -5,7 +5,7 @@ body, html {
 	overflow: auto;
 	/* background: rgb(0, 0, 0); */
 	background: black;
-	color:white;
+	color:black;
 	margin: 0;
     padding: 0;
 	animation: animation 100s linear infinite;
@@ -23,8 +23,10 @@ body, html {
 	font-weight:800;
 }
 
+
+
 .bg-light{
-	background:white;
+	background:white !important;
 }
 
 /* get rid of outline on toggler icon when clicked */
@@ -33,12 +35,9 @@ body, html {
 }
 
 /* color for main page title in navbar */
-header h5{
-	color:black;
-	font-weight: 800;
-	font-size:2em;
-	/* position:sticky; */
-	/* left: 40%; */
+.navbar-light .navbar-brand{
+	color:black !important;
+	font-weight:800;
 }
 
 header{
@@ -54,13 +53,13 @@ ul li a{
 /* to change font of home buttons in nav bar */
 .navbar-light .navbar-nav .nav-link{
 	color:black;
-	font-weight:600;
+	font-weight:800;
 	/* font-size:1.5em; */
 } 
 
 .navbar-light .navbar-nav .active>.nav-link{
 	color:black;
-	font-weight:600;
+	font-weight:800;
 }
 
 
@@ -175,6 +174,16 @@ input[type=submit] {
   height:136px
 }
 
+/* text which was bare on animated background was abit difficult to see */
+.bolder{
+	font-weight:800;
+	color:white;
+}
+
+.homeCategories{
+	color:white;
+	font-weight:800;
+}
 
 .content{
 	min-height: 80%;

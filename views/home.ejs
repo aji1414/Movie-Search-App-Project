@@ -3,7 +3,7 @@
 
 <div class = "container homepageContainer mt-5 d-flex flex-wrap"  >
 	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3>Trending Movies</h3>
+		<h3 class = "homeCategories">Trending Movies</h3>
 		<div class = "d-flex flex-column">
 			<%trend.forEach(function(movie){ %>
 			<div class = "d-flex mb-2">
@@ -12,7 +12,7 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "">
+						<div class = "bolder">
 							<%=movie.title%>
 						</div>
 						<div>
@@ -28,7 +28,7 @@
 	</div>
 	
 	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3>Top Rated Movies</h3>
+		<h3 class = "homeCategories">Top Rated Movies</h3>
 		<div class = "d-flex flex-column">
 			<% top.forEach(function(movie){ %>
 			<div class = "d-flex mb-2">
@@ -37,7 +37,7 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "">
+						<div class = "bolder">
 							<%=movie.title%>
 						</div>
 						<div>
@@ -53,7 +53,7 @@
 	</div>
 	
 	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3>Upcoming Movies</h3>
+		<h3 class = "homeCategories">Upcoming Movies</h3>
 		<div class = "d-flex flex-column">
 			<% up.forEach(function(movie){ %>
 			<div class = "d-flex mb-2">
@@ -62,7 +62,7 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "">
+						<div class = "bolder">
 							<%=movie.title%>
 						</div>
 						<div>
@@ -78,7 +78,7 @@
 	</div>
 	
 	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3>Top Rated TV Shows</h3>
+		<h3 class = "homeCategories">Top Rated TV Shows</h3>
 		<div class = "d-flex flex-column">
 			<% topTV.forEach(function(show){ %>
 			<div class = "d-flex mb-2">
@@ -87,7 +87,7 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "">
+						<div class = "bolder">
 							<%=show.name%>
 						</div>
 						<div>
@@ -103,7 +103,7 @@
 	</div>
 	
 	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3>TV Shows Currently Airing</h3>
+		<h3 class = "homeCategories">TV Shows Currently Airing</h3>
 		<div class = "d-flex flex-column">
 			<% onAirTV.forEach(function(show){ %>
 			<div class = "d-flex mb-2">
@@ -112,7 +112,7 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "">
+						<div class = "bolder">
 							<%=show.name%>
 						</div>
 						<div>
@@ -128,7 +128,7 @@
 	</div>
 	
 	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3>Most Popular TV Shows</h3>
+		<h3 class = "homeCategories">Most Popular TV Shows</h3>
 		<div class = "d-flex flex-column">
 			<% popTV.forEach(function(show){ %>
 			<div class = "d-flex mb-2">
@@ -137,7 +137,7 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "">
+						<div class = "bolder">
 							<%=show.name%>
 						</div>
 						<div>
