@@ -57,7 +57,7 @@ backface-visibility: hidden;
 .modal2 {
 display: none; /* Hidden by default */
 position: fixed; /* Stay in place */
-z-index: 1; /* Sit on top */
+z-index: 3; /* Sit on top */
 left: 0;
 top: 0;
 width: 100%; /* Full width */
@@ -74,20 +74,6 @@ margin: 15% auto; /* 15% from the top and centered */
 border: 1px solid #888;
 width: 80%; /* Could be more or less, depending on screen size */
 height: 50%
-}
-
-/* The Close Button */
-.close {
-color: #aaa;
-font-size: 4em;
-font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-color: white;
-text-decoration: none;
-cursor: pointer;
 }
 
 /* style hovering on see mo */
@@ -174,10 +160,22 @@ width:30%}
 	color:black;
 }
 
+
+.modal-backdrop{
+	z-index: -5;
+}
+
+to get hover hand over clickable elements
 .hoverHand{
 	cursor:pointer
 }
 
 .hoverHand2{
 	cursor:pointer
+}
+
+.bolderSandpit{
+	color:black;
+	font-weight:800;
+	font-size: 2em;
 }

@@ -84,7 +84,6 @@
 						<div class="modal2">
 						  <div class="modal-content2">
 								<div class = "d-flex flex-column align-items-center movieDetailsOuter">
-									<div class="close">&times;</div>
 									<div class = "movieDetails mt-2">
 												<%if (movie.Trailer){ %>
 												<div class = "d-flex justify-content-center mb-2 trailerOuterDiv">
@@ -96,20 +95,20 @@
 												</div>
 												<% } %>
 												<div class = "d-flex sandpitRatings px-4">
-													<div class = "col-4">
+													<div class = "col-4 bolderSandpit">
 														<%=movie.IMDB%> <img class = "ratingsImage" src = "https://cdn.freebiesupply.com/images/thumbs/2x/imdb-logo.png">
 													</div>
-													<div class = "col-4">
+													<div class = "col-4 bolderSandpit">
 														<%=movie.RottenTomatoes%> <img class = "ratingsImage" src = "https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg">
 													</div>
-													<div class = "col-4">
+													<div class = "col-4 bolderSandpit">
 														<%=movie.Metacritic%> <img class = "ratingsImage" src = "https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png">
 													</div>
 												</div>
 										
 												<div class = "d-flex movieInfo1 mt-3 px-4">
 													<div class = "col-4 d-flex flex-column">
-															<div>
+															<div class = "bolderSandpit">
 																GENRE
 															</div>
 															<div>
@@ -117,7 +116,7 @@
 															</div> 
 													</div>
 													<div class = "col-4 d-flex flex-column">
-															<div>
+															<div class = "bolderSandpit">
 																RELEASE DATE
 															</div>
 															<div>
@@ -125,7 +124,7 @@
 															</div> 
 													</div>
 													<div class = "col-4 d-flex flex-column">
-															<div>
+															<div class = "bolderSandpit">
 																Time
 															</div>
 															<div>
@@ -135,7 +134,7 @@
 												</div>
 										
 												<div class = "d-flex flex-column movieInfo2 mt-5 px-4">
-															<div class = "flex-row">
+															<div class = "flex-row bolderSandpit">
 																Plot
 															</div>
 															<div class = "flex-row">
@@ -146,22 +145,22 @@
 												</div>
 										
 												<div class = "d-flex flex-row movieInfo3 mt-5 px-4">
-															<div class = "col-6 d-flex">
-																	<div class = "col">
+															<div class = "col-6 d-flex flex-column">
+																	<div class = "justify-content-center d-flex bolderSandpit">
 																		Actors
 																	</div>
-																	<div class = "col">
+																	<div class = "justify-content-center d-flex">
 																		<p>
 																			<%=movie.Actors%>
 																		</p>
 																	</div> 
 															</div>
 															
-															<div class = "col-6 d-flex">
-																	<div class = "col">
+															<div class = "col-6 d-flex flex-column">
+																	<div class = "justify-content-center d-flex bolderSandpit">
 																		Writers
 																	</div>
-																	<div class = "col">
+																	<div class = "justify-content-center d-flex">
 																		<p>
 																			<%=movie.Writer%>
 																		</p>
@@ -171,7 +170,7 @@
 												</div>
 												
 												<div class = "d-flex flex-column movieInfo4 px-4">
-															<div class = "flex-row">
+															<div class = "flex-row bolderSandpit">
 																Awards
 															</div>
 															<div class = "flex-row">
@@ -183,7 +182,7 @@
 										
 												<div class = "d-flex movieInfo5 mt-3 px-4">
 													<div class = "col-4 d-flex flex-column">
-															<div>
+															<div class = "bolderSandpit">
 																DIRECTED BY
 															</div>
 															<div>
@@ -191,7 +190,7 @@
 															</div> 
 													</div>
 													<div class = "col-4 d-flex flex-column">
-															<div>
+															<div class = "bolderSandpit">
 																BOX OFFICE EARNINGS
 															</div>
 															<div>
@@ -199,7 +198,7 @@
 															</div> 
 													</div>
 													<div class = "col-4 d-flex flex-column">
-															<div>
+															<div class = "bolderSandpit">
 																IMDB VOTES
 															</div>
 															<div>

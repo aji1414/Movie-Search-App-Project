@@ -58,16 +58,6 @@ $(".testModal").on("click", function(){
 	currentModal = modal
 })
 
-$(".card").on("click",".close", function(){
-	// stop trailer from playing if it is
-	currentModal.querySelector("iframe").src = ""
-	// exit modal
-	currentModal.style.display = "none";
-
-	// delete current modal selected
-	for (var member in currentModal) delete currentModal[member];
-})
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == currentModal) {
