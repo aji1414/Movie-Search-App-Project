@@ -1,5 +1,7 @@
 body, html {
 	height:100%;
+	/* position:fixed; */
+	width: 100%;
 	overflow: auto;
 	/* background: rgb(0, 0, 0); */
 	background: black;
@@ -162,13 +164,24 @@ input[type=submit] {
 
 /* Settings for footer at page bottom */
 .footer{
-	position:relative;
-	bottom:0;
-	width:100%; 	
-	background:orange;
-	height:15%;
+  /* position: absolute; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  /* margin-top:136px; */
+  height:136px
 }
 
-.footer p{
+
+.content{
+	min-height: 80%;
+	/* equal to height of footer */
+	/* padding-bottom: -136px; */
+}
+/* .footer p{
 	color:black;
 }
+ */

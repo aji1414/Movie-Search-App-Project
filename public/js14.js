@@ -1,3 +1,5 @@
+
+
 // click listeners to change review value and update in HTML form
 for (var h = 1; h <= 4; h++){
 	$(".rating" + h).on("click", "span", function() {
@@ -120,3 +122,15 @@ function showPassword(){
 		}	
 	}
 }
+
+VANTA.FOG({
+  el: ".content",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  // minWidth: 200.00,
+  midtoneColor: 0xff2a0d,
+  lowlightColor: 0x0,
+  baseColor: 0x161313
+})

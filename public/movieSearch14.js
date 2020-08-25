@@ -1,3 +1,18 @@
+// var input = "test string";
+// var output = pako.ungzip(input,{ to: 'string' });
+// console.log(output)
+// axios.get("https://files.tmdb.org/p/exports/movie_ids_08_23_2020.json.gz")
+// 	.then(response =>{
+// 		// var data = ungzip(test, { to: 'string' })
+// 		// var newData = pako.deflate(response, { to: 'string' });
+
+// 		// console.log(newData.length)
+// 		console.log(response.data)
+// })
+// 	.catch(error => console.log(error));
+
+
+
 // change size of movie divs depending on screen size
 function windowSize(){
         // Get width of the window
@@ -61,8 +76,7 @@ function divCount(){
 
 // function to resize divs when new movies added or old ones deleted
 function divResize(width, height, imgW){
-	console.log(imgW)
-	console.log(width)
+	// change image width and div height where necessary
 	if (imgW){
 			$(".flip-card-front img").css("width", imgW)
 			// $(".flip-card-front img").css("min-width", imgW)
@@ -72,9 +86,13 @@ function divResize(width, height, imgW){
 			// $(".flip-card-front img").css("min-width", "600px")
 	}
 	
+	if (height == "shrink"){
+		$(".flip-card").css("height", "290px")
+	}
+	else{
+		$(".flip-card").css("height", "650px")
+	}
 
-	
-	
 	// find current divs showing on screen
 	var noMovies = divCount().noMovies
 	var activeDivs = divCount().activeDivs
@@ -84,19 +102,8 @@ function divResize(width, height, imgW){
 		colWidth		= width
 	}
 	else{
-		colWidth 			= "col-" + (12/(noMovies))
+		colWidth 		= "col-" + (12/(noMovies))
 	}
-	
-	if (height == "shrink"){
-		$(".flip-card").css("height", "290px")
-	}
-	else{
-		$(".flip-card").css("height", "650px")
-	}
-	
-	// $(".flip-card-front img").css("width", imgWidth)
-	
-	
 	
 	// for every active div on page, deletes old spacing class, then adds new spacing class
 		for(var n = 0; n < activeDivs.length; n++){
@@ -113,9 +120,6 @@ function divResize(width, height, imgW){
 	if(noMovies === 0){
 		document.querySelector(".container").style.display = "block"
 	}
-	
-	
-	
 	return colWidth
 }
 
@@ -192,9 +196,8 @@ const autoCompletejs = new autoComplete({
 			}
 		}
 		
-		
 		// alert for when already chosen 4 movies
-		if(divCount() === 4){
+		if(divCount().noMovies === 4){
 			alert("No more movies allowed!")
 		}
 		else{
@@ -212,17 +215,7 @@ const autoCompletejs = new autoComplete({
 						divToChange ++
 					}
 			}
-			
-			
-			
-			// reduce size of all 4 posters if this is final poster
-			// if(divToChange === 4){
-			// 	$(".flip-card-front img").css("min-width", "400px")
-			// }
-			// else{
-			// 	$(".flip-card-front img").css("min-width", "600px")
-			// }
-			
+
 			// unhide div selected
 			document.querySelector(".movie" + divToChange).classList.remove("d-none");
 
@@ -345,7 +338,6 @@ $("div").on("click", "div div .removeHome", function(){
 		   }
 	}
 
-
 	// set rating stars all back to white
 	var stars = movieDiv.querySelectorAll(".rating" + movieDivNo + " span")
 	for (var i = 0; i < stars.length; i++){
@@ -377,4 +369,3 @@ $("div").on("click", "div div .removeHome", function(){
 	// run function that adjusts spacing of divs with the new extra div
 	divResize();
 })
-

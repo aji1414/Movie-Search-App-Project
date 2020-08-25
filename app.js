@@ -11,7 +11,8 @@ var 	express 			= require("express"),
 		flash 				= require("connect-flash"),
 		indexRoutes 		= require("./routes/index"),
 		userRoutes 			= require("./routes/users"),
-		middleware			= require("./middleware/index")
+		middleware			= require("./middleware/index"),
+		pako				= require("pako")
 
 // create db here
 mongoose.connect("mongodb://localhost:27017/movie_app", {useUnifiedTopology:true, useNewUrlParser: true});
