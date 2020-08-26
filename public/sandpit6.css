@@ -165,7 +165,7 @@ width:30%}
 	z-index: -5;
 }
 
-to get hover hand over clickable elements
+/* to get hover hand over clickable elements */
 .hoverHand{
 	cursor:pointer
 }

@@ -1,24 +1,3 @@
-// axios.get("https://files.tmdb.org/p/exports/movie_ids_08_23_2020.json.gz")
-// 	.then(response =>{
-// 		console.log(typeof response.data)
-// 		console.log(response.data.slice(0,100))
-// 		var data = pako.inflate(new Uint8Array(response.data),  { to: 'string' });
-// 		var decoded = decodeURIComponent(escape(data));
-// 		var decoded2 = JSON.parse(decoded)
-// // new Uint8Array
-// 		console.log(decoded2.slice(0,100))
-// 		console.log(typeof decoded2)
-// })
-// 	.catch(error => console.log(error));
-
-// var ajax = new XMLHttpRequest();
-// ajax.open("GET", "https://restcountries.eu/rest/v1/lang/fr", true);
-// ajax.onload = function() {
-// 	var list = JSON.parse(ajax.responseText).map(function(i) { return i.name; });
-// 	new Awesomplete(document.querySelector("#ajax"),{ list: list });
-// };
-// ajax.send();
-
 // change size of movie divs depending on screen size
 function windowSize(){
         // Get width of the window
@@ -254,10 +233,12 @@ const autoCompletejs = new autoComplete({
 			}
 	
 			// api call for movie trailer. Had to do separate to stuff below due to scoping issues as they use different sources
-			movieTrailer(feedback.selection.value.original_title, {id: true, multi: true}).then(function(result){
+			setTimeout(function(){
+				movieTrailer(feedback.selection.value.original_title, {id: true, multi: true}).then(function(result){
 				document.querySelector(".trailerData" + divToChange).value = "https://www.youtube-nocookie.com/embed/" + result[0]
 				document.querySelector(".trailer" + divToChange).setAttribute("src","https://www.youtube-nocookie.com/embed/" + result[0])	
-			})
+				})
+			},1000)
 									
 			// Render all movie info to correct div
 			getMovieData().then(function(result) {
@@ -416,7 +397,7 @@ $("div").on("click", "div div .removeHome", function(){
 
 // invoking a search through selecting one of the preset movies on homepage
 $(".chooseFromHome").on("click", function(){
-	var data = this.parentNode
+	var data = this.parentNode.parentNode
 	// some wrapping in annonymous variables to match strucutre of films selected via the autocomplete library
 	var feedback = 		
 		{selection: 

@@ -1,0 +1,97 @@
+<div class = "container homepageContainer mt-5 d-flex flex-wrap"  >
+	<div class = "d-flex flex-column col-12 col-md-4">
+		<h3 class = "homeCategories">Trending Movies</h3>
+		<div class = "d-flex flex-column">
+			<%trend.forEach(function(movie){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0 ">
+					<img src = "https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" class="img-fluid homePoster chooseFromHome hoverHand2" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div class = "bolder chooseFromHome hoverHand2">
+							<%=movie.title%>
+						</div>
+						<!-- passing data through, doesnt appear on screen -->
+						<div class = "d-none id"><%=movie.id%></div>
+						<div class = "d-none poster_path"><%=movie.poster_path%></div>
+						<div class = "d-none overview"><%=movie.overview%></div>
+						<div class = "d-none releaseDate"><%=movie.releaseDate%></div>
+						<div class = "d-none original_title"><%=movie.original_title%></div>
+						<div>
+							<%=movie.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	<div class = "d-flex flex-column col-12 col-md-4">
+		<h3 class = "homeCategories">Top Rated Movies</h3>
+		<div class = "d-flex flex-column">
+			<% top.forEach(function(movie){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0 ">
+					<img  src = "https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" class="img-fluid homePoster chooseFromHome hoverHand2" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div class = "bolder chooseFromHome hoverHand2">
+							<%=movie.title%>
+						</div>
+						<!-- passing data through, doesnt appear on screen -->
+						<div class = "d-none id"><%=movie.id%></div>
+						<div class = "d-none poster_path"><%=movie.poster_path%></div>
+						<div class = "d-none overview"><%=movie.overview%></div>
+						<div class = "d-none releaseDate"><%=movie.releaseDate%></div>
+						<div class = "d-none original_title"><%=movie.original_title%></div>
+						<div>
+							<%=movie.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	<div class = "d-flex flex-column col-12 col-md-4">
+		<h3 class = "homeCategories">Upcoming Movies</h3>
+		<div class = "d-flex flex-column">
+			<% up.forEach(function(movie){ %>
+			<div class = "d-flex mb-2">
+				<div class = "col-2 p-0 ">
+					<img  src = "https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" class="img-fluid homePoster chooseFromHome hoverHand2" alt="Responsive image">
+				</div>
+				<div class = "col-10">
+					<div class = "d-flex flex-column">
+						<div class = "bolder chooseFromHome hoverHand2">
+							<%=movie.title%>
+						</div>
+						<!-- passing data through, doesnt appear on screen -->
+						<div class = "d-none id"><%=movie.id%></div>
+						<div class = "d-none poster_path"><%=movie.poster_path%></div>
+						<div class = "d-none overview"><%=movie.overview%></div>
+						<div class = "d-none releaseDate"><%=movie.releaseDate%></div>
+						<div class = "d-none original_title"><%=movie.original_title%></div>
+						<div>
+							<%=movie.vote_average%>
+							<i class="fas fa-star fa-xs"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+		<%})%>
+		</div>
+	</div>
+	
+	
+	
+</div>

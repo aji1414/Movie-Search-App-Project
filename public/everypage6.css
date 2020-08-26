@@ -163,15 +163,13 @@ input[type=submit] {
 
 /* Settings for footer at page bottom */
 .footer{
-  /* position: absolute; */
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: white;
   color: black;
   text-align: center;
-  /* margin-top:136px; */
-  height:136px
 }
 
 /* text which was bare on animated background was abit difficult to see */
@@ -190,7 +188,9 @@ input[type=submit] {
 	/* equal to height of footer */
 	/* padding-bottom: -136px; */
 }
-/* .footer p{
-	color:black;
+
+.vanta-canvas{
+	position:absolute;
+    width:100%;
+    height:100%;
 }
- */
