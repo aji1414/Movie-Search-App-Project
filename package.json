@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,23 +20,13 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fetch": "^1.1.0",
-    "go-fetch": "^3.1.1",
-    "go-fetch-decompress": "^1.0.2",
-    "gunzip-file": "^0.1.1",
-    "http": "0.0.1-security",
-    "js-cookie": "^2.2.1",
+    "method-override": "^3.0.0",
+    "mongodb": "^3.6.0",
     "mongoose": "^5.9.26",
     "movie-trailer": "^2.0.6",
-    "pako": "^1.0.11",
     "passport": "^0.4.1",
     "passport-local-mongoose": "^6.0.1",
     "prompt": "^1.0.0",
-    "request": "^2.88.2",
-    "simple.extract": "^1.0.1",
-    "stream": "0.0.2",
-    "unzip": "^0.1.11",
-    "unzip-response": "^3.0.0",
-    "util": "^0.12.3",
-    "zlib": "^1.0.5"
+    "request": "^2.88.2"
   }
 }

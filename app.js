@@ -11,16 +11,29 @@ var 	express 			= require("express"),
 		flash 				= require("connect-flash"),
 		indexRoutes 		= require("./routes/index"),
 		userRoutes 			= require("./routes/users"),
-		middleware			= require("./middleware/index"),
-		pako				= require("pako")
+		middleware			= require("./middleware/index")
 
 // create db here
-mongoose.connect("mongodb://localhost:27017/movie_app", {useUnifiedTopology:true, useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/movie_app", {useUnifiedTopology:true, useNewUrlParser: true});
+console.log(process.env.DATABASEURL);
 
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/movie_app"
+mongoose.connect(url, {useUnifiedTopology:true, useNewUrlParser: true});
+// mongoose.connect("mongodb+srv://aji1414:Souther9@yelpcamp.wf3zo.mongodb.net/movie_app?retryWrites=true&w=majority", {
+// 	useNewUrlParser: true,
+// 	useCreateIndex: true,
+// 	useUnifiedTopology: true
+// }).then(() =>{
+// 	console.log("Connected to DB");
+// }).catch(err => {
+// 	console.log("ERROR", err.message)
+// })
+
+// console.log()eprocess.env.databaseURL
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
-	secret: "the secret is as you wish",
+	secret: "My God is mighty",
 	resave: false,
 	saveUninitialized: false
 }));
@@ -32,7 +45,6 @@ passport.deserializeUser(User.deserializeUser());
 
 app.set("view engine", "ejs")
 app.use(express.static("public"));
-app.use(express.static("public/pako"));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(bodyParser.urlencoded({extended:true}));
