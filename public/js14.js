@@ -113,6 +113,7 @@ function showPassword(){
 	}
 }
 
+// animated background library
 VANTA.FOG({
   el: ".content",
   mouseControls: true,
@@ -124,3 +125,4 @@ VANTA.FOG({
   lowlightColor: 0x0,
   baseColor: 0x161313
 })
+

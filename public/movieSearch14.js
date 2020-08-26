@@ -248,7 +248,7 @@ const autoCompletejs = new autoComplete({
 			let response 				= await fetch("https://www.omdbapi.com/?i=" + imdb_id + "&apikey=thewdb");
 			let data					= await response.json();
 			// console.log(data)
-			return {data};
+			return data;
 			
 				
 			}
@@ -263,8 +263,6 @@ const autoCompletejs = new autoComplete({
 			getMovieData().then(function(result) {
 				// Render page elements						
 				// trailer data
-				console.log(result)
-				console.log(result.data)
 				if(imdbDataExists == false){
 					Object.keys(result).forEach(k => delete result[k])
 					result =  	{
@@ -283,11 +281,7 @@ const autoCompletejs = new autoComplete({
 								Ratings: ["N/A", "N/A", "N/A"]
 								}
 				}
-				else{
-					result = result.data
-				}
-				
-				// result = result.data
+	
 				var movieRatings 		= 	[[".imdb",'https://cdn.freebiesupply.com/images/thumbs/2x/imdb-logo.png'],
 											[".metacritic", 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'],
 											[".rottenTomatoes", 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png']]
@@ -339,30 +333,17 @@ const autoCompletejs = new autoComplete({
 							
 				
 				// store all movie data in html doc which will be stored in database if user adds film to sandpit
-				// if(imdbDataExists == false){
-				// 	result.Poster = 
-				// }
 				document.querySelector(".movieData" + divToChange).value 				= JSON.stringify(result)
-				// console.log(JSON.stringify(result))
-				
-				// if no data is pulled through, delete title added
-				// if(document.querySelector(".title" + divToChange).innerHTML === ""){
-				// 	document.querySelector(".removeHome" + divToChange).click()
-				// 	console.log("deleted")
-				// }
-			
 
 				// if no trailer, change trailer div to nothing found image
 				setTimeout(function(){
 					if($(".trailer" + divToChange).attr("src").length <= 10){
 					$(".trailerOuter" + divToChange).html("<img  src = 'https://image.flaticon.com/icons/png/512/678/678523.png' class='img-fluid' alt='Responsive image'>")
 				}}, 8000)
-
 			});
 			// Clear Input
 			document.querySelector("#autoComplete").value = "";
-		}
-			
+		}	
 	}
 });
 
@@ -430,4 +411,23 @@ $("div").on("click", "div div .removeHome", function(){
 	
 	// run function that adjusts spacing of divs with the new extra div
 	divResize();
+})
+
+
+// invoking a search through selecting one of the preset movies on homepage
+$(".chooseFromHome").on("click", function(){
+	var data = this.parentNode
+	// some wrapping in annonymous variables to match strucutre of films selected via the autocomplete library
+	var feedback = 		
+		{selection: 
+		 {value: 
+		  {original_title: data.querySelector(".original_title").textContent.trim(),
+				releaseDate: data.querySelector(".releaseDate").textContent.trim(),
+				overview: data.querySelector(".overview").textContent.trim(),
+				poster_path: data.querySelector(".poster_path").textContent.trim(),
+				id: data.querySelector(".id").textContent.trim(),
+		  }
+		 }
+		}
+	autoCompletejs.onSelection(feedback)
 })

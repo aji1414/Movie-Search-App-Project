@@ -23,28 +23,15 @@ router.get("/",function(req,res){
 		return axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
 	}
 	
-	function getTopRatedTV(){
-		return axios.get("https://api.themoviedb.org/3/tv/top_rated?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
-	}
-	
-	function getOnAirTV(){
-		return axios.get("https://api.themoviedb.org/3/tv/on_the_air?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
-	}
-	
-	function getPopularTV(){
-		return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=64436a1714ae913f7d6492fd1433610c&language=en-US&page=1")
-	}
-	
-	axios.all([getTrending(), getTopRated(), getUpcoming(), getTopRatedTV(), getOnAirTV(), getPopularTV()])
-		.then(axios.spread(function(trend, top, up, topTV, onAirTV, popTV, finalList){
-			var trend 	= trend.data.results.slice(0,5)
-			var top		= top.data.results.slice(0,5)
-			var up		= up.data.results.slice(0,5)
-			var topTV	= topTV.data.results.slice(0,5)
-			var onAirTV	= onAirTV.data.results.slice(0,5)
-			var popTV	= popTV.data.results.slice(0,5)
+	axios.all([getTrending(), getTopRated(), getUpcoming()])
+		.then(axios.spread(function(trend, top, up){
+			// console.log(trend.data.results)
+			var trend 	= trend.data.results.slice(0,15)
+			// console.log(tr)
+			var top		= top.data.results.slice(0,15)
+			var up		= up.data.results.slice(0,15)
 
-			res.render("home", {trend:trend, top:top, up:up, topTV:topTV, onAirTV:onAirTV, popTV:popTV})
+			res.render("home", {trend:trend, top:top, up:up})
 		}))
 		.catch(function (error) {
 			console.log(error);

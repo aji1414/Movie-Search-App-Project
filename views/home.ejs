@@ -12,9 +12,15 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "bolder">
+						<div class = "bolder chooseFromHome hoverHand2">
 							<%=movie.title%>
 						</div>
+						<!-- passing data through, doesnt appear on screen -->
+						<div class = "d-none id"><%=movie.id%></div>
+						<div class = "d-none poster_path"><%=movie.poster_path%></div>
+						<div class = "d-none overview"><%=movie.overview%></div>
+						<div class = "d-none releaseDate"><%=movie.releaseDate%></div>
+						<div class = "d-none original_title"><%=movie.original_title%></div>
 						<div>
 							<%=movie.vote_average%>
 							<i class="fas fa-star fa-xs"></i>
@@ -37,9 +43,15 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "bolder">
+						<div class = "bolder chooseFromHome hoverHand2">
 							<%=movie.title%>
 						</div>
+						<!-- passing data through, doesnt appear on screen -->
+						<div class = "d-none id"><%=movie.id%></div>
+						<div class = "d-none poster_path"><%=movie.poster_path%></div>
+						<div class = "d-none overview"><%=movie.overview%></div>
+						<div class = "d-none releaseDate"><%=movie.releaseDate%></div>
+						<div class = "d-none original_title"><%=movie.original_title%></div>
 						<div>
 							<%=movie.vote_average%>
 							<i class="fas fa-star fa-xs"></i>
@@ -62,9 +74,15 @@
 				</div>
 				<div class = "col-10">
 					<div class = "d-flex flex-column">
-						<div class = "bolder">
+						<div class = "bolder chooseFromHome hoverHand2">
 							<%=movie.title%>
 						</div>
+						<!-- passing data through, doesnt appear on screen -->
+						<div class = "d-none id"><%=movie.id%></div>
+						<div class = "d-none poster_path"><%=movie.poster_path%></div>
+						<div class = "d-none overview"><%=movie.overview%></div>
+						<div class = "d-none releaseDate"><%=movie.releaseDate%></div>
+						<div class = "d-none original_title"><%=movie.original_title%></div>
 						<div>
 							<%=movie.vote_average%>
 							<i class="fas fa-star fa-xs"></i>
@@ -77,80 +95,7 @@
 		</div>
 	</div>
 	
-	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3 class = "homeCategories">Top Rated TV Shows</h3>
-		<div class = "d-flex flex-column">
-			<% topTV.forEach(function(show){ %>
-			<div class = "d-flex mb-2">
-				<div class = "col-2 p-0 ">
-					<img src = "https://image.tmdb.org/t/p/w500<%=show.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
-				</div>
-				<div class = "col-10">
-					<div class = "d-flex flex-column">
-						<div class = "bolder">
-							<%=show.name%>
-						</div>
-						<div>
-							<%=show.vote_average%>
-							<i class="fas fa-star fa-xs"></i>
-						</div>
-					</div>
-					
-				</div>
-			</div>	
-		<%})%>
-		</div>
-	</div>
 	
-	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3 class = "homeCategories">TV Shows Currently Airing</h3>
-		<div class = "d-flex flex-column">
-			<% onAirTV.forEach(function(show){ %>
-			<div class = "d-flex mb-2">
-				<div class = "col-2 p-0 ">
-					<img src = "https://image.tmdb.org/t/p/w500<%=show.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
-				</div>
-				<div class = "col-10">
-					<div class = "d-flex flex-column">
-						<div class = "bolder">
-							<%=show.name%>
-						</div>
-						<div>
-							<%=show.vote_average%>
-							<i class="fas fa-star fa-xs"></i>
-						</div>
-					</div>
-					
-				</div>
-			</div>	
-		<%})%>
-		</div>
-	</div>
-	
-	<div class = "d-flex flex-column col-12 col-md-4">
-		<h3 class = "homeCategories">Most Popular TV Shows</h3>
-		<div class = "d-flex flex-column">
-			<% popTV.forEach(function(show){ %>
-			<div class = "d-flex mb-2">
-				<div class = "col-2 p-0 ">
-					<img src = "https://image.tmdb.org/t/p/w500<%=show.poster_path%>" class="img-fluid homePoster" alt="Responsive image">
-				</div>
-				<div class = "col-10">
-					<div class = "d-flex flex-column">
-						<div class = "bolder">
-							<%=show.name%>
-						</div>
-						<div>
-							<%=show.vote_average%>
-							<i class="fas fa-star fa-xs"></i>
-						</div>
-					</div>
-					
-				</div>
-			</div>	
-		<%})%>
-		</div>
-	</div>
 	
 </div>
 
