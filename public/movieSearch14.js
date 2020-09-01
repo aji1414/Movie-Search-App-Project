@@ -267,15 +267,17 @@ const autoCompletejs = new autoComplete({
 											[".metacritic", 'https://www.indiewire.com/wp-content/uploads/2019/05/rt_logo_primary_rgb-h_2018.jpg'],
 											[".rottenTomatoes", 'https://seekvectorlogo.com/wp-content/uploads/2020/06/metacritic-vector-logo.png']]
 
+	
 				// pass through no ratings label if can't be found
 				for(var i = 0; i < movieRatings.length; i++){
-					try{
+					if (result.Ratings[i] == undefined){
+						$(movieRatings[i][0] + divToChange).html("<div>N/A</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
+					}
+					else{
 						$(movieRatings[i][0] + divToChange).html("<div>" + result.Ratings[i].Value + "</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
 					}
-					catch(err){
-						$(movieRatings[i][0] + divToChange).html("<div>No Rating Available</div> <div><img class = 'reviewCompanies' src = '" + movieRatings[i][1] + "'></div>")
-					}
 				}
+	
 				
 				// other data
 				// some data manipulation

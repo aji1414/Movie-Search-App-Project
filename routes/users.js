@@ -81,9 +81,9 @@ router.post("/:id", middleware.isLoggedIn, function(req,res){
 	var	Country			= movieObject.Country;
 	var	Awards			= movieObject.Awards;
 	var	Poster			= movieObject.Poster;
-	var	IMDB			= movieObject.Ratings[0].Value;
-	var	RottenTomatoes	= movieObject.Ratings[1].Value;
-	var	Metacritic		= movieObject.Ratings[2].Value;
+	// var	IMDB			= movieObject.Ratings[0].Value;
+	// var	RottenTomatoes	= movieObject.Ratings[1].Value;
+	// var	Metacritic		= movieObject.Ratings[2].Value;
 	var	imdbID			= movieObject.imdbID;
 	var	imdbVotes		= movieObject.imdbVotes;
 	var	BoxOffice		= movieObject.BoxOffice;
@@ -108,9 +108,9 @@ router.post("/:id", middleware.isLoggedIn, function(req,res){
 		Country: Country,
 		Awards: Awards,
 		Poster: Poster,
-		IMDB: IMDB,
-		RottenTomatoes: RottenTomatoes,
-		Metacritic: Metacritic,
+		// IMDB: IMDB,
+		// RottenTomatoes: RottenTomatoes,
+		// Metacritic: Metacritic,
 		imdbID: imdbID,
 		imdbVotes: imdbVotes,
 		BoxOffice: BoxOffice,

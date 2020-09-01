@@ -212,7 +212,7 @@ input[type=submit] {
 
 #autoComplete_list{
 	position: absolute !important;
-	left: 34% !important;
+	left: 30% !important;
 	right: unset !important;
 }
 
