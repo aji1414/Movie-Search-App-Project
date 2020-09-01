@@ -127,4 +127,3 @@ VANTA.FOG({
   baseColor: 0x20101
 })
 
-MicroModal.init();
