@@ -9,6 +9,8 @@ body, html {
 	margin: 0;
     padding: 0;
 	animation: animation 100s linear infinite;
+	font-family: 'sans-serif', cursive !important;
+	/* font-size: 1.2em !important; */
 }
 
 
@@ -38,6 +40,13 @@ body, html {
 .navbar-light .navbar-brand{
 	color:black !important;
 	font-weight:800;
+	font-size: 2.5em;
+}
+
+@media only screen and (max-width: 700px) {
+  .navbar-light .navbar-brand {
+    font-size: 1.5em;
+  }
 }
 
 header{
@@ -46,7 +55,7 @@ header{
 
 /* editing links in nav bar */
 ul li a{
-	font-size: 0.8em;
+	font-size: 1.2em;
 	color:red
 }
 
@@ -193,4 +202,15 @@ input[type=submit] {
 	position:absolute;
     width:100%;
     height:100%;
+}
+
+#autoComplete_list{
+	position: absolute !important;
+	left: 34% !important;
+	right: unset !important;
+}
+
+.helpMessage{
+	background:white;
+	width:20%;
 }

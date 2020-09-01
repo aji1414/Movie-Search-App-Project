@@ -121,9 +121,10 @@ VANTA.FOG({
   gyroControls: false,
   minHeight: 850.00,
   // minWidth: 200.00,
-  midtoneColor: 0xff2a0d,
+  highlightColor: 0x989793,
+  midtoneColor: 0x0,
   lowlightColor: 0x0,
-  baseColor: 0x161313
+  baseColor: 0x20101
 })
 
-// var line = new ProgressBar.Line('#container');
+MicroModal.init();

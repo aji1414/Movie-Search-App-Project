@@ -38,7 +38,17 @@ margin: 0 auto;
 /* button to turn card over */
 .turn-card-over{
 	width: 100px;
+	background: white;
+	border: 3px solid black;
+	transform: translateZ(0);
+	cursor: pointer;
 }
+
+.turn-card-over:hover{
+  transform: scale(1.5);
+	z-index:10;
+}
+
 
 .flip-card-front, .flip-card-back {
   position: absolute;
